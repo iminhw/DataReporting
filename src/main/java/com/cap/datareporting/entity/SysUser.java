@@ -9,9 +9,13 @@ public class SysUser implements Serializable {
 
     private String password;
 
-    private String name;
+    private String ksh;
 
     private String email;
+
+    private String phone;
+
+    private String kaoshenhao;
 
     private String headPicture;
 
@@ -21,12 +25,30 @@ public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SysUser(Integer id, String username, String password, String name, String email, String headPicture, String salt, Integer status) {
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", ksh='" + ksh + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", kaoshenhao='" + kaoshenhao + '\'' +
+                ", headPicture='" + headPicture + '\'' +
+                ", salt='" + salt + '\'' +
+                ", status=" + status +
+                '}';
+    }
+
+    public SysUser(Integer id, String username, String password, String ksh, String email, String phone, String kaoshenhao, String headPicture, String salt, Integer status) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.name = name;
+        this.ksh = ksh;
         this.email = email;
+        this.phone = phone;
+        this.kaoshenhao = kaoshenhao;
         this.headPicture = headPicture;
         this.salt = salt;
         this.status = status;
@@ -60,12 +82,12 @@ public class SysUser implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getKsh() {
+        return ksh;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setKsh(String ksh) {
+        this.ksh = ksh == null ? null : ksh.trim();
     }
 
     public String getEmail() {
@@ -74,6 +96,22 @@ public class SysUser implements Serializable {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getKaoshenhao() {
+        return kaoshenhao;
+    }
+
+    public void setKaoshenhao(String kaoshenhao) {
+        this.kaoshenhao = kaoshenhao == null ? null : kaoshenhao.trim();
     }
 
     public String getHeadPicture() {

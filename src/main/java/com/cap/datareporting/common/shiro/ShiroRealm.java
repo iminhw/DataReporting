@@ -49,6 +49,9 @@ public class ShiroRealm extends AuthorizingRealm {
         } else if (user.getStatus().equals(StatusEnum.FREEZED.getCode())) {
             // 冻结
             throw new LockedAccountException();
+        } else if (user.getStatus().equals(StatusEnum.DELETE.getCode())) {
+//            DELETE
+            throw new UnknownAccountException();
         }
         // 对盐进行加密处理
         ByteSource salt = ByteSource.Util.bytes(user.getSalt());

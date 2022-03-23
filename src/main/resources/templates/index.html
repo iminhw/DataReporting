@@ -8,7 +8,7 @@
     <script th:src="@{/js/index.js}"></script>
 </head>
 <body style="position: relative;" data-spy="scroll" data-target="#navbar-example">
-<div th:replace="/common/fragment :: frontendHeadher"></div>
+<!--<div th:replace="/common/fragment :: frontendHeadher"></div>-->
 
 <!--test-->
 
@@ -75,32 +75,6 @@
 
             </div>
 
-            <ul class="pager">
-                <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
-                <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
-            </ul>
-        </div>
-
-        <!-- pager -->
-        <!--            <ul class="pager">-->
-        <!--                <c:if test="${pc.curPage > 1}">-->
-        <!--                    <li class="previous"><a-->
-        <!--                            href="/user/index?curPage=<c:out value="${pc.curPage-1}"/>&larr;-->
-        <!--                        上一页</a>-->
-        <!--                    </li>-->
-
-        <!--                </c:if>-->
-        <!--                <c:if test="${pc.curPage< pc.totalPages}">-->
-
-        <!--                    <li class="next"><a-->
-        <!--                            href="/user/index?curPage=<c:out value="${pc.curPage+1}"/>下一页-->
-        <!--                        &rarr;</a>-->
-        <!--                    </li>-->
-
-        <!--                </c:if>-->
-        <!--            </ul>-->
-
-        <div th:replace="/common/fragment :: frontendReg"></div>
     </div>
 </section>
 

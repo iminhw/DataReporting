@@ -14,7 +14,7 @@ body {
     除非你给 <body> 元素底部设置了 padding。
     用你自己的值。提示：导航条的默认高度是 50px。
     */
-    padding-top: 74px;
+    /*padding-top: 74px;*/
 }
 
 .section {

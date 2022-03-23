@@ -1,85 +1,63 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <script th:src="@{/js/bootstrap-3.4.1/js/jquery.min.js}" ></script>
+    <title>登陆</title>
 
-<!--    <script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>-->
-    <!-- https://sweetalert.bootcss.com/guides/ -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
-    <meta name="renderer" content="webkit"></meta>
-    <title>登录</title>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-    <link rel="stylesheet" th:href="@{/css/login.css}"></link>
-    <link rel="stylesheet" th:href="@{/css/style.css}"></link>
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link th:href="@{/css/base.css}" rel="stylesheet">
+    <link th:href="@{/css/exp/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/exp/font-awesome.css}" rel="stylesheet">
+    <link href="#css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
 
-    <!--    自定义 thymeleaf标签 实现参数可配置化-->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script th:src="@{/js/sweetalert2.all.min.js}" ></script>
+    <script th:src="@{/js/exp/jquery.min.js}"></script>
+    <script th:src="@{/js/exp/bootstrap.min.js}"></script>
+    <script th:src="@{/js/exp/sweetalert2.all.min.js}"></script>
+
     <script th:src="@{/js/base.js}"></script>
 </head>
-<body>
-<div class="bg"></div>
-<div class="container">
-    <div class="line bouncein">
-        <div class="xs6 xm4 xs3-move xm4-move">
-            <div style="height:150px;"></div>
-            <div class="media media-y margin-big-bottom">
-            </div>
-            <div class="panel loginbox">
-                <div class="text-center margin-big padding-big-top">
-                    <h1>后台管理中心</h1>
-                    <h4 style="color:#FF0000" id="erro1"></h4>
-                </div>
-                <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
-                    <div class="form-group">
-                        <div class="field field-icon-right">
-                            <input type="text" class="input input-big" name="username" id="username"
-                                   placeholder="登录账号" required="required"/>
-                            <span class="icon icon-user margin-small"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="field field-icon-right">
-                            <input type="password" class="input input-big" name="password" id="password"
-                                   placeholder="登录密码" required="required"/>
-                            <span class="icon icon-key margin-small"></span>
-                        </div>
-                    </div>
-                    <!--                    <div class="form-group">-->
-                    <!--                        <div class="field">-->
-                    <!--                            <input type="text" class="input input-big" id="vcode" name="vcode" placeholder="填写右侧的验证码"/>-->
-                    <!--                            <img id="codePic" src="http://localhost:8080/getGifCode" onclick="change()" alt=""-->
-                    <!--                                 width="100" height="32" class="passcode" style="height:43px;cursor:pointer;"/>-->
-
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <P><input type="checkbox" name="rememberMe" id="rememberMe"/> 记住我</P>
-<!--                    <a href="/registration" style="color:#029789;float: right;">前往注册</a>-->
-                    <!--                    <div class="layui-form-item login-footer">-->
-                    <!--                        <p>社交账号登入</p>-->
-                    <!--                        <a  href="/api/qq" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})"><i-->
-                    <!--                                class="layui-icon layui-icon-login-qq"></i></a>-->
-                    <!--                        <a href="javascript:layer.msg('暂未开放');"><i class="layui-icon layui-icon-login-wechat"></i></a>-->
-                    <!--                        <a href="/registration" style="color:#029789;float: right;">前往注册</a>-->
-                    <!--                    </div>-->
-                </div>
-                <div style="padding:30px;">
-                    <input type="button" onclick="sendAjax()" value="登录" id="ajaxLogin"
-                           class="button button-block bg-main text-big input-big"/>
-                </div>
-            </div>
-        </div>
-    </div>
+<body id="login">
+<div class="login-logo">
+    <a href="/">
+        <img src="images/logo.png" alt=""/>
+    </a>
 </div>
-<script>
-    var bgImgUrl = 'https://www.minhw.com/p/images/bg/img_{num}.jpg', bgDiv = document.getElementById("bg");
+<h2 class="form-heading">登陆</h2>
+<div class="app-cam">
+    <!--    <form>-->
+    <input type="text" class="text" value="身份证号" id="username" onfocus="this.value = '';"
+           onblur="if (this.value == '') {this.value = '身份证号';}">
+    <input type="password" value="Password" id="password" onfocus="this.value = '';"
+           onblur="if (this.value == '') {this.value = '密码';}">
+    <label class="checkbox-custom check-success">
+        <input type="checkbox" name="rememberMe" id="rememberMe"> <label for="rememberMe">记住我</label>
+    </label>
+    <div class="submit"><input type="submit" onclick="login()" value="登陆"></div>
+    <!--        <div class="login-social-link">-->
+    <!--            <a href="index.html" class="icon-qq">-->
+    <!--                QQ-->
+    <!--            </a>-->
+    <!--            <a href="index.html" class="icon-wechat">-->
+    <!--                微信-->
+    <!--            </a>-->
+    <!--        </div>-->
+    <ul class="new" style="margin-top: 4px">
+        <li class="new_left"><p><a href="#">忘记密码？</a></p></li>
+        <li class="new_right"><p class="sign">新用户？<a href="/register"> 注册 </a></p></li>
+        <div class="clearfix"></div>
+    </ul>
+    <!--    </form>-->
+</div>
 
-    bgIUrl = bgImgUrl.replace('{num}', parseInt(Math.random() * 23 + 0));
-    bgDiv.style.backgroundImage = 'url(' + bgIUrl + ')';
+<div th:replace="/common/fragment :: frontendLRFooter"></div>
 
-</script>
 </body>
 </html>

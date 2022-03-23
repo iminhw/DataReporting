@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="header(title, link, style)">
     <th:block th:if="${title == null}">
-        <title>后台</title>
+        <title>minhw</title>
     </th:block>
     <th:block th:if="${title != null}">
         <title th:replace="${title}">title</title>
@@ -11,9 +11,11 @@
     <meta charset="utf-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="BLOG"/>
-    <meta name="keywords" content="minhw, SpringBoot, Thymeleaf, Shiro"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta name="keywords" content="minhw"/>
+    <meta name="description" content="minhw"/>
 
     <link rel="shortcut icon" th:href="@{/favicon.ico}" type="image/x-icon">
 
@@ -25,22 +27,48 @@
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"-->
     <!--          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">-->
-    <link th:href="@{/js/bootstrap-3.4.1/css/bootstrap.min.css}" rel="stylesheet" crossorigin="anonymous">
+<!--    <link th:href="@{/js/bootstrap-3.4.1/css/bootstrap.min.css}" rel="stylesheet" crossorigin="anonymous">-->
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"-->
     <!--          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">-->
-    <link th:href="@{/js/bootstrap-3.4.1/css/bootstrap-theme.min.css}" rel="stylesheet" crossorigin="anonymous">
+<!--    <link th:href="@{/js/bootstrap-3.4.1/css/bootstrap-theme.min.css}" rel="stylesheet" crossorigin="anonymous">-->
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"-->
     <!--            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"-->
     <!--            crossorigin="anonymous"></script>-->
     <!--    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-    <link th:href="@{/css/base.css}" rel="stylesheet">
-    <script th:src="@{/js/bootstrap-3.4.1/js/jquery.min.js}"></script>
-    <script th:src="@{/js/bootstrap-3.4.1/js/bootstrap.min.js}"></script>
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Bootstrap Core CSS -->
+    <link th:href="@{/css/exp/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <!-- Graph CSS -->
+    <link th:href="@{/css/exp/lines.css}" rel='stylesheet' type='text/css' />
+    <link th:href="@{/css/exp/font-awesome.css}" rel="stylesheet">
+    <!----webfonts--->
+    <link href="#css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
+    <!-- Nav CSS -->
+    <link th:href="@{/css/exp/custom.css}" rel="stylesheet">
 
-    <script th:src="@{/js/sweetalert2.all.min.js}"></script>
+    <script th:src="@{/js/exp/jquery.min.js}"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script th:src="@{/js/exp/metisMenu.min.js}"></script>
+    <script th:src="@{/js/exp/custom.js}"></script>
+    <!-- Graph JavaScript -->
+    <script th:src="@{/js/exp/d3.v3.js}"></script>
+    <script th:src="@{/js/exp/rickshaw.js}"></script>
+
+    <script th:src="@{/js/exp/bootstrap.min.js}"></script>
+    <script th:src="@{/js/exp/sweetalert2.all.min.js}"></script>
+
     <script th:src="@{/js/base.js}"></script>
 
     <!--  es6  -->

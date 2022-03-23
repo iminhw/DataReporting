@@ -4,6 +4,7 @@ import com.cap.datareporting.common.shiro.UserPassOpenIdToken;
 import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.SysUserRole;
 import com.cap.datareporting.enums.ResultEnum;
+import com.cap.datareporting.enums.StatusEnum;
 import com.cap.datareporting.service.SysUserRoleService;
 import com.cap.datareporting.service.SysUserService;
 import com.cap.datareporting.utils.ResultEntity;
@@ -35,7 +36,6 @@ public class LoginController {
     @ResponseBody
     public ResultEntity addURegister(SysUser sysUser) {
         ResultEntity resultMap = new ResultEntity();
-
         SysUser sysUser2 = sysUserService.findByUsername(sysUser.getUsername());
         if (sysUser2 != null) {
             resultMap.setStatus(ResultEnum.USER_EXIST.getCode());
@@ -43,13 +43,20 @@ public class LoginController {
             return resultMap;
         }
 
-        if (sysUserService.addUser(sysUser) > 1) {
+        // 对密码进行加密
+        String salt = ShiroUtil.getRandomSalt();
+        String encrypt = ShiroUtil.encrypt(sysUser.getPassword(), salt);
+        sysUser.setPassword(encrypt);
+        sysUser.setSalt(salt);
+
+        sysUser.setStatus(StatusEnum.OK.getCode());
+
+        System.out.println(sysUser.toString());
+
+        if (sysUserService.addUser(sysUser) > 0) {
             SysUser sysUser1 = sysUserService.findByUsername(sysUser.getUsername());
-
-
 //            3应该使用参数 可配置  @！！！！！
-            sysUserRoleService.addUserRole(new SysUserRole(null,sysUser1.getId(), 3));
-
+            sysUserRoleService.addUserRole(new SysUserRole(null, sysUser1.getId(), 3));
 
             resultMap.setStatus(ResultEnum.USER_REGISTER_SUCESS.getCode());
             resultMap.setMessage(ResultEnum.USER_REGISTER_SUCESS.getMessage());
@@ -58,7 +65,6 @@ public class LoginController {
             resultMap.setStatus(ResultEnum.USER_REGISTER_ERROR.getCode());
             resultMap.setMessage(ResultEnum.USER_REGISTER_ERROR.getMessage());
         }
-
         return resultMap;
     }
 
@@ -83,7 +89,7 @@ public class LoginController {
             // 密码登陆方式
             UserPassOpenIdToken token = new UserPassOpenIdToken(username, password, "0");
 //            记住我
-            System.err.printf("rememberMe=" + rememberMe);
+//            System.err.printf("rememberMe=" + rememberMe);
             if (rememberMe != null) {
                 token.setRememberMe(true);
             } else {
@@ -95,7 +101,9 @@ public class LoginController {
 //            根据用户判断并进入不同的页面
             // 判断是否拥有后台角色
             SysUser user = ShiroUtil.getSubject();
-            resultMap.setOther("/index");
+            resultMap.setOther("/admin");
+
+
             resultMap.setStatus(200);
             resultMap.setMessage("登录成功");
         } catch (UnknownAccountException e) {

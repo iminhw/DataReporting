@@ -2,6 +2,9 @@ package com.cap.datareporting.common.shiro;
 
 import org.apache.shiro.authc.UsernamePasswordToken;
 
+/**
+ * @author mz
+ */
 public class UserPassOpenIdToken extends UsernamePasswordToken {
 
     public UserPassOpenIdToken(){

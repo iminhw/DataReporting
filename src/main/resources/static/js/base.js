@@ -31,7 +31,7 @@ function messge(title = "提示", icon = 'success') {
 //     );
 // }
 
-function sendAjax() {
+function login() {
     var username = $("#username").val();
     var password = $("#password").val();
     // var vcode = $("#vcode").val();
