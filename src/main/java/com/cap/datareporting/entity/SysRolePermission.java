@@ -1,11 +1,15 @@
 package com.cap.datareporting.entity;
 
-public class SysRolePermission {
+import java.io.Serializable;
+
+public class SysRolePermission implements Serializable {
     private Integer id;
 
     private Integer roleid;
 
     private Integer permissionid;
+
+    private static final long serialVersionUID = 1L;
 
     public SysRolePermission(Integer id, Integer roleid, Integer permissionid) {
         this.id = id;

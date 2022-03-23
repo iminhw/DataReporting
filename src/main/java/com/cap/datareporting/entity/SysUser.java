@@ -2,9 +2,6 @@ package com.cap.datareporting.entity;
 
 import java.io.Serializable;
 
-/**
- * @author mz
- */
 public class SysUser implements Serializable {
     private Integer id;
 
@@ -21,6 +18,8 @@ public class SysUser implements Serializable {
     private String salt;
 
     private Integer status;
+
+    private static final long serialVersionUID = 1L;
 
     public SysUser(Integer id, String username, String password, String name, String email, String headPicture, String salt, Integer status) {
         this.id = id;

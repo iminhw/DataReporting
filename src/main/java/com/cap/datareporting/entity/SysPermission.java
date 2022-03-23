@@ -1,6 +1,8 @@
 package com.cap.datareporting.entity;
 
-public class SysPermission {
+import java.io.Serializable;
+
+public class SysPermission implements Serializable {
     private Integer id;
 
     private String permission;
@@ -8,6 +10,8 @@ public class SysPermission {
     private String url;
 
     private String name;
+
+    private static final long serialVersionUID = 1L;
 
     public SysPermission(Integer id, String permission, String url, String name) {
         this.id = id;

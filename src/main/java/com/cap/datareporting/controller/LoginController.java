@@ -2,12 +2,16 @@ package com.cap.datareporting.controller;
 
 import com.cap.datareporting.common.shiro.UserPassOpenIdToken;
 import com.cap.datareporting.entity.SysUser;
+import com.cap.datareporting.entity.SysUserRole;
 import com.cap.datareporting.enums.ResultEnum;
+import com.cap.datareporting.service.SysUserRoleService;
+import com.cap.datareporting.service.SysUserService;
 import com.cap.datareporting.utils.ResultEntity;
 import com.cap.datareporting.utils.ShiroUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +24,44 @@ import org.springframework.web.bind.annotation.*;
  **/
 @Controller
 public class LoginController {
+
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
+
+    @Autowired
+    private SysUserService sysUserService;
+
+    @RequestMapping(value = "/regAdd", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultEntity addURegister(SysUser sysUser) {
+        ResultEntity resultMap = new ResultEntity();
+
+        SysUser sysUser2 = sysUserService.findByUsername(sysUser.getUsername());
+        if (sysUser2 != null) {
+            resultMap.setStatus(ResultEnum.USER_EXIST.getCode());
+            resultMap.setMessage(ResultEnum.USER_EXIST.getMessage());
+            return resultMap;
+        }
+
+        if (sysUserService.addUser(sysUser) > 1) {
+            SysUser sysUser1 = sysUserService.findByUsername(sysUser.getUsername());
+
+
+//            3应该使用参数 可配置  @！！！！！
+            sysUserRoleService.addUserRole(new SysUserRole(null,sysUser1.getId(), 3));
+
+
+            resultMap.setStatus(ResultEnum.USER_REGISTER_SUCESS.getCode());
+            resultMap.setMessage(ResultEnum.USER_REGISTER_SUCESS.getMessage());
+            resultMap.setOther("/login");
+        } else {
+            resultMap.setStatus(ResultEnum.USER_REGISTER_ERROR.getCode());
+            resultMap.setMessage(ResultEnum.USER_REGISTER_ERROR.getMessage());
+        }
+
+        return resultMap;
+    }
+
 
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
     @ResponseBody
@@ -41,7 +83,7 @@ public class LoginController {
             // 密码登陆方式
             UserPassOpenIdToken token = new UserPassOpenIdToken(username, password, "0");
 //            记住我
-            System.err.printf("rememberMe="+rememberMe);
+            System.err.printf("rememberMe=" + rememberMe);
             if (rememberMe != null) {
                 token.setRememberMe(true);
             } else {

@@ -32,7 +32,7 @@ import java.util.Set;
  * @date 2018/8/14
  */
 @Controller
-@RequestMapping("/system/user")
+@RequestMapping("/admin/user")
 public class UserController {
 
     @Autowired
@@ -45,7 +45,7 @@ public class UserController {
      * 列表页面
      */
     @GetMapping("/index")
-    @RequiresPermissions("system:user:index")
+    @RequiresPermissions("admin:user:index")
     public String index(Model model, SysUser user) {
 
         // 获取用户列表
@@ -55,27 +55,27 @@ public class UserController {
 //        model.addAttribute("list", list.getContent());
 //        model.addAttribute("page", list);
 //        model.addAttribute("dept", user.getDept());
-        return "/system/user/index";
+        return "/admin/user/index";
     }
 
     /**
      * 跳转到添加页面
      */
     @GetMapping("/add")
-    @RequiresPermissions("system:user:add")
+    @RequiresPermissions("admin:user:add")
     public String toAdd() {
-        return "/system/user/add";
+        return "/admin/user/add";
     }
 
     /**
      * 跳转到编辑页面
      */
     @GetMapping("/edit/{id}")
-    @RequiresPermissions("system:user:edit")
+    @RequiresPermissions("admin:user:edit")
 
     public String toEdit(@PathVariable("id") SysUser user, Model model) {
         model.addAttribute("user", user);
-        return "/system/user/add";
+        return "/admin/user/add";
     }
 
     /**
@@ -85,7 +85,7 @@ public class UserController {
      * @param user  实体对象
      */
 //    @PostMapping("/save")
-//    @RequiresPermissions({"system:user:add", "system:user:edit"})
+//    @RequiresPermissions({"admin:user:add", "admin:user:edit"})
 //    @ResponseBody
 //    public ResultEntity save(SysUser user) {
 //
@@ -136,27 +136,27 @@ public class UserController {
      * 跳转到详细页面
      */
     @GetMapping("/detail/{id}")
-    @RequiresPermissions("system:user:detail")
+    @RequiresPermissions("admin:user:detail")
     public String toDetail(@PathVariable("id") SysUser user, Model model) {
         model.addAttribute("user", user);
-        return "/system/user/detail";
+        return "/admin/user/detail";
     }
 
     /**
      * 跳转到修改密码页面
      */
     @GetMapping("/pwd")
-    @RequiresPermissions("system:user:pwd")
+    @RequiresPermissions("admin:user:pwd")
     public String toEditPassword(Model model, @RequestParam(value = "ids", required = false) List<Long> ids) {
         model.addAttribute("idList", ids);
-        return "/system/user/pwd";
+        return "/admin/user/pwd";
     }
 
     /**
      * 修改密码
      */
 //    @PostMapping("/pwd")
-//    @RequiresPermissions("system:user:pwd")
+//    @RequiresPermissions("admin:user:pwd")
 //    @ResponseBody
 //    public ResultVo editPassword(String password, String confirm,
 //                                 @RequestParam(value = "ids", required = false) List<Long> ids,
@@ -196,7 +196,7 @@ public class UserController {
      * 跳转到角色分配页面
      */
 //    @GetMapping("/role")
-//    @RequiresPermissions("system:user:role")
+//    @RequiresPermissions("admin:user:role")
 //    public String toRole(@RequestParam(value = "ids") User user, Model model) {
 //        // 获取指定用户角色列表
 //        Set<Role> authRoles = user.getRoles();
@@ -207,14 +207,14 @@ public class UserController {
 //        model.addAttribute("id", user.getId());
 //        model.addAttribute("list", list);
 //        model.addAttribute("authRoles", authRoles);
-//        return "/system/user/role";
+//        return "/admin/user/role";
 //    }
 
     /**
      * 保存角色分配信息
      */
 //    @PostMapping("/role")
-//    @RequiresPermissions("system:user:role")
+//    @RequiresPermissions("admin:user:role")
 //    @ResponseBody
 //    public ResultVo auth(
 //            @RequestParam(value = "id", required = true) SysUser user,
@@ -268,7 +268,7 @@ public class UserController {
      * 设置一条或者多条数据的状态
      */
 //    @RequestMapping("/status/{param}")
-//    @RequiresPermissions("system:user:status")
+//    @RequiresPermissions("admin:user:status")
 //    @ResponseBody
 //    public ResultVo updateStatus(
 //            @PathVariable("param") String param,

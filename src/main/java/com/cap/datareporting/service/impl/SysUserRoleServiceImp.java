@@ -28,4 +28,9 @@ public class SysUserRoleServiceImp implements SysUserRoleService {
         criteria.andUidEqualTo(uid);
         return sysUserRoleMapper.selectByExample(example);
     }
+
+    @Override
+    public int addUserRole(SysUserRole sysUserRole) {
+        return sysUserRoleMapper.insert(sysUserRole);
+    }
 }

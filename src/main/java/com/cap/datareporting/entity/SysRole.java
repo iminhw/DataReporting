@@ -1,11 +1,15 @@
 package com.cap.datareporting.entity;
 
-public class SysRole {
+import java.io.Serializable;
+
+public class SysRole implements Serializable {
     private Integer id;
 
     private String role;
 
     private String name;
+
+    private static final long serialVersionUID = 1L;
 
     public SysRole(Integer id, String role, String name) {
         this.id = id;

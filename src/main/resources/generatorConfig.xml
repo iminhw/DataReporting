@@ -3,12 +3,15 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
+    <!--    https://blog.csdn.net/xybelieve1990/article/details/53743778   -->
     <!-- context 是逆向工程的主要配置信息 -->
     <!-- id：起个名字 -->
     <!-- targetRuntime：设置生成的文件适用于那个 mybatis 版本 -->
     <context id="default" targetRuntime="MyBatis3">
         <!-- 生成 mapper.xml时不 merge 直接覆盖原文件 -->
         <!--        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>-->
+        <!-- 生成的pojo，将implements Serializable -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
         <!--optional,指在创建class时，对注释进行控制-->
         <commentGenerator>
             <property name="suppressDate" value="true"/>

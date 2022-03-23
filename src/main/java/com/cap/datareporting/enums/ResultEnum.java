@@ -26,6 +26,12 @@ public enum ResultEnum implements ResultInterface {
     USER_CAPTCHA_ERROR(406, "验证码错误"),
 
     /**
+     * 注册
+     */
+    USER_REGISTER_SUCESS(200, "注册成功"),
+    USER_REGISTER_ERROR(501, "注册异常，清联系管理员"),
+
+    /**
      * 角色问题
      */
     ROLE_EXIST(401, "该角色标识已经存在，不允许重复！"),
