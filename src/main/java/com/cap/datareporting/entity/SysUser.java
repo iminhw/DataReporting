@@ -1,6 +1,6 @@
 package com.cap.datareporting.entity;
 
-public class SysUser {
+public class SysUser{
     private Integer id;
 
     private String username;
@@ -13,16 +13,19 @@ public class SysUser {
 
     private String headPicture;
 
-    private Integer isDelete;
+    private String salt;
 
-    public SysUser(Integer id, String username, String password, String name, String email, String headPicture, Integer isDelete) {
+    private Integer status;
+
+    public SysUser(Integer id, String username, String password, String name, String email, String headPicture, String salt, Integer status) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
         this.headPicture = headPicture;
-        this.isDelete = isDelete;
+        this.salt = salt;
+        this.status = status;
     }
 
     public SysUser() {
@@ -77,11 +80,19 @@ public class SysUser {
         this.headPicture = headPicture == null ? null : headPicture.trim();
     }
 
-    public Integer getIsDelete() {
-        return isDelete;
+    public String getSalt() {
+        return salt;
     }
 
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

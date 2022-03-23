@@ -3,7 +3,7 @@ package com.cap.datareporting.service.impl;
 import com.cap.datareporting.dao.SysRolePermissionMapper;
 import com.cap.datareporting.entity.SysRolePermission;
 import com.cap.datareporting.entity.SysRolePermissionExample;
-import com.cap.datareporting.service.RolePermissionService;
+import com.cap.datareporting.service.SysRolePermissionService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +16,7 @@ import java.util.List;
  * @create: 2022-03-12 21:22
  **/
 @Service
-public class RolePermissionServiceImp implements RolePermissionService {
+public class SysRolePermissionServiceImp implements SysRolePermissionService {
 
     @Resource
     private SysRolePermissionMapper sysRolePermissionMapper;

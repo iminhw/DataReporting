@@ -9,7 +9,7 @@ import com.cap.datareporting.entity.SysPermission;
  * @author: MinHw
  * @create: 2022-03-12 21:14
  **/
-public interface PermissionService {
+public interface SysPermissionService {
 
 //    List<Permission> find
 

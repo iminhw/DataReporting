@@ -45,18 +45,12 @@ function sendAjax() {
         dataType: "json",
         success: function (data) {
             if (data.status == 200) {
-                messge("登陆成功");
-                location.href = "/index";
-                //     location.href = data.repurl;
-            } else if (data.status == 100) {
-                messge("密码错误，您还有：" + data.message + " 次机会");
-            } else if (data.status == 600) {
-                messge("账号不存在,您还有：" + data.message + " 次机会");
-            } else if (data.status == 300) {
-                messge("账号不存在,您还有：" + data.message + " 次机会");
+                messge("登陆成功, 3s 后进入系统");
+                setTimeout(function(){
+                    location.href = data.other;
+                }, 3000);
             } else {
                 messge(data.message, "error");
-                // $("#erro1").html(data.message);
             }
         },
         error: function () {

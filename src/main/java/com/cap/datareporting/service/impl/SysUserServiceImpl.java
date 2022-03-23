@@ -3,7 +3,7 @@ package com.cap.datareporting.service.impl;
 import com.cap.datareporting.dao.SysUserMapper;
 import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.SysUserExample;
-import com.cap.datareporting.service.UserService;
+import com.cap.datareporting.service.SysUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,7 +13,7 @@ import java.util.List;
  * @author mz
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class SysUserServiceImpl implements SysUserService {
 
     @Resource
     private SysUserMapper sysUserMapper;

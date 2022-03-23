@@ -514,63 +514,133 @@ public class SysUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteIsNull() {
-            addCriterion("is_delete is null");
+        public Criteria andSaltIsNull() {
+            addCriterion("salt is null");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteIsNotNull() {
-            addCriterion("is_delete is not null");
+        public Criteria andSaltIsNotNull() {
+            addCriterion("salt is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteEqualTo(Integer value) {
-            addCriterion("is_delete =", value, "isDelete");
+        public Criteria andSaltEqualTo(String value) {
+            addCriterion("salt =", value, "salt");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteNotEqualTo(Integer value) {
-            addCriterion("is_delete <>", value, "isDelete");
+        public Criteria andSaltNotEqualTo(String value) {
+            addCriterion("salt <>", value, "salt");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteGreaterThan(Integer value) {
-            addCriterion("is_delete >", value, "isDelete");
+        public Criteria andSaltGreaterThan(String value) {
+            addCriterion("salt >", value, "salt");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteGreaterThanOrEqualTo(Integer value) {
-            addCriterion("is_delete >=", value, "isDelete");
+        public Criteria andSaltGreaterThanOrEqualTo(String value) {
+            addCriterion("salt >=", value, "salt");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteLessThan(Integer value) {
-            addCriterion("is_delete <", value, "isDelete");
+        public Criteria andSaltLessThan(String value) {
+            addCriterion("salt <", value, "salt");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteLessThanOrEqualTo(Integer value) {
-            addCriterion("is_delete <=", value, "isDelete");
+        public Criteria andSaltLessThanOrEqualTo(String value) {
+            addCriterion("salt <=", value, "salt");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteIn(List<Integer> values) {
-            addCriterion("is_delete in", values, "isDelete");
+        public Criteria andSaltLike(String value) {
+            addCriterion("salt like", value, "salt");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteNotIn(List<Integer> values) {
-            addCriterion("is_delete not in", values, "isDelete");
+        public Criteria andSaltNotLike(String value) {
+            addCriterion("salt not like", value, "salt");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteBetween(Integer value1, Integer value2) {
-            addCriterion("is_delete between", value1, value2, "isDelete");
+        public Criteria andSaltIn(List<String> values) {
+            addCriterion("salt in", values, "salt");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteNotBetween(Integer value1, Integer value2) {
-            addCriterion("is_delete not between", value1, value2, "isDelete");
+        public Criteria andSaltNotIn(List<String> values) {
+            addCriterion("salt not in", values, "salt");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltBetween(String value1, String value2) {
+            addCriterion("salt between", value1, value2, "salt");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltNotBetween(String value1, String value2) {
+            addCriterion("salt not between", value1, value2, "salt");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Integer value) {
+            addCriterion("status =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Integer value) {
+            addCriterion("status <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Integer value) {
+            addCriterion("status >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("status >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Integer value) {
+            addCriterion("status <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("status <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Integer> values) {
+            addCriterion("status in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Integer> values) {
+            addCriterion("status not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
+            addCriterion("status between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
     }

@@ -17,6 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
+import javax.servlet.Filter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -39,6 +41,15 @@ public class ShiroConfiguration {
         //拦截器.
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
+
+
+        /**
+         * 添加自定义拦截器，重写user认证方式，处理session超时问题
+         */
+        HashMap<String, Filter> myFilters = new HashMap<>(16);
+        myFilters.put("userAuth", new UserAuthFilter());
+        shiroFilterFactoryBean.setFilters(myFilters);
+
         /**
          *  过滤规则（注意优先级）
          *  —anon 无需认证(登录)可访问
@@ -73,7 +84,7 @@ public class ShiroConfiguration {
     @Bean
     public ShiroRealm myShiroRealm() {
         ShiroRealm shiroRealm = new ShiroRealm();
-        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+//        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return shiroRealm;
     }
 

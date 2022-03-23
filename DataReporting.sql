@@ -80,6 +80,7 @@ CREATE TABLE `sys_user` (
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(32) NOT NULL DEFAULT '0',
   `head_picture` varchar(255) DEFAULT NULL,
+  `salt` varchar(255) DEFAULT NULL,
   `is_delete` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `index_user` (`id`) USING BTREE

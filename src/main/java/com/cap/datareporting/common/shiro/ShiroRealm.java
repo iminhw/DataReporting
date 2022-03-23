@@ -3,16 +3,19 @@ package com.cap.datareporting.common.shiro;
 import com.cap.datareporting.entity.SysRolePermission;
 import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.SysUserRole;
+import com.cap.datareporting.enums.StatusEnum;
 import com.cap.datareporting.service.*;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import com.cap.datareporting.utils.ShiroUtil;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.codec.CodecSupport;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -25,29 +28,41 @@ import java.util.List;
 public class ShiroRealm extends AuthorizingRealm {
 
     @Resource
-    private UserService userService;
+    private SysUserService userService;
     @Resource
-    private RoleService roleService;
+    private SysRoleService roleService;
     @Resource
-    private UserRoleService userRoleService;
+    private SysUserRoleService userRoleService;
     @Resource
-    private RolePermissionService rolePermissionService;
+    private SysRolePermissionService rolePermissionService;
     @Resource
-    private PermissionService permissionService;
+    private SysPermissionService permissionService;
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String username = (String) token.getPrincipal();
         //通过username从数据库中查找 User对象
         SysUser user = userService.findByUsername(username);
-        System.err.println("----->>username=" + user.getUsername() + "---" + user.getPassword());
+        System.err.println("----->>username=" + user.getUsername() + "---" + user.getPassword()+"---"+user.getSalt());
         if (user == null) {
-            return null;
+            throw new UnknownAccountException();
+        } else if (user.getStatus().equals(StatusEnum.FREEZED.getCode())) {
+            // 冻结
+            throw new LockedAccountException();
         }
+        // 对盐进行加密处理
+        ByteSource salt = ByteSource.Util.bytes(user.getSalt());
 
+        /* 传入密码自动判断是否正确
+         * 参数1：传入对象给Principal
+         * 参数2：正确的用户密码
+         * 参数3：加盐处理
+         * 参数4：固定写法
+         */
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user,
                 user.getPassword(),
+                salt,
                 //realm name
                 getName()
         );
@@ -78,6 +93,28 @@ public class ShiroRealm extends AuthorizingRealm {
             }
         }
         return authorizationInfo;
+    }
+
+    /**
+     * 自定义密码验证匹配器
+     */
+    @PostConstruct
+    public void initCredentialsMatcher() {
+        setCredentialsMatcher(new SimpleCredentialsMatcher() {
+            @Override
+            public boolean doCredentialsMatch(AuthenticationToken authenticationToken, AuthenticationInfo authenticationInfo) {
+                UserPassOpenIdToken token = (UserPassOpenIdToken) authenticationToken;
+                SimpleAuthenticationInfo info = (SimpleAuthenticationInfo) authenticationInfo;
+                // 获取明文密码及密码盐
+                String password = String.valueOf(token.getPassword());
+                String salt = CodecSupport.toString(info.getCredentialsSalt().getBytes());
+                // 第三放登陆
+                if ("1".equals(token.getLoginType())) {
+                    return true;
+                }
+                return equals(ShiroUtil.encrypt(password, salt), info.getCredentials());
+            }
+        });
     }
 
 }

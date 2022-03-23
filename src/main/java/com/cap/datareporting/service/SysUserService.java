@@ -3,7 +3,7 @@ package com.cap.datareporting.service;
 
 import com.cap.datareporting.entity.SysUser;
 
-public interface UserService {
+public interface SysUserService {
 
     /**
      * 通过username查找用户信息;

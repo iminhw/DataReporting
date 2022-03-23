@@ -1,6 +1,6 @@
 package com.cap.datareporting.service;
 
-import com.cap.datareporting.entity.SysRolePermission;
+import com.cap.datareporting.entity.SysUserRole;
 
 import java.util.List;
 
@@ -10,12 +10,14 @@ import java.util.List;
  * @author: MinHw
  * @create: 2022-03-12 21:14
  **/
-public interface RolePermissionService {
+public interface SysUserRoleService {
 
     /**
      *
-     * @param roleId
+     * @param uid
      * @return
      */
-    List<SysRolePermission> findRolePermissionByRid(Integer roleId);
+    List<SysUserRole> findUserRoleByUid(Integer uid);
+
+
 }

@@ -3,7 +3,7 @@ package com.cap.datareporting.service.impl;
 import com.cap.datareporting.dao.SysUserRoleMapper;
 import com.cap.datareporting.entity.SysUserRole;
 import com.cap.datareporting.entity.SysUserRoleExample;
-import com.cap.datareporting.service.UserRoleService;
+import com.cap.datareporting.service.SysUserRoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +16,7 @@ import java.util.List;
  * @create: 2022-03-12 21:23
  **/
 @Service
-public class UserRoleServiceImp implements UserRoleService {
+public class SysUserRoleServiceImp implements SysUserRoleService {
 
     @Resource
     private SysUserRoleMapper sysUserRoleMapper;

@@ -5,7 +5,6 @@ import lombok.Data;
 /**
  * 响应数据(结果)最外层对象
  * @author minhw
- * @date 2018/10/15
  */
 @Data
 public class ResultEntity<T> {
@@ -14,8 +13,10 @@ public class ResultEntity<T> {
     private Integer status;
 
     /** 提示信息 */
-    private String msg;
+    private String message;
 
     /** 响应数据 */
     private T data;
+
+    private String other;
 }
