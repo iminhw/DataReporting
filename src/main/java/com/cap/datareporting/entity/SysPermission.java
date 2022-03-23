@@ -7,17 +7,17 @@ public class SysPermission implements Serializable {
 
     private String permission;
 
-    private String url;
-
     private String name;
+
+    private String comments;
 
     private static final long serialVersionUID = 1L;
 
-    public SysPermission(Integer id, String permission, String url, String name) {
+    public SysPermission(Integer id, String permission, String name, String comments) {
         this.id = id;
         this.permission = permission;
-        this.url = url;
         this.name = name;
+        this.comments = comments;
     }
 
     public SysPermission() {
@@ -40,19 +40,19 @@ public class SysPermission implements Serializable {
         this.permission = permission == null ? null : permission.trim();
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments == null ? null : comments.trim();
     }
 }

@@ -1,15 +1,18 @@
 package com.cap.datareporting.utils;
 
-import com.cap.datareporting.entity.SysRole;
 import com.cap.datareporting.entity.SysUser;
+import com.cap.datareporting.entity.SysUserRole;
+import com.cap.datareporting.service.SysRoleService;
+import com.cap.datareporting.service.SysUserRoleService;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Shiro工具类
- *
  */
 public class ShiroUtil {
 
@@ -42,52 +45,6 @@ public class ShiroUtil {
         return EncryptUtil.getRandomSalt();
     }
 
-    /**
-     * 获取当前用户对象
-     */
-    public static SysUser getSubject() {
-        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
-
-        // 初始化延迟加载的部门信息
-//        if (user != null && !Hibernate.isInitialized(user.getDept())) {
-//            try {
-//                Hibernate.initialize(user.getDept());
-//            } catch (LazyInitializationException e) {
-//                // 部门数据延迟加载超时，重新查询用户数据（用于更新“记住我”状态登录的数据）
-//                UserService userService = SpringContextUtil.getBean(UserService.class);
-//                User reload = userService.getById(user.getId());
-//                Hibernate.initialize(reload.getDept());
-//                // 将重载用户数据拷贝到登录用户中
-//                BeanUtils.copyProperties(reload, user, "roles");
-//            }
-//        }
-        return user;
-    }
-
-    /**
-     * 获取当前用户角色列表
-     */
-//    public static Set<SysRole> getSubjectRoles() {
-//        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
-//
-//        // 如果用户为空，则返回空列表
-//        if (user == null) {
-//            user = new SysUser();
-//        }
-//
-////        // 判断角色列表是否已缓存
-////        if (!Hibernate.isInitialized(user.getRoles())) {
-////            try {
-////                Hibernate.initialize(user.getRoles());
-////            } catch (LazyInitializationException e) {
-////                // 延迟加载超时，重新查询角色列表数据
-////                RoleService roleService = SpringContextUtil.getBean(RoleService.class);
-////                user.setRoles(roleService.getUserOkRoleList(user.getId()));
-////            }
-////        }
-//
-//        return user.getRoles();
-//    }
 
     /**
      * 获取用户IP地址

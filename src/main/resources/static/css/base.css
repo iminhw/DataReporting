@@ -1,8 +1,10 @@
 /**
     minhw
  */
-
-body {
+html {
+    background: #f0f2f5;
+}
+ body {
     display: flex;
     display: -webkit-flex; /* Safari */
     flex: auto;

@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.cap.datareporting.entity.SysUser">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="ksh" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -13,6 +14,7 @@
       <arg column="head_picture" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="salt" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="comments" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,7 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, ksh, email, phone, kaoshenhao, head_picture, salt, status
+    id, name, username, password, ksh, email, phone, kaoshenhao, head_picture, salt, 
+    status, comments
   </sql>
   <select id="selectByExample" parameterType="com.cap.datareporting.entity.SysUserExample" resultMap="BaseResultMap">
     select
@@ -108,20 +111,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cap.datareporting.entity.SysUser">
-    insert into sys_user (id, username, password, 
-      ksh, email, phone, 
-      kaoshenhao, head_picture, salt, 
-      status)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{ksh,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{kaoshenhao,jdbcType=VARCHAR}, #{headPicture,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER})
+    insert into sys_user (id, name, username, 
+      password, ksh, email, 
+      phone, kaoshenhao, head_picture, 
+      salt, status, comments
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{ksh,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{kaoshenhao,jdbcType=VARCHAR}, #{headPicture,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{comments,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cap.datareporting.entity.SysUser">
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="name != null">
+        name,
       </if>
       <if test="username != null">
         username,
@@ -150,10 +158,16 @@
       <if test="status != null">
         status,
       </if>
+      <if test="comments != null">
+        comments,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -182,6 +196,9 @@
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.cap.datareporting.entity.SysUserExample" resultType="java.lang.Long">
@@ -195,6 +212,9 @@
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.username != null">
         username = #{record.username,jdbcType=VARCHAR},
@@ -223,6 +243,9 @@
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
+      <if test="record.comments != null">
+        comments = #{record.comments,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -231,6 +254,7 @@
   <update id="updateByExample" parameterType="map">
     update sys_user
     set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       ksh = #{record.ksh,jdbcType=VARCHAR},
@@ -239,7 +263,8 @@
       kaoshenhao = #{record.kaoshenhao,jdbcType=VARCHAR},
       head_picture = #{record.headPicture,jdbcType=VARCHAR},
       salt = #{record.salt,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER}
+      status = #{record.status,jdbcType=INTEGER},
+      comments = #{record.comments,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -247,6 +272,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cap.datareporting.entity.SysUser">
     update sys_user
     <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
       <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
       </if>
@@ -274,12 +302,16 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="comments != null">
+        comments = #{comments,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cap.datareporting.entity.SysUser">
     update sys_user
-    set username = #{username,jdbcType=VARCHAR},
+    set name = #{name,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       ksh = #{ksh,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
@@ -287,7 +319,8 @@
       kaoshenhao = #{kaoshenhao,jdbcType=VARCHAR},
       head_picture = #{headPicture,jdbcType=VARCHAR},
       salt = #{salt,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER}
+      status = #{status,jdbcType=INTEGER},
+      comments = #{comments,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

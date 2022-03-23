@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class SysUser implements Serializable {
     private Integer id;
 
+    private String name;
+
     private String username;
 
     private String password;
@@ -23,26 +25,13 @@ public class SysUser implements Serializable {
 
     private Integer status;
 
+    private String comments;
+
     private static final long serialVersionUID = 1L;
 
-    @Override
-    public String toString() {
-        return "SysUser{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", ksh='" + ksh + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", kaoshenhao='" + kaoshenhao + '\'' +
-                ", headPicture='" + headPicture + '\'' +
-                ", salt='" + salt + '\'' +
-                ", status=" + status +
-                '}';
-    }
-
-    public SysUser(Integer id, String username, String password, String ksh, String email, String phone, String kaoshenhao, String headPicture, String salt, Integer status) {
+    public SysUser(Integer id, String name, String username, String password, String ksh, String email, String phone, String kaoshenhao, String headPicture, String salt, Integer status, String comments) {
         this.id = id;
+        this.name = name;
         this.username = username;
         this.password = password;
         this.ksh = ksh;
@@ -52,6 +41,7 @@ public class SysUser implements Serializable {
         this.headPicture = headPicture;
         this.salt = salt;
         this.status = status;
+        this.comments = comments;
     }
 
     public SysUser() {
@@ -64,6 +54,14 @@ public class SysUser implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getUsername() {
@@ -136,5 +134,13 @@ public class SysUser implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments == null ? null : comments.trim();
     }
 }

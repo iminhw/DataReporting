@@ -303,6 +303,146 @@ public class SysRoleExample {
             addCriterion("name not between", value1, value2, "name");
             return (Criteria) this;
         }
+
+        public Criteria andDefurlIsNull() {
+            addCriterion("defurl is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlIsNotNull() {
+            addCriterion("defurl is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlEqualTo(String value) {
+            addCriterion("defurl =", value, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlNotEqualTo(String value) {
+            addCriterion("defurl <>", value, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlGreaterThan(String value) {
+            addCriterion("defurl >", value, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlGreaterThanOrEqualTo(String value) {
+            addCriterion("defurl >=", value, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlLessThan(String value) {
+            addCriterion("defurl <", value, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlLessThanOrEqualTo(String value) {
+            addCriterion("defurl <=", value, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlLike(String value) {
+            addCriterion("defurl like", value, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlNotLike(String value) {
+            addCriterion("defurl not like", value, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlIn(List<String> values) {
+            addCriterion("defurl in", values, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlNotIn(List<String> values) {
+            addCriterion("defurl not in", values, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlBetween(String value1, String value2) {
+            addCriterion("defurl between", value1, value2, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefurlNotBetween(String value1, String value2) {
+            addCriterion("defurl not between", value1, value2, "defurl");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsIsNull() {
+            addCriterion("comments is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsIsNotNull() {
+            addCriterion("comments is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsEqualTo(String value) {
+            addCriterion("comments =", value, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsNotEqualTo(String value) {
+            addCriterion("comments <>", value, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsGreaterThan(String value) {
+            addCriterion("comments >", value, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsGreaterThanOrEqualTo(String value) {
+            addCriterion("comments >=", value, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsLessThan(String value) {
+            addCriterion("comments <", value, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsLessThanOrEqualTo(String value) {
+            addCriterion("comments <=", value, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsLike(String value) {
+            addCriterion("comments like", value, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsNotLike(String value) {
+            addCriterion("comments not like", value, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsIn(List<String> values) {
+            addCriterion("comments in", values, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsNotIn(List<String> values) {
+            addCriterion("comments not in", values, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsBetween(String value1, String value2) {
+            addCriterion("comments between", value1, value2, "comments");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentsNotBetween(String value1, String value2) {
+            addCriterion("comments not between", value1, value2, "comments");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

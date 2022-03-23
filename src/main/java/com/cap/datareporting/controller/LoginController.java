@@ -5,6 +5,7 @@ import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.SysUserRole;
 import com.cap.datareporting.enums.ResultEnum;
 import com.cap.datareporting.enums.StatusEnum;
+import com.cap.datareporting.service.SysRoleService;
 import com.cap.datareporting.service.SysUserRoleService;
 import com.cap.datareporting.service.SysUserService;
 import com.cap.datareporting.utils.ResultEntity;
@@ -16,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @program: blog01
@@ -31,6 +34,9 @@ public class LoginController {
 
     @Autowired
     private SysUserService sysUserService;
+
+    @Autowired
+    private SysRoleService sysRoleService;
 
     @RequestMapping(value = "/regAdd", method = RequestMethod.POST)
     @ResponseBody
@@ -68,6 +74,24 @@ public class LoginController {
         return resultMap;
     }
 
+    /**
+     * 装载角色默认登陆页
+     */
+    public String getSubject() {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        String res = "/";
+        // 装载角色默认登陆首页
+        if (user != null) {
+            try {
+                List<SysUserRole> userRoleByUid = sysUserRoleService.findUserRoleByUid(user.getId());
+                res = sysRoleService.selectByPrimaryKey(userRoleByUid.get(0).getRoleid()).getDefurl();
+            }catch (Exception e) {
+                e.printStackTrace();
+//                return res;
+            }
+        }
+        return res;
+    }
 
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
     @ResponseBody
@@ -89,7 +113,6 @@ public class LoginController {
             // 密码登陆方式
             UserPassOpenIdToken token = new UserPassOpenIdToken(username, password, "0");
 //            记住我
-//            System.err.printf("rememberMe=" + rememberMe);
             if (rememberMe != null) {
                 token.setRememberMe(true);
             } else {
@@ -100,8 +123,9 @@ public class LoginController {
 
 //            根据用户判断并进入不同的页面
             // 判断是否拥有后台角色
-            SysUser user = ShiroUtil.getSubject();
-            resultMap.setOther("/admin");
+            String repURL =  getSubject();
+
+            resultMap.setOther(repURL);
 
 
             resultMap.setStatus(200);
@@ -113,6 +137,7 @@ public class LoginController {
             resultMap.setStatus(500);
             resultMap.setMessage("账号或密码错误");
         } catch (Exception e) {
+            e.printStackTrace();
             resultMap.setStatus(500);
             resultMap.setMessage("账号不存在!");
         }

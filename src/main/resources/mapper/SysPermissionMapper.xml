@@ -5,8 +5,8 @@
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="permission" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="comments" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, permission, url, name
+    id, permission, name, comments
   </sql>
   <select id="selectByExample" parameterType="com.cap.datareporting.entity.SysPermissionExample" resultMap="BaseResultMap">
     select
@@ -102,10 +102,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.cap.datareporting.entity.SysPermission">
-    insert into sys_permission (id, permission, url, 
-      name)
-    values (#{id,jdbcType=INTEGER}, #{permission,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR})
+    insert into sys_permission (id, permission, name, 
+      comments)
+    values (#{id,jdbcType=INTEGER}, #{permission,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{comments,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cap.datareporting.entity.SysPermission">
     insert into sys_permission
@@ -116,11 +116,11 @@
       <if test="permission != null">
         permission,
       </if>
-      <if test="url != null">
-        url,
-      </if>
       <if test="name != null">
         name,
+      </if>
+      <if test="comments != null">
+        comments,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -130,11 +130,11 @@
       <if test="permission != null">
         #{permission,jdbcType=VARCHAR},
       </if>
-      <if test="url != null">
-        #{url,jdbcType=VARCHAR},
-      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -153,11 +153,11 @@
       <if test="record.permission != null">
         permission = #{record.permission,jdbcType=VARCHAR},
       </if>
-      <if test="record.url != null">
-        url = #{record.url,jdbcType=VARCHAR},
-      </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comments != null">
+        comments = #{record.comments,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -168,8 +168,8 @@
     update sys_permission
     set id = #{record.id,jdbcType=INTEGER},
       permission = #{record.permission,jdbcType=VARCHAR},
-      url = #{record.url,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR}
+      name = #{record.name,jdbcType=VARCHAR},
+      comments = #{record.comments,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -180,11 +180,11 @@
       <if test="permission != null">
         permission = #{permission,jdbcType=VARCHAR},
       </if>
-      <if test="url != null">
-        url = #{url,jdbcType=VARCHAR},
-      </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        comments = #{comments,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -192,8 +192,8 @@
   <update id="updateByPrimaryKey" parameterType="com.cap.datareporting.entity.SysPermission">
     update sys_permission
     set permission = #{permission,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR}
+      name = #{name,jdbcType=VARCHAR},
+      comments = #{comments,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

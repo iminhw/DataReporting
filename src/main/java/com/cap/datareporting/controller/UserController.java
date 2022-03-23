@@ -29,7 +29,6 @@ import java.util.Set;
 
 /**
  * @author minhw
- * @date 2018/8/14
  */
 @Controller
 @RequestMapping("/admin/user")

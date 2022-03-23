@@ -9,12 +9,18 @@ public class SysRole implements Serializable {
 
     private String name;
 
+    private String defurl;
+
+    private String comments;
+
     private static final long serialVersionUID = 1L;
 
-    public SysRole(Integer id, String role, String name) {
+    public SysRole(Integer id, String role, String name, String defurl, String comments) {
         this.id = id;
         this.role = role;
         this.name = name;
+        this.defurl = defurl;
+        this.comments = comments;
     }
 
     public SysRole() {
@@ -43,5 +49,21 @@ public class SysRole implements Serializable {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getDefurl() {
+        return defurl;
+    }
+
+    public void setDefurl(String defurl) {
+        this.defurl = defurl == null ? null : defurl.trim();
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments == null ? null : comments.trim();
     }
 }
