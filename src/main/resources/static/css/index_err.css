@@ -1,0 +1,198 @@
+::selection {
+    background: #1890ff;
+    color: #fff;
+}
+
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    margin: 0;
+    font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.65);
+    background-color: #fff;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.5;
+    color: #314659;
+    font-size: 14px;
+    background: #fff;
+    -webkit-transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    overflow-x: hidden;
+}
+
+a {
+    color: #1890ff;
+    background-color: transparent;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: color .3s;
+    transition: color .3s;
+    -webkit-text-decoration-skip: objects;
+}
+
+a, area, button, [role="button"], input:not([type=range]), label, select, summary, textarea {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+a {
+    -webkit-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+a:focus {
+    text-decoration: none;
+}
+
+section {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+/*-webkit-any*/
+/*(*/
+/*article, aside, nav, section*/
+
+/*)*/
+h1 {
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: .5em;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+}
+
+#minhw-content {
+    -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+    transition: -webkit-transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+    transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+    transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86), -webkit-transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+
+#page-404 {
+    background-image: url('https://www.minhw.com/p/images/err/40X.jpg');
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+#page-404 section {
+    position: absolute;
+    top: 48%;
+    left: 55%;
+    margin: -103px 0 0 -120px;
+    text-align: center;
+}
+
+#page-404 h1 {
+    color: #1890ff;
+    font-size: 120px;
+    font-weight: 500;
+}
+
+#page-404 p {
+    color: #314659;
+    font-size: 18px;
+}
+
+#page-500 {
+    background-image: url('https://www.minhw.com/p/images/err/40X.jpg');
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+#page-500 section {
+    position: absolute;
+    top: 48%;
+    left: 55%;
+    margin: -103px 0 0 -120px;
+    text-align: center;
+}
+
+#page-500 h1 {
+    color: #1890ff;
+    font-size: 120px;
+    font-weight: 500;
+}
+
+#page-500 p {
+    color: #314659;
+    font-size: 18px;
+}

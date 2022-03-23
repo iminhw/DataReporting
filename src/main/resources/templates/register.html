@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+    <meta charset="UTF-8"/>
+    <title>注册 - BLOG</title>
+</head>
+<body>
+<div th:replace="/common/fragment :: frontendHeadher"></div>
+
+<div class="container">
+    <div class="row col-md-6">
+        <div name="reg_form" role="form">
+            <fieldset>
+                <div id="legend">
+                    <legend class="caption">注册</legend>
+                </div>
+                <div class="form-group">
+                    <!--                    <label for="username">用户名</label>-->
+                    <input type="text" class="form-control" required="required" name="name" id="name"
+                           placeholder="请输入昵称">
+                </div>
+                <div class="form-group">
+                    <!--                    <label for="username">用户名</label>-->
+                    <input type="text" class="form-control" required="required" name="username" id="username"
+                           placeholder="请输入用户名">
+                </div>
+                <div class="form-group">
+                    <!--                    <label for="password">密码</label>-->
+                    <input type="password" class="form-control" required="required" name="password" id="password"
+                           placeholder="请输入密码">
+                </div>
+                <div class="form-group">
+                    <!--                    <label for="password">密码</label>-->
+                    <input type="password" class="form-control" required="required" name="pwd" id="pwd"
+                           placeholder="请再次确认输入密码">
+                </div>
+                <div class="form-group input-group">
+                    <!--                    <label for="password">密码</label>-->
+                    <input type="text" class="form-control" required="required" name="email" id="email"
+                           placeholder="请输入邮箱号">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">获取验证码</button>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <!--                    <label for="password">密码</label>-->
+                    <input type="text" class="form-control" name="code" id="code" placeholder="请输入验证码">
+                </div>
+                <div class="form-group">
+                    <button type="submit" onclick="adduser()" class="btn btn-success">确认注册</button>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div th:replace="/common/fragment :: frontendFooter"></div>
+
+<script>
+    function adduser() {
+        var name = $("#name").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var pwd = $("#pwd").val()
+        var email = $("#email").val();
+        if (password != pwd) {
+            messge("密码输入不一样", "error");
+            return 0;
+        }
+
+        $.ajax({
+            url: "/user/regUserAdd",
+            data: {name, username, password, email, pwd},
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if (data.status == 200) {
+                    messge("注册成功，3秒后进入登陆页面");
+                    setTimeout(function(){
+                        location.href = "/login1"
+                    }, 4000);
+                } else {
+                    messge(data.msg, "warning");
+                }
+            },
+            error: function () {
+                messge("注册失败", "error");
+            }
+        });
+    }
+</script>
+</body>
+</html>

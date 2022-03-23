@@ -1,0 +1,54 @@
+/**
+    minhw
+ */
+
+body {
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    flex: auto;
+    flex-direction: column;
+    background: #f0f2f5;
+    /*
+    需要为 body 元素设置内补（padding）
+    这个固定的导航条会遮住页面上的其它内容，
+    除非你给 <body> 元素底部设置了 padding。
+    用你自己的值。提示：导航条的默认高度是 50px。
+    */
+    padding-top: 74px;
+}
+
+.section {
+    /*background-color: #ffffff;*/
+    /*margin: 12px;*/
+    margin-bottom: 24px;
+}
+
+.minhw {
+    /*flex: 1;*/
+    background-color: #ffffff;
+    /*margin: 12px;*/
+}
+
+img {
+    border-radius: 4px;
+}
+
+.panel {
+    /*动画*/
+    transition: All 0.4s ease-in-out;
+    -webkit-transition: All 0.4s ease-in-out;
+    -moz-transition: All 0.4s ease-in-out;
+    -o-transition: All 0.4s ease-in-out;
+}
+
+.panel:hover {
+    transform: translate(0, -10px);
+    -webkit-transform: translate(0, -10px);
+    -moz-transform: translate(0, -10px);
+    -o-transform: translate(0, -10px);
+    -ms-transform: translate(0, -10px);
+}
+
+footer {
+    margin-top: 24px;
+}
