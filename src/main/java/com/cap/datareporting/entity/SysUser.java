@@ -1,6 +1,11 @@
 package com.cap.datareporting.entity;
 
-public class SysUser{
+import java.io.Serializable;
+
+/**
+ * @author mz
+ */
+public class SysUser implements Serializable {
     private Integer id;
 
     private String username;
