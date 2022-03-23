@@ -1,6 +1,7 @@
 package com.cap.datareporting.common.shiro;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -52,8 +53,7 @@ public class ShiroConfiguration {
         // 默认放行所有的
         filterChainDefinitionMap.put("/**", "anon");
         // 登陆页
-//        shiroFilterFactoryBean.setLoginUrl("/login");
-        shiroFilterFactoryBean.setLoginUrl("/login1");
+        shiroFilterFactoryBean.setLoginUrl("/login");
 
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/index");
@@ -73,7 +73,7 @@ public class ShiroConfiguration {
     @Bean
     public ShiroRealm myShiroRealm() {
         ShiroRealm shiroRealm = new ShiroRealm();
-//		myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());;
+        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return shiroRealm;
     }
 
@@ -87,6 +87,24 @@ public class ShiroConfiguration {
         securityManager.setCacheManager(ehCacheManager());
         securityManager.setRememberMeManager(rememberMeManager());
         return securityManager;
+    }
+
+
+    /**
+     * 加密方式
+     *
+     * @return
+     */
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        // 散列算法:这里使用MD5算法;
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");
+        // 散列的次数，比如散列两次，相当于md5(md5(""));
+        hashedCredentialsMatcher.setHashIterations(1);
+        // 表示是否存储散列后的密码为16进制，需要和生成密码时的一样，默认是base64；
+        hashedCredentialsMatcher.setStoredCredentialsHexEncoded(true);
+        return hashedCredentialsMatcher;
     }
 
 
@@ -107,7 +125,7 @@ public class ShiroConfiguration {
     @Bean
     public SimpleCookie rememberMeCookie() {
 //        System.out.println("ShiroConfiguration.rememberMeCookie()");
-        //这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
+        // 这个参数是cookie的名称，对应前端的checkbox的name = rememberMe
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         //<!-- 记住我cookie生效时间30天 ,单位秒;-->
         simpleCookie.setMaxAge(259200);
@@ -177,6 +195,7 @@ public class ShiroConfiguration {
     /**
      * 开启shiro aop注解支持.
      * 使用代理方式;所以需要开启代码支持;
+     * 注解权限
      *
      * @param securityManager
      * @return
