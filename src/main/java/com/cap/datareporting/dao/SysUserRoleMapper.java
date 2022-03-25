@@ -1,7 +1,7 @@
 package com.cap.datareporting.dao;
 
-import com.cap.datareporting.entity.SysUserRole;
 import com.cap.datareporting.entity.SysUserRoleExample;
+import com.cap.datareporting.entity.SysUserRole;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,7 +10,7 @@ public interface SysUserRoleMapper {
 
     int deleteByExample(SysUserRoleExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(SysUserRole key);
 
     int insert(SysUserRole record);
 
@@ -18,13 +18,7 @@ public interface SysUserRoleMapper {
 
     List<SysUserRole> selectByExample(SysUserRoleExample example);
 
-    SysUserRole selectByPrimaryKey(Integer id);
-
     int updateByExampleSelective(@Param("record") SysUserRole record, @Param("example") SysUserRoleExample example);
 
     int updateByExample(@Param("record") SysUserRole record, @Param("example") SysUserRoleExample example);
-
-    int updateByPrimaryKeySelective(SysUserRole record);
-
-    int updateByPrimaryKey(SysUserRole record);
 }

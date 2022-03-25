@@ -1,4 +1,4 @@
-package com.cap.datareporting.utils;
+package com.cap.datareporting.common.utils;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;

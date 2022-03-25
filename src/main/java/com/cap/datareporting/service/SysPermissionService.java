@@ -13,5 +13,5 @@ public interface SysPermissionService {
 
 //    List<Permission> find
 
-    SysPermission findPermissionByid(Integer id);
+    SysPermission findPermissionByid(Long id);
 }

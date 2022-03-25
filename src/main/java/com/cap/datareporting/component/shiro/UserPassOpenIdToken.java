@@ -1,4 +1,4 @@
-package com.cap.datareporting.common.shiro;
+package com.cap.datareporting.component.shiro;
 
 import org.apache.shiro.authc.UsernamePasswordToken;
 
@@ -7,13 +7,14 @@ import org.apache.shiro.authc.UsernamePasswordToken;
  */
 public class UserPassOpenIdToken extends UsernamePasswordToken {
 
-    public UserPassOpenIdToken(){
+    public UserPassOpenIdToken() {
         super();
     }
 
     public String getLoginType() {
         return loginType;
     }
+
     public void setLoginType(String loginType) {
         this.loginType = loginType;
     }

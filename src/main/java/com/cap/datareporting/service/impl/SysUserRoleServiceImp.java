@@ -1,8 +1,8 @@
 package com.cap.datareporting.service.impl;
 
 import com.cap.datareporting.dao.SysUserRoleMapper;
-import com.cap.datareporting.entity.SysUserRole;
 import com.cap.datareporting.entity.SysUserRoleExample;
+import com.cap.datareporting.entity.SysUserRole;
 import com.cap.datareporting.service.SysUserRoleService;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +22,10 @@ public class SysUserRoleServiceImp implements SysUserRoleService {
     private SysUserRoleMapper sysUserRoleMapper;
 
     @Override
-    public List<SysUserRole> findUserRoleByUid(Integer uid) {
+    public List<SysUserRole> findUserRoleByUid(Long uid) {
         SysUserRoleExample example = new SysUserRoleExample();
         SysUserRoleExample.Criteria criteria = example.createCriteria();
-        criteria.andUidEqualTo(uid);
+        criteria.andUserIdEqualTo(uid);
         return sysUserRoleMapper.selectByExample(example);
     }
 

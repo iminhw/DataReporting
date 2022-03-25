@@ -21,7 +21,7 @@ public class SysRoleServiceImp implements SysRoleService {
 
 
     @Override
-    public SysRole selectByPrimaryKey(Integer id) {
+    public SysRole selectByPrimaryKey(Long id) {
         return sysRoleMapper.selectByPrimaryKey(id);
     }
 }

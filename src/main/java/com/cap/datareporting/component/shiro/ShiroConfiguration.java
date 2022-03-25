@@ -1,4 +1,4 @@
-package com.cap.datareporting.common.shiro;
+package com.cap.datareporting.component.shiro;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -220,13 +220,13 @@ public class ShiroConfiguration {
 
     /**
      * 添加ShiroDialect 为了在thymeleaf里使用shiro的标签的bean
-     *
+     *  注明：移动到ThymeleafConfig
      * @return
      */
-    @Bean(name = "shiroDialect")
-    public ShiroDialect shiroDialect() {
-        return new ShiroDialect();
-    }
+//    @Bean(name = "shiroDialect")
+//    public ShiroDialect shiroDialect() {
+//        return new ShiroDialect();
+//    }
 
 
 }

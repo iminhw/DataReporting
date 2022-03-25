@@ -1,6 +1,6 @@
 ### 服务器配置
 server:
-  port: 8080  #监听到http的端口号后转向到的https的端口号，默认443  若没有ssl配置，更改端口即更改此属性即可
+  port: 8081  #监听到http的端口号后转向到的https的端口号，默认443  若没有ssl配置，更改端口即更改此属性即可
   ssl:
     enabled: false #网站是否启用ssl，默认false（不启用）
     key-store: classpath:4700798_www.minhw.com.pfx   #启用了ssl之后需要配置证书，以下的配置为证书配置
@@ -28,7 +28,7 @@ project:
     remember-me-timeout: 7                    #cookie记住登录信息时间，默认7天（天）
     global-session-timeout: 1800              #Session会话超时时间，默认30分钟（秒）
   upload:
-    #file-path:                               #文件上传路径，默认在项目根目录upload下
+#    file-path: C:/upload/                    #文件上传路径，默认在项目根目录upload下
     static-path: /upload/**                   #上传文件静态访问路径
 
 ### spring配置
@@ -97,5 +97,5 @@ thymeleaf:
   ## 文件上传配置
   servlet:
     multipart:
-      max-file-size: 1GB
+      max-file-size: 200MB
       max-request-size: 1GB

@@ -17,5 +17,5 @@ public interface SysRolePermissionService {
      * @param roleId
      * @return
      */
-    List<SysRolePermission> findRolePermissionByRid(Integer roleId);
+    List<SysRolePermission> findRolePermissionByRid(Long roleId);
 }

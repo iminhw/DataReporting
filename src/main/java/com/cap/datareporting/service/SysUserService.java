@@ -10,7 +10,7 @@ public interface SysUserService {
      */
     SysUser findByUsername(String username);
 
-    SysUser findById(int id);
+    SysUser findById(Long id);
 
     /**
      *

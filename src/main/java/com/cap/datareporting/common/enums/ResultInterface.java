@@ -1,4 +1,4 @@
-package com.cap.datareporting.enums;
+package com.cap.datareporting.common.enums;
 
 /**
  * @program: DataReporting

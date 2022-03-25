@@ -20,7 +20,7 @@ public class SysPermissionServiceImp implements SysPermissionService {
     private SysPermissionMapper sysPermissionMapper;
 
     @Override
-    public SysPermission findPermissionByid(Integer id) {
+    public SysPermission findPermissionByid(Long id) {
         return sysPermissionMapper.selectByPrimaryKey(id);
     }
 }

@@ -3,45 +3,34 @@ package com.cap.datareporting.entity;
 import java.io.Serializable;
 
 public class SysUserRole implements Serializable {
-    private Integer id;
+    private Long userId;
 
-    private Integer uid;
-
-    private Integer roleid;
+    private Long roleId;
 
     private static final long serialVersionUID = 1L;
 
-    public SysUserRole(Integer id, Integer uid, Integer roleid) {
-        this.id = id;
-        this.uid = uid;
-        this.roleid = roleid;
+    public SysUserRole(Long userId, Long roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
     }
 
     public SysUserRole() {
         super();
     }
 
-    public Integer getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Integer getUid() {
-        return uid;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
-
-    public Integer getRoleid() {
-        return roleid;
-    }
-
-    public void setRoleid(Integer roleid) {
-        this.roleid = roleid;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 }

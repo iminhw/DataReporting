@@ -81,8 +81,22 @@
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true"></table>
 
-
         <table tableName="sys_permission" domainObjectName="SysPermission"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true"></table>
+
+        <table tableName="user_file" domainObjectName="UserFile"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true"></table>
+
+        <table tableName="sys_action_log" domainObjectName="SysActionLog"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true"></table>
+
+        <table tableName="sys_dict" domainObjectName="SysDict"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true"></table>

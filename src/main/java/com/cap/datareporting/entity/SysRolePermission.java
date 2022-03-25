@@ -3,45 +3,34 @@ package com.cap.datareporting.entity;
 import java.io.Serializable;
 
 public class SysRolePermission implements Serializable {
-    private Integer id;
+    private Long roleId;
 
-    private Integer roleid;
-
-    private Integer permissionid;
+    private Long permissionId;
 
     private static final long serialVersionUID = 1L;
 
-    public SysRolePermission(Integer id, Integer roleid, Integer permissionid) {
-        this.id = id;
-        this.roleid = roleid;
-        this.permissionid = permissionid;
+    public SysRolePermission(Long roleId, Long permissionId) {
+        this.roleId = roleId;
+        this.permissionId = permissionId;
     }
 
     public SysRolePermission() {
         super();
     }
 
-    public Integer getId() {
-        return id;
+    public Long getRoleId() {
+        return roleId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
-    public Integer getRoleid() {
-        return roleid;
+    public Long getPermissionId() {
+        return permissionId;
     }
 
-    public void setRoleid(Integer roleid) {
-        this.roleid = roleid;
-    }
-
-    public Integer getPermissionid() {
-        return permissionid;
-    }
-
-    public void setPermissionid(Integer permissionid) {
-        this.permissionid = permissionid;
+    public void setPermissionId(Long permissionId) {
+        this.permissionId = permissionId;
     }
 }

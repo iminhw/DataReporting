@@ -3,28 +3,14 @@ package com.cap.datareporting.controller;
 import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.service.SysRoleService;
 import com.cap.datareporting.service.SysUserService;
-import com.cap.datareporting.utils.ResultEntity;
-import com.cap.datareporting.utils.ShiroUtil;
-import com.cap.datareporting.utils.SpringContextUtil;
+import com.cap.datareporting.common.utils.ShiroUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.util.StringUtils;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.cap.datareporting.utils;
+package com.cap.datareporting.common.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

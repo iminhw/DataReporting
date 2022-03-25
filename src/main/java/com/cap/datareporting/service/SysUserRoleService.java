@@ -17,7 +17,7 @@ public interface SysUserRoleService {
      * @param uid
      * @return
      */
-    List<SysUserRole> findUserRoleByUid(Integer uid);
+    List<SysUserRole> findUserRoleByUid(Long uid);
 
     /**
      *

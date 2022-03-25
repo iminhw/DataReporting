@@ -1,4 +1,4 @@
-package com.cap.datareporting.utils;
+package com.cap.datareporting.common.utils;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;

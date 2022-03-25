@@ -41,7 +41,7 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public SysUser findById(int id) {
+    public SysUser findById(Long id) {
         return sysUserMapper.selectByPrimaryKey(id);
     }
 

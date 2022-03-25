@@ -1,15 +1,22 @@
 package com.cap.datareporting.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class SysUser implements Serializable {
-    private Integer id;
-
-    private String name;
+    private Long id;
 
     private String username;
 
+    private String nickname;
+
     private String password;
+
+    private String salt;
+
+    private String picture;
+
+    private Byte sex;
 
     private String ksh;
 
@@ -17,51 +24,43 @@ public class SysUser implements Serializable {
 
     private String phone;
 
-    private String kaoshenhao;
+    private String remark;
 
-    private String headPicture;
+    private Date createDate;
 
-    private String salt;
+    private Date updateDate;
 
-    private Integer status;
-
-    private String comments;
+    private Byte status;
 
     private static final long serialVersionUID = 1L;
 
-    public SysUser(Integer id, String name, String username, String password, String ksh, String email, String phone, String kaoshenhao, String headPicture, String salt, Integer status, String comments) {
+    public SysUser(Long id, String username, String nickname, String password, String salt, String picture, Byte sex, String ksh, String email, String phone, String remark, Date createDate, Date updateDate, Byte status) {
         this.id = id;
-        this.name = name;
         this.username = username;
+        this.nickname = nickname;
         this.password = password;
+        this.salt = salt;
+        this.picture = picture;
+        this.sex = sex;
         this.ksh = ksh;
         this.email = email;
         this.phone = phone;
-        this.kaoshenhao = kaoshenhao;
-        this.headPicture = headPicture;
-        this.salt = salt;
+        this.remark = remark;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
         this.status = status;
-        this.comments = comments;
     }
 
     public SysUser() {
         super();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
     }
 
     public String getUsername() {
@@ -72,12 +71,44 @@ public class SysUser implements Serializable {
         this.username = username == null ? null : username.trim();
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt == null ? null : salt.trim();
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture == null ? null : picture.trim();
+    }
+
+    public Byte getSex() {
+        return sex;
+    }
+
+    public void setSex(Byte sex) {
+        this.sex = sex;
     }
 
     public String getKsh() {
@@ -104,43 +135,35 @@ public class SysUser implements Serializable {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getKaoshenhao() {
-        return kaoshenhao;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setKaoshenhao(String kaoshenhao) {
-        this.kaoshenhao = kaoshenhao == null ? null : kaoshenhao.trim();
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 
-    public String getHeadPicture() {
-        return headPicture;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setHeadPicture(String headPicture) {
-        this.headPicture = headPicture == null ? null : headPicture.trim();
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
-    public String getSalt() {
-        return salt;
+    public Date getUpdateDate() {
+        return updateDate;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt == null ? null : salt.trim();
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
-    public Integer getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Byte status) {
         this.status = status;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments == null ? null : comments.trim();
     }
 }

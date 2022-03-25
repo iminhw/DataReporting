@@ -16,5 +16,5 @@ public interface SysRoleService {
      * @param id
      * @return
      */
-    SysRole selectByPrimaryKey(Integer id);
+    SysRole selectByPrimaryKey(Long id);
 }

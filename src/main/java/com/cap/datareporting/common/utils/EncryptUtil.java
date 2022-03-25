@@ -1,4 +1,4 @@
-package com.cap.datareporting.utils;
+package com.cap.datareporting.common.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

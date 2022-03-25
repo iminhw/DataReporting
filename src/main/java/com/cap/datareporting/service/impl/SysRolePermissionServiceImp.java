@@ -22,10 +22,10 @@ public class SysRolePermissionServiceImp implements SysRolePermissionService {
     private SysRolePermissionMapper sysRolePermissionMapper;
 
     @Override
-    public List<SysRolePermission> findRolePermissionByRid(Integer roleId) {
+    public List<SysRolePermission> findRolePermissionByRid(Long roleId) {
         SysRolePermissionExample example = new SysRolePermissionExample();
         SysRolePermissionExample.Criteria criteria = example.createCriteria();
-        criteria.andRoleidEqualTo(roleId);
+        criteria.andRoleIdEqualTo(roleId);
         return sysRolePermissionMapper.selectByExample(example);
     }
 }

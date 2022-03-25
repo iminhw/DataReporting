@@ -1,18 +1,19 @@
 package com.cap.datareporting.controller;
 
-import com.cap.datareporting.common.shiro.UserPassOpenIdToken;
+import com.cap.datareporting.common.enums.ResultEnum;
+import com.cap.datareporting.common.enums.StatusEnum;
+import com.cap.datareporting.common.utils.ResultEntity;
+import com.cap.datareporting.common.utils.ShiroUtil;
+import com.cap.datareporting.component.shiro.UserPassOpenIdToken;
 import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.SysUserRole;
-import com.cap.datareporting.enums.ResultEnum;
-import com.cap.datareporting.enums.StatusEnum;
 import com.cap.datareporting.service.SysRoleService;
 import com.cap.datareporting.service.SysUserRoleService;
 import com.cap.datareporting.service.SysUserService;
-import com.cap.datareporting.utils.ResultEntity;
-import com.cap.datareporting.utils.ShiroUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -62,7 +63,7 @@ public class LoginController {
         if (sysUserService.addUser(sysUser) > 0) {
             SysUser sysUser1 = sysUserService.findByUsername(sysUser.getUsername());
 //            3应该使用参数 可配置  @！！！！！
-            sysUserRoleService.addUserRole(new SysUserRole(null, sysUser1.getId(), 3));
+            sysUserRoleService.addUserRole(new SysUserRole(sysUser1.getId(), 3L));
 
             resultMap.setStatus(ResultEnum.USER_REGISTER_SUCESS.getCode());
             resultMap.setMessage(ResultEnum.USER_REGISTER_SUCESS.getMessage());
@@ -84,8 +85,8 @@ public class LoginController {
         if (user != null) {
             try {
                 List<SysUserRole> userRoleByUid = sysUserRoleService.findUserRoleByUid(user.getId());
-                res = sysRoleService.selectByPrimaryKey(userRoleByUid.get(0).getRoleid()).getDefurl();
-            }catch (Exception e) {
+                res = sysRoleService.selectByPrimaryKey(userRoleByUid.get(0).getRoleId()).getRemark();
+            } catch (Exception e) {
                 e.printStackTrace();
 //                return res;
             }
@@ -123,7 +124,7 @@ public class LoginController {
 
 //            根据用户判断并进入不同的页面
             // 判断是否拥有后台角色
-            String repURL =  getSubject();
+            String repURL = getSubject();
 
             resultMap.setOther(repURL);
 

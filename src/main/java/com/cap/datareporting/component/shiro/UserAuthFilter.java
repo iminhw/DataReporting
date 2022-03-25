@@ -1,4 +1,4 @@
-package com.cap.datareporting.common.shiro;
+package com.cap.datareporting.component.shiro;
 
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;

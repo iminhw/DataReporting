@@ -1,46 +1,59 @@
 package com.cap.datareporting.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class SysRole implements Serializable {
-    private Integer id;
+    private Long id;
 
-    private String role;
+    private String title;
 
     private String name;
 
-    private String defurl;
+    private String remark;
 
-    private String comments;
+    private Date createDate;
+
+    private Date updateDate;
+
+    private Long createBy;
+
+    private Long updateBy;
+
+    private Byte status;
 
     private static final long serialVersionUID = 1L;
 
-    public SysRole(Integer id, String role, String name, String defurl, String comments) {
+    public SysRole(Long id, String title, String name, String remark, Date createDate, Date updateDate, Long createBy, Long updateBy, Byte status) {
         this.id = id;
-        this.role = role;
+        this.title = title;
         this.name = name;
-        this.defurl = defurl;
-        this.comments = comments;
+        this.remark = remark;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.createBy = createBy;
+        this.updateBy = updateBy;
+        this.status = status;
     }
 
     public SysRole() {
         super();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getTitle() {
+        return title;
     }
 
-    public void setRole(String role) {
-        this.role = role == null ? null : role.trim();
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public String getName() {
@@ -51,19 +64,51 @@ public class SysRole implements Serializable {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getDefurl() {
-        return defurl;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setDefurl(String defurl) {
-        this.defurl = defurl == null ? null : defurl.trim();
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 
-    public String getComments() {
-        return comments;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setComments(String comments) {
-        this.comments = comments == null ? null : comments.trim();
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public Long getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(Long createBy) {
+        this.createBy = createBy;
+    }
+
+    public Long getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(Long updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 }

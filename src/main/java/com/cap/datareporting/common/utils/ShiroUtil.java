@@ -1,15 +1,10 @@
-package com.cap.datareporting.utils;
+package com.cap.datareporting.common.utils;
 
 import com.cap.datareporting.entity.SysUser;
-import com.cap.datareporting.entity.SysUserRole;
-import com.cap.datareporting.service.SysRoleService;
-import com.cap.datareporting.service.SysUserRoleService;
 import org.apache.shiro.SecurityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeanUtils;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * Shiro工具类
@@ -71,4 +66,28 @@ public class ShiroUtil {
         }
         return ip;
     }
+
+    /**
+     * 获取当前用户对象
+     */
+    public static SysUser getSubject() {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+
+//        // 初始化延迟加载的部门信息
+//        if (user != null && !Hibernate.isInitialized(user.getDept())) {
+//            try {
+//                Hibernate.initialize(user.getDept());
+//            } catch (LazyInitializationException e) {
+//                // 部门数据延迟加载超时，重新查询用户数据（用于更新“记住我”状态登录的数据）
+//                UserService userService = SpringContextUtil.getBean(UserService.class);
+//                User reload = userService.getById(user.getId());
+//                Hibernate.initialize(reload.getDept());
+//                // 将重载用户数据拷贝到登录用户中
+//                BeanUtils.copyProperties(reload, user, "roles");
+//            }
+//        }
+
+        return user;
+    }
+
 }

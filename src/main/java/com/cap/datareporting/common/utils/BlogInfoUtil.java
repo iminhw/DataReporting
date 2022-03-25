@@ -1,4 +1,4 @@
-package com.cap.datareporting.utils;//package com.min.utils;
+package com.cap.datareporting.common.utils;//package com.min.utils;
 //
 //import com.min.entity.BlogInfo;
 //import com.min.service.BlogInfoService;
