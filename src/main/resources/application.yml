@@ -40,7 +40,10 @@ spring:
     username: root
     #    username: minhw
     password: minhwpwd
-
+  cache:
+    ehcache:
+      type: ehcache
+      config: classpath*:ehcache.xml
     # 连接池配置
     druid:
       # 初始化大小，最小，最大
@@ -81,6 +84,7 @@ spring:
         # 登录用户名/密码
         #login-username: root
         #login-password: 123
+
   ## mybatis配置
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml

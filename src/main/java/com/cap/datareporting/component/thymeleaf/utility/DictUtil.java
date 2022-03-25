@@ -28,6 +28,7 @@ public class DictUtil {
     @SuppressWarnings("unchecked")
     public static Map<String, String> value(String label) {
         Map<String, String> value = null;
+//        System.out.println("dictCache ---" + dictCache);
         Element dictEle = dictCache.get(label);
         if (dictEle != null) {
             value = (Map<String, String>) dictEle.getObjectValue();

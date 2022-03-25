@@ -13,7 +13,6 @@ import com.cap.datareporting.service.SysUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -58,7 +57,7 @@ public class LoginController {
 
         sysUser.setStatus(StatusEnum.OK.getCode());
 
-        System.out.println(sysUser.toString());
+//        System.out.println(sysUser.toString());
 
         if (sysUserService.addUser(sysUser) > 0) {
             SysUser sysUser1 = sysUserService.findByUsername(sysUser.getUsername());
@@ -99,7 +98,8 @@ public class LoginController {
     public ResultEntity submitLogin(@RequestParam("username") String username,
                                     @RequestParam("password") String password,
 //                                           @RequestParam("url") String url,
-                                    @RequestParam("rememberMe") Boolean rememberMe) {
+                                    @RequestParam(value = "rememberMe",
+                                            defaultValue = "false") Boolean rememberMe) {
         ResultEntity resultMap = new ResultEntity();
 
         // 判断账号密码是否为空
@@ -114,11 +114,7 @@ public class LoginController {
             // 密码登陆方式
             UserPassOpenIdToken token = new UserPassOpenIdToken(username, password, "0");
 //            记住我
-            if (rememberMe != null) {
-                token.setRememberMe(true);
-            } else {
-                token.setRememberMe(false);
-            }
+            token.setRememberMe(rememberMe);
 //            登陆
             SecurityUtils.getSubject().login(token);
 

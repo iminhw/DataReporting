@@ -26,8 +26,8 @@ public class SelectDictAttrProcessor extends AbstractAttributeTagProcessor {
 
     public static final int PRECEDENCE = 1400;
     public static final String ATTR_NAME = "dict";
-    public static final String SELECTED_ATTR_NAME = "mo-selected";
-    public static final String EMPTY_ATTR_NAME = "mo-empty";
+    public static final String SELECTED_ATTR_NAME = "dr-selected";
+    public static final String EMPTY_ATTR_NAME = "dr-empty";
 
     public SelectDictAttrProcessor(final TemplateMode templateMode, final String dialectPrefix) {
         super(templateMode, dialectPrefix, null, false, ATTR_NAME, true, PRECEDENCE, true);

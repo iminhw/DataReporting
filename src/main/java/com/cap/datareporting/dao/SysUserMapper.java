@@ -4,6 +4,7 @@ import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.SysUserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface SysUserMapper {
     long countByExample(SysUserExample example);
@@ -19,6 +20,14 @@ public interface SysUserMapper {
     List<SysUser> selectByExample(SysUserExample example);
 
     SysUser selectByPrimaryKey(Long id);
+
+    /**
+     * 按用户名查询数据,考虑不让用户名重复，所以不管软状态
+     * @param username
+     * @return
+     */
+    @Select("SELECT * FROM sys_user WHERE username = #{username} ORDER BY id")
+    SysUser selectByPrimaryUname(String username);
 
     int updateByExampleSelective(@Param("record") SysUser record, @Param("example") SysUserExample example);
 

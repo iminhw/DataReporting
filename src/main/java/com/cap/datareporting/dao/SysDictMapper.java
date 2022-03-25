@@ -4,6 +4,7 @@ import com.cap.datareporting.entity.SysDict;
 import com.cap.datareporting.entity.SysDictExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface SysDictMapper {
     long countByExample(SysDictExample example);
@@ -21,6 +22,9 @@ public interface SysDictMapper {
     List<SysDict> selectByExample(SysDictExample example);
 
     SysDict selectByPrimaryKey(Long id);
+
+    @Select("SELECT * FROM sys_dict WHERE name = #{name} AND status = #{status}")
+    SysDict getByNameOk(String name, byte status);
 
     int updateByExampleSelective(@Param("record") SysDict record, @Param("example") SysDictExample example);
 

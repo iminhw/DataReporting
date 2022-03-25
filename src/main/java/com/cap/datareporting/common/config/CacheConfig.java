@@ -10,12 +10,11 @@ import org.springframework.core.io.ClassPathResource;
 /**
  * @program: blog
  * @description: Cache缓存配置 jpa不用此文件
- * https://blog.csdn.net/javahighness/article/details/53106549
+ * https://blog.csdn.net/zalan01408980/article/details/99568768
  * @author: MinHw or mz
  * @create: 2022-03-11 22:17
  **/
 @Configuration
-@EnableCaching // 标注启动缓存
 public class CacheConfig {
 
     /**

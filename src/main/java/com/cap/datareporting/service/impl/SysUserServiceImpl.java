@@ -28,16 +28,16 @@ public class SysUserServiceImpl implements SysUserService {
      */
     @Override
     public SysUser findByUsername(String username) {
-        SysUserExample example = new SysUserExample();
-        SysUserExample.Criteria criteria = example.createCriteria();
-        criteria.andUsernameEqualTo(username);
-        List<SysUser> userList = sysUserMapper.selectByExample(example);
-        if (userList.size() > 0) {
-            return userList.get(0);
-        } else {
-            return null;
-        }
-
+//        SysUserExample example = new SysUserExample();
+//        SysUserExample.Criteria criteria = example.createCriteria();
+//        criteria.andUsernameEqualTo(username);
+//        List<SysUser> userList = sysUserMapper.selectByExample(example);
+//        if (userList.size() > 0) {
+//            return userList.get(0);
+//        } else {
+//            return null;
+//        }
+    return sysUserMapper.selectByPrimaryUname(username);
     }
 
     @Override

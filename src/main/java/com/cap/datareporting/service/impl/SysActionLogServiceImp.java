@@ -5,6 +5,7 @@ import com.cap.datareporting.entity.SysActionLog;
 import com.cap.datareporting.service.SysActionLogService;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * @author: MinHw or mz
  * @create: 2022-03-25 14:42
  **/
+@Service
 public class SysActionLogServiceImp implements SysActionLogService {
 
     @Resource

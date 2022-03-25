@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:dr=""
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
     <title>奖状上报</title>
@@ -57,6 +59,7 @@
                                 <label class="control-label">身份证号</label>
                                 <input type="text" name="username" id="username"
                                        class="form-control1 ng-invalid ng-invalid-required ng-touched"
+                                       value=""
                                        ng-model="model.text" required="required">
                             </div>
                             <div class="form-group">
@@ -78,6 +81,8 @@
                                     <option value="0">对口</option>
                                     <option value="1">统考</option>
                                 </select>
+                                <select class="timo-search-select" name="status" dr:dict="SEARCH_STATUS"
+                                        mo-selected="${param.status}"></select>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">获奖项目名称

@@ -20,10 +20,12 @@ import java.util.Set;
  **/
 public class DRDialect extends AbstractProcessorDialect implements IExpressionObjectDialect {
 
-    private static final String NAME = "TimoDialect";
-    private static final String PREFIX = "mo";
+    private static final String NAME = "DRDialect";
+    private static final String PREFIX = "dr";
     private IExpressionObjectFactory expressionObjectFactory = null;
 
+    // 我们将设置此方言与“方言处理器”优先级相同
+    // 标准方言, 以便处理器执行交错。
     public DRDialect() {
         super(NAME, PREFIX, StandardDialect.PROCESSOR_PRECEDENCE);
     }

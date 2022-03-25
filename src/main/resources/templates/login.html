@@ -33,10 +33,12 @@
 <h2 class="form-heading">登陆</h2>
 <div class="app-cam">
     <!--    <form>-->
-    <input type="text" class="text" value="身份证号" id="username" onfocus="this.value = '';"
-           onblur="if (this.value == '') {this.value = '身份证号';}">
-    <input type="password" value="Password" id="password" onfocus="this.value = '';"
-           onblur="if (this.value == '') {this.value = '密码';}">
+    <input type="text" class="text" value="身份证号" id="username" onfocus="this.value = '';" placeholder="身份证号">
+    <!--           onfocus="this.value = '';"-->
+    <!--           onblur="if (this.value == '') {this.value = '身份证号';}"-->
+    <!--onblur="if (this.value == '') {this.value = '密码';}"-->
+    <input type="password" value="Password" id="password" onfocus="this.value = '';" placeholder="密码"
+    >
     <label class="checkbox-custom check-success">
         <input type="checkbox" name="rememberMe" id="rememberMe"> <label for="rememberMe">记住我</label>
     </label>
