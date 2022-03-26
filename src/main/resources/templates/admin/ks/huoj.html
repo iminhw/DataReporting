@@ -157,33 +157,33 @@
                 <h4 class="modal-title" id="gridSystemModalLabel">添加奖项</h4>
                 <small>温馨提示：每次只能添加一个奖项，多个奖项请多次添加</small>
             </div>
-            <div class="modal-body">
-                <form id="heightPrizeFrom">
-                    <div class="form-group">
-                        <label class="control-label">获奖项目名称
-                        </label>
-                        <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                               ng-model="model.url" name="HPname" id="HPname" required="required"/>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label normal">获奖时间</label>
-                        <input type="date" class="form-control1 ng-invalid ng-invalid-required"
-                               ng-model="model.date" name="HPdata" id="HPdata" required=""/>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">获奖证书发证单位
-                        </label>
-                        <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                               ng-model="model.url" name="HPDepartment" id="HPDepartment" required="required"/>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">获奖项目等级
-                        </label>
-                        <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                               ng-model="model.url" name="HPgradeC" id="HPgradeC" required="required"/>
+            < class="modal-body">
+            <form id="heightPrizeFrom">
+                <div class="form-group">
+                    <label class="control-label">获奖项目名称
+                    </label>
+                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                           ng-model="model.url" name="HPname" id="HPname" required="required"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label normal">获奖时间</label>
+                    <input type="date" class="form-control1 ng-invalid ng-invalid-required"
+                           ng-model="model.date" name="HPdata" id="HPdata" required=""/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">获奖证书发证单位
+                    </label>
+                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                           ng-model="model.url" name="HPDepartment" id="HPDepartment" required="required"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">获奖项目等级
+                    </label>
+                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                           ng-model="model.url" name="HPgradeC" id="HPgradeC" required="required"/>
 
-                    </div>
-            </div>
+                </div>
+            </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal"
@@ -200,7 +200,7 @@
     smtHighestPrize = () => {
         messge("用户点击了添加奖项");
         sumPrize += 1;
-        var heightPrizeFrom = $("#heightPrizeFrom").val();
+        const heightPrizeFrom = $("#heightPrizeFrom").val();
         console.log(heightPrizeFrom)
         document.getElementById("highestPrize").append(
             "1-2021年四川省职业院校技能大赛零部件测绘与CAD成图赛项中获三等奖；" +
