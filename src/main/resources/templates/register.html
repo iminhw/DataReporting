@@ -13,7 +13,7 @@
             window.scrollTo(0, 1);
         }
     </script>
-<!--    <script src="js/bootstrap.min.js"></script>-->
+    <!--    <script src="js/bootstrap.min.js"></script>-->
     <link th:href="@{/css/base.css}" rel="stylesheet">
     <link th:href="@{/css/exp/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
@@ -33,7 +33,7 @@
 <h2 class="form-heading">注册用户 备注：表单正则验证没写</h2>
 <div class="form-signin app-cam">
     <p>在下面输入您的个人详细信息</p>
-    <input type="text" class="form-control1" placeholder="姓名" name="name" id="name" autofocus="">
+    <input type="text" class="form-control1" placeholder="姓名" name="nickname" id="nickname" autofocus="">
     <div class="radios">
         <label for="radio-01" class="label_radio">
             <input type="radio" name="sex" value="1" title="男" id="radio-01"> 男
@@ -45,9 +45,12 @@
     <!--    <input type="text" class="form-control1" name="name" id="name" placeholder="毕业中学" autofocus="">-->
     <input type="text" class="form-control1" name="phone" id="phone" placeholder="联系电话" autofocus="">
     <input type="text" class="form-control1" name="ksh" id="ksh" placeholder="考生号" autofocus="">
-    <input type="text" class="form-control1" name="username" id="username" placeholder="身份证号" autofocus="">
-    <input type="password" class="form-control1" name="password" id="password" placeholder="密码">
-    <input type="password" class="form-control1" name="password1" id="password1" placeholder="重新输入密码">
+    <input type="text" class="form-control1" onfocus="this.value = '';" name="username" id="username"
+           placeholder="身份证号">
+    <p>在下面输入您的登陆密码</p>
+    <input type="password" class="form-control1" onfocus="this.value = '';" name="password" id="password"
+           placeholder="密码">
+    <input type="password" class="form-control1" name="password1" id="password1" placeholder="重新输入密码" autofocus="">
     <!--    <label class="checkbox-custom check-success">-->
     <!--        <input type="checkbox" value="agree this condition" id="checkbox1"> <label for="checkbox1">我同意服务条款和隐私政策</label>-->
     <!--    </label>-->
@@ -64,11 +67,13 @@
 
 <script>
     function regAddUser() {
-        var name = $("#name").val();
+        var nickname = $("#nickname").val();
         var ksh = $("#ksh").val();
         //phone
         var phone = $("#phone").val();
         var username = $("#username").val();
+        var sex = $("#sex").val();
+
         var password = $("#password").val();
         var password1 = $("#password1").val();
         if (password != password1) return 0;
@@ -76,12 +81,12 @@
         // var rememberMe = $('#checkbox1').is(':checked');
         $.ajax({
             url: "/regAdd",
-            data: {username, password, password1, name, phone, ksh},
+            data: {username, password, password1, nickname, phone, ksh, sex},
             type: "post",
             dataType: "json",
             success: function (data) {
                 if (data.status == 200) {
-                    messge("注册成功，3s 后进入登陆页面");
+                    messge("注册成功，3s 后自动进入登陆页面");
                     setTimeout(function () {
                         location.href = data.other;
                     }, 3000);

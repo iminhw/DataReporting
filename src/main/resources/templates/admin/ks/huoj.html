@@ -76,13 +76,10 @@
                             </div>
                             <div class="form-group filled">
                                 <label class="control-label">高考类别</label>
-                                <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
+                                <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"  dr:dict="CEEC"
+                                        dr-selected="${param.status}"
                                         required="">
-                                    <option value="0">对口</option>
-                                    <option value="1">统考</option>
                                 </select>
-                                <select class="timo-search-select" name="status" dr:dict="SEARCH_STATUS"
-                                        mo-selected="${param.status}"></select>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">获奖项目名称

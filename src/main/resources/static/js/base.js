@@ -36,8 +36,7 @@ function login() {
     var password = $("#password").val();
     // var vcode = $("#vcode").val();
     var rememberMe = $('#rememberMe').is(':checked');
-    // var url = location.href;
-    // console.log(url);
+    if (username == "" || password == "") return;
     $.ajax({
         url: "/ajaxLogin",
         data: {username, password, rememberMe},
@@ -45,10 +44,10 @@ function login() {
         dataType: "json",
         success: function (data) {
             if (data.status == 200) {
-                messge("登陆成功, 3s 后进入系统");
-                setTimeout(function(){
+                messge("登陆成功");
+                setTimeout(function () {
                     location.href = data.other;
-                }, 3000);
+                }, 500);
             } else {
                 messge(data.message, "error");
             }
