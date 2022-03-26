@@ -34,12 +34,13 @@ public class EhCacheUtil {
      */
     public static Cache getCache(String cacheName) {
         Cache cache = getCacheManager().getCache(cacheName);
+//        ！！！！！ 无法加载 ehcahe.xml中的配置，原因未知，
         if (cache == null){
             getCacheManager().addCache(cacheName);
             cache = getCacheManager().getCache(cacheName);
         }
         return cache;
-//        return getCacheManager().getCache(name);
+//        return getCacheManager().getCache(cacheName);
     }
 
     /**
@@ -68,20 +69,14 @@ public class EhCacheUtil {
      * 获取字典缓存对象 = getCache
      */
     public static Cache getDictCache() {
-        Cache cache = getCacheManager().getCache("dictionary");
-        if (cache == null){
-            getCacheManager().addCache("dictionary");
-            cache = getCacheManager().getCache("dictionary");
-        }
-        return cache;
-//        return getCacheManager().getCache("");
+        return getCache("dictionary");
     }
 
     /**
      * 获取系统参数 = getCache
      */
     public static Cache getParamCache() {
-        return getCacheManager().getCache("param");
+        return getCache("param");
     }
 
 

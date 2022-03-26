@@ -40,10 +40,12 @@ spring:
     username: root
     #    username: minhw
     password: minhwpwd
-  cache:
-    ehcache:
-      type: ehcache
-      config: classpath*:ehcache.xml
+#    下面的配置并没有解决我的问题，所以注掉
+#  cache:
+#    cache-names: dictionary                                       # 多个用逗号分开
+#    ehcache:
+#      type: ehcache
+#      config: classpath:ehcache.xml
     # 连接池配置
     druid:
       # 初始化大小，最小，最大
@@ -88,6 +90,18 @@ spring:
   ## mybatis配置
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
+  ###mybatis show sql#
+logging:
+  level:
+    java:
+      sql:
+        PreparedStatement: DEBUG
+        Connection: DEBUG
+        ResultSet: DEBUG
+    org:
+      mybatis:
+        spring: DEBUG
+
 
   ## thymeleaf模板设置
 thymeleaf:

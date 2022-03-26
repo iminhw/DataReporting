@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: DataReporting
@@ -22,6 +23,8 @@ public interface SysDictService {
      * @return 字典信息
      */
     SysDict getByNameOk(String name);
+
+   Map<String,String> gitDictValue(String lable);
 
     /**
      * 获取分页列表数据
