@@ -34,7 +34,7 @@ public class EhCacheUtil {
      */
     public static Cache getCache(String cacheName) {
         Cache cache = getCacheManager().getCache(cacheName);
-//        ！！！！！ 无法加载 ehcahe.xml中的配置，原因未知，
+//        ！！！！！ 感觉原因是无法加载 ehcahe.xml中的配置，原因未知，
         if (cache == null){
             getCacheManager().addCache(cacheName);
             cache = getCacheManager().getCache(cacheName);
