@@ -16,7 +16,6 @@ public class EhCacheUtil {
         cache.put(new Element("key", "123"));
         Cache cache1 =  getCacheManager().getCache("param");
 
-
     }
 
     /**

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:dr=""
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+>
 <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
     <title>奖状上报</title>
@@ -24,7 +24,7 @@
                     </span>
                 </div>
                 <div class="well1 white">
-                    <form class="form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern"
+                    <form class="form-floating ng-pristine ng-invalid"
                           novalidate="novalidate" method="post" action="#" ng-submit="submit()">
                         <fieldset>
                             <div class="form-group">
@@ -41,11 +41,11 @@
                             </div>
                             <div class="form-group filled">
                                 <label class="control-label">性别</label>
-<!--                                <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"-->
-<!--                                        required="">-->
-<!--                                    <option value="0">男</option>-->
-<!--                                    <option value="1">女</option>-->
-<!--                                </select>-->
+                                <!--                                <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"-->
+                                <!--                                        required="">-->
+                                <!--                                    <option value="0">男</option>-->
+                                <!--                                    <option value="1">女</option>-->
+                                <!--                                </select>-->
                                 <div class="radios">
                                     <label for="radio-01" class="label_radio">
                                         <input type="radio" name="sex" value="1" title="男" id="radio-01"> 男
@@ -76,37 +76,22 @@
                             </div>
                             <div class="form-group filled">
                                 <label class="control-label">高考类别</label>
-                                <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"  dr:dict="CEEC"
+                                <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
+                                        dr:dict="CEEC"
                                         dr-selected="${param.status}"
                                         required="">
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">获奖项目名称
-                                </label>
-                                <textarea
-                                       class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                                          ng-model="model.url" required="required"></textarea>
+                                <h4>我的奖项 &nbsp;<small>温馨提示：每次只能添加一个奖项，多个奖项请多次添加</small></h4>
+                                <textarea style="height: 120px;" name="highestPrize" id="highestPrize"
+                                          class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"></textarea>
                             </div>
                             <div class="form-group">
-                                <label class="control-label normal">获奖时间</label>
-                                <input type="date" class="form-control1 ng-invalid ng-invalid-required"
-                                       ng-model="model.date" required="">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">获奖证书发证单位
-                                </label>
-                                <textarea
-                                        class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                                        ng-model="model.url" required="required"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">获奖项目等级
-                                </label>
-                                <textarea
-                                        class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                                        ng-model="model.url" required="required">
-                                </textarea>
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                                        data-target="#myModal">
+                                    添加最高奖项
+                                </button>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">申请专业</label>
@@ -115,29 +100,29 @@
                                        ng-model="model.url" required="required">
                             </div>
 
-<!--                            <div class="form-group">-->
-<!--                                <label class="control-label">Number</label>-->
-<!--                                <input type="text"-->
-<!--                                       class="form-control1 ng-invalid ng-invalid-required ng-valid-pattern ng-touched"-->
-<!--                                       ng-model="model.number" ng-pattern="/[0-9]/" required="">-->
-<!--                                <p class="help-block hint-block">Numeric values from 0-***</p>-->
-<!--                            </div>-->
+                            <!--                            <div class="form-group">-->
+                            <!--                                <label class="control-label">Number</label>-->
+                            <!--                                <input type="text"-->
+                            <!--                                       class="form-control1 ng-invalid ng-invalid-required ng-valid-pattern ng-touched"-->
+                            <!--                                       ng-model="model.number" ng-pattern="/[0-9]/" required="">-->
+                            <!--                                <p class="help-block hint-block">Numeric values from 0-***</p>-->
+                            <!--                            </div>-->
 
-<!--                            <div class="form-group">-->
-<!--                                <div class="checkbox1">-->
-<!--                                    <label>-->
-<!--                                        <input type="checkbox" ng-model="model.winner" required=""-->
-<!--                                               class="ng-invalid ng-invalid-required">-->
-<!--                                        申请调节确认符合要求?-->
-<!--                                    </label>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <!--                            <div class="form-group">-->
+                            <!--                                <div class="checkbox1">-->
+                            <!--                                    <label>-->
+                            <!--                                        <input type="checkbox" ng-model="model.winner" required=""-->
+                            <!--                                               class="ng-invalid ng-invalid-required">-->
+                            <!--                                        我郑重的承诺我申请所用奖项符合学校要求，本人自愿承担不符合要求的后果-->
+                            <!--                                    </label>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
                             <div class="form-group filled">
                                 <label class="control-label">申请类别</label>
                                 <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
+                                        dr:dict="CEEC_TYPE"
+                                        dr-selected="${param.status}"
                                         required="">
-                                    <option value="0">获奖专业报考申请</option>
-                                    <option value="1">免试申请</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -149,7 +134,8 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" id="submit" class="btn btn-primary">提交申请</button>
-                                <button type="reset" class="btn btn-default">重置表格</button>
+                                &nbsp;
+                                <button type="reset" onclick="resetNum()" class="btn btn-default">重置表格</button>
                             </div>
                         </fieldset>
                     </form>
@@ -161,9 +147,69 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="gridSystemModalLabel">添加奖项</h4>
+                <small>温馨提示：每次只能添加一个奖项，多个奖项请多次添加</small>
+            </div>
+            <div class="modal-body">
+                <form id="heightPrizeFrom">
+                <div class="form-group">
+                    <label class="control-label">获奖项目名称
+                    </label>
+                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                           ng-model="model.url" name="HPname" id="HPname" required="required"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label normal">获奖时间</label>
+                    <input type="date" class="form-control1 ng-invalid ng-invalid-required"
+                           ng-model="model.date" name="HPdata" id="HPdata" required=""/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">获奖证书发证单位
+                    </label>
+                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                           ng-model="model.url" name="HPDepartment" id="HPDepartment" required="required"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">获奖项目等级
+                    </label>
+                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                           ng-model="model.url" name="HPgradeC" id="HPgradeC" required="required"/>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="smtHighestPrize()">添加
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script>
-    function submit() {
-        messge("用户点击了提交")
+    var sumPrize = 0;
+
+    function smtHighestPrize() {
+        messge("用户点击了添加奖项");
+        sumPrize += 1;
+        var heightPrizeFrom = $("#heightPrizeFrom").val();
+        console.log(heightPrizeFrom)
+        document.getElementById("highestPrize").append(
+            "1-2021年四川省职业院校技能大赛零部件测绘与CAD成图赛项中获三等奖；" +
+            "2-获乐山市职业学校技能大赛零部件测绘与CAD成图技术项目二等奖；" +
+            "3-获乐山市青少年科技创新大赛优秀奖");
+    }
+
+    function resetNum() {
+        sumPrize = 0;
     }
 
     function countTime(time) {
@@ -200,6 +246,7 @@
             $("#submit").attr("disabled", true);
         }
     }
+
     onload(this.countTime());
 </script>
 </body>

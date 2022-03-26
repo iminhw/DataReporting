@@ -91,16 +91,16 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   ###mybatis show sql#
-logging:
-  level:
-    java:
-      sql:
-        PreparedStatement: DEBUG
-        Connection: DEBUG
-        ResultSet: DEBUG
-    org:
-      mybatis:
-        spring: DEBUG
+#logging:
+#  level:
+#    java:
+#      sql:
+#        PreparedStatement: DEBUG
+#        Connection: DEBUG
+#        ResultSet: DEBUG
+#    org:
+#      mybatis:
+#        spring: DEBUG
 
 
   ## thymeleaf模板设置
