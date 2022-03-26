@@ -1,28 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
     <title>登陆</title>
-
-    <script type="application/x-javascript">
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
     <link th:href="@{/css/base.css}" rel="stylesheet">
-    <link th:href="@{/css/exp/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-    <link th:href="@{/css/exp/font-awesome.css}" rel="stylesheet">
-    <link href="#css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
-
-    <script th:src="@{/js/exp/jquery.min.js}"></script>
-    <script th:src="@{/js/exp/bootstrap.min.js}"></script>
-    <script th:src="@{/js/exp/sweetalert2.all.min.js}"></script>
-
-    <script th:src="@{/js/base.js}"></script>
 </head>
 <body id="login">
 <div class="login-logo">
@@ -32,34 +12,67 @@
 </div>
 <h2 class="form-heading">登陆</h2>
 <div class="app-cam">
-    <!--    <form>-->
-    <input type="text" class="text" value="身份证号" id="username" onfocus="this.value = '';" placeholder="身份证号">
-    <!--           onfocus="this.value = '';"-->
-    <!--           onblur="if (this.value == '') {this.value = '身份证号';}"-->
-    <!--onblur="if (this.value == '') {this.value = '密码';}"-->
-    <input type="password" value="Password" id="password" onfocus="this.value = '';" placeholder="密码"
-    >
-    <label class="checkbox-custom check-success">
-        <input type="checkbox" name="rememberMe" id="rememberMe"> <label for="rememberMe">记住我</label>
-    </label>
-    <div class="submit"><input type="submit" onclick="login()" value="登陆"></div>
-    <!--        <div class="login-social-link">-->
-    <!--            <a href="index.html" class="icon-qq">-->
-    <!--                QQ-->
-    <!--            </a>-->
-    <!--            <a href="index.html" class="icon-wechat">-->
-    <!--                微信-->
-    <!--            </a>-->
-    <!--        </div>-->
-    <ul class="new" style="margin-top: 4px">
-        <li class="new_left"><p><a href="#">忘记密码？</a></p></li>
-        <li class="new_right"><p class="sign">新用户？<a href="/register"> 注册 </a></p></li>
-        <div class="clearfix"></div>
-    </ul>
-    <!--    </form>-->
+    <form id="loginForm" method="post">
+        <input type="text" class="text" id="username" onfocus="this.value = '';" placeholder="身份证号">
+        <!--           onfocus="this.value = '';"-->
+        <!--           onblur="if (this.value == '') {this.value = '身份证号';}"-->
+        <!--onblur="if (this.value == '') {this.value = '密码';}"-->
+        <input type="password" id="password" onfocus="this.value = '';" placeholder="密码"
+        >
+        <label class="checkbox-custom check-success">
+            <input type="checkbox" name="rememberMe" id="rememberMe"> <label for="rememberMe">记住我</label>
+        </label>
+        <div class="submit"><input type="submit"  value="登陆"></div>
+        <!--        <div class="login-social-link">-->
+        <!--            <a href="index.html" class="icon-qq">-->
+        <!--                QQ-->
+        <!--            </a>-->
+        <!--            <a href="index.html" class="icon-wechat">-->
+        <!--                微信-->
+        <!--            </a>-->
+        <!--        </div>-->
+        <ul class="new" style="margin-top: 4px">
+            <li class="new_left"><p><a href="#" onclick="messge('功能开发中，暂时请联系开发者qq：50513180')">忘记密码？</a></p></li>
+            <li class="new_right"><p class="sign">新用户？<a href="/register"> 注册 </a></p></li>
+            <div class="clearfix"></div>
+        </ul>
+    </form>
 </div>
 
 <div th:replace="/common/fragment :: frontendLRFooter"></div>
+<script>
+    $(function () {
+        $('#loginForm').formValidation({
+            message: '不能为空',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                username: {
+                    message: '身份证号码无效',
+                    validators: {
+                        notEmpty: {
+                            message: '身份证号码不能为空'
+                        },
+                    }
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: '密码不能为空'
+                        },
+                    }
+                },
 
+            }
+        }).on('success.form.fv', function (e) {
+            // Prevent form submission
+            e.preventDefault();
+            login()
+        });
+    });
+</script>
 </body>
 </html>

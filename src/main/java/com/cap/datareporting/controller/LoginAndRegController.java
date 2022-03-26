@@ -1,5 +1,6 @@
 package com.cap.datareporting.controller;
 
+import cn.hutool.core.date.DateTime;
 import com.cap.datareporting.common.enums.ResultEnum;
 import com.cap.datareporting.common.enums.StatusEnum;
 import com.cap.datareporting.common.utils.ResultEntity;
@@ -10,6 +11,7 @@ import com.cap.datareporting.entity.SysUserRole;
 import com.cap.datareporting.service.SysRoleService;
 import com.cap.datareporting.service.SysUserRoleService;
 import com.cap.datareporting.service.SysUserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -18,7 +20,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: blog01
@@ -27,7 +31,7 @@ import java.util.List;
  * @create: 2022-03-12 10:54
  **/
 @Controller
-public class LoginController {
+public class LoginAndRegController {
 
     @Autowired
     private SysUserRoleService sysUserRoleService;
@@ -37,6 +41,22 @@ public class LoginController {
 
     @Autowired
     private SysRoleService sysRoleService;
+
+    /*
+     * 返回String类型的结果
+     * 检查用户名的合法性,如果用户已经存在，返回false，否则返回true(返回json数据，格式为{"valid",true})
+     */
+    @RequestMapping(value = "/checkUN")
+    @ResponseBody
+    public Map<String, Boolean> checkNameValidMethod1(@RequestParam String username) {
+        boolean result = false;
+        if (sysUserService.findByUsername(username) == null) {
+            result = true;
+        }
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("valid", result);
+        return map;
+    }
 
     @RequestMapping(value = "/regAdd", method = RequestMethod.POST)
     @ResponseBody
@@ -48,16 +68,16 @@ public class LoginController {
             resultMap.setMessage(ResultEnum.USER_EXIST.getMessage());
             return resultMap;
         }
-
         // 对密码进行加密
         String salt = ShiroUtil.getRandomSalt();
         String encrypt = ShiroUtil.encrypt(sysUser.getPassword(), salt);
         sysUser.setPassword(encrypt);
         sysUser.setSalt(salt);
-
+        sysUser.setCreateDate(new DateTime());
+        sysUser.setUpdateDate(new DateTime());
         sysUser.setStatus(StatusEnum.OK.getCode());
 
-//        System.out.println(sysUser.toString());
+        System.out.println(sysUser);
 
         if (sysUserService.addUser(sysUser) > 0) {
             SysUser sysUser1 = sysUserService.findByUsername(sysUser.getUsername());
@@ -77,7 +97,7 @@ public class LoginController {
     /**
      * 装载角色默认登陆页
      */
-    public String getSubject() {
+    protected String getSubject() {
         SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
         String res = "/";
         // 装载角色默认登陆首页

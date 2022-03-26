@@ -1,81 +1,198 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">type="text/babel"
     <title>注册</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <script type="application/x-javascript">
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-    <!--    <script src="js/bootstrap.min.js"></script>-->
     <link th:href="@{/css/base.css}" rel="stylesheet">
-    <link th:href="@{/css/exp/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-    <link th:href="@{/css/exp/font-awesome.css}" rel="stylesheet">
-    <link href="#css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
-
-    <script th:src="@{/js/exp/jquery.min.js}"></script>
-    <script th:src="@{/js/exp/bootstrap.min.js}"></script>
-    <script th:src="@{/js/exp/sweetalert2.all.min.js}"></script>
-
-    <script th:src="@{/js/base.js}"></script>
 </head>
 <body id="login">
 <div class="login-logo">
     <a href="index.html"><img src="images/logo.png" alt=""/></a>
 </div>
 <h2 class="form-heading">注册用户 备注：表单正则验证没写</h2>
-<div class="form-signin app-cam">
+<form id="registerForm" method="post" class="form-horizontal form-signin app-cam">
     <p>在下面输入您的个人详细信息</p>
-    <input type="text" class="form-control1" placeholder="姓名" name="nickname" id="nickname" autofocus="">
-    <div class="radios">
-        <label for="radio-01" class="label_radio">
-            <input type="radio" name="sex" value="1" title="男" id="radio-01"> 男
-        </label>
-        <label for="radio-02" class="label_radio">
-            <input type="radio" name="sex" value="2" title="女" id="radio-02"> 女
-        </label>
+    <div class="form-group">
+        <input type="text" class="form-control1" placeholder="姓名" name="nickname" id="nickname" autofocus="">
     </div>
-    <!--    <input type="text" class="form-control1" name="name" id="name" placeholder="毕业中学" autofocus="">-->
-    <input type="text" class="form-control1" name="phone" id="phone" placeholder="联系电话" autofocus="">
-    <input type="text" class="form-control1" name="ksh" id="ksh" placeholder="考生号" autofocus="">
-    <input type="text" class="form-control1" onfocus="this.value = '';" name="username" id="username"
-           placeholder="身份证号">
+        <div class="form-group">
+            <div class="radios">
+                <label for="radio-01" class="label_radio">
+                    <input type="radio" name="sex" value="1" title="男" id="radio-01"> 男
+                </label>
+                <label for="radio-02" class="label_radio">
+                    <input type="radio" name="sex" value="2" title="女" id="radio-02"> 女
+                </label>
+            </div>
+        </div>
+    <div class="form-group">
+        <input type="text" class="form-control1" name="username" id="username" autocomplete="off"
+               placeholder="身份证号">
+    </div>
+    <div class="form-group">
+        <!--    <input type="text" class="form-control1" name="name" id="name" placeholder="毕业中学" autofocus="">-->
+
+        <input type="text" class="form-control1" name="phone" id="phone" placeholder="联系电话"
+               autocomplete="off">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control1" name="ksh" id="ksh" placeholder="考生号" autofocus="" autocomplete="off">
+    </div>
     <p>在下面输入您的登陆密码</p>
-    <input type="password" class="form-control1" onfocus="this.value = '';" name="password" id="password"
-           placeholder="密码">
-    <input type="password" class="form-control1" name="password1" id="password1" placeholder="重新输入密码" autofocus="">
+    <div class="form-group">
+        <input type="password" class="form-control1" name="password" id="password"
+               placeholder="密码">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control1" name="password1" id="password1" placeholder="重新输入密码" autofocus="">
+    </div>
     <!--    <label class="checkbox-custom check-success">-->
     <!--        <input type="checkbox" value="agree this condition" id="checkbox1"> <label for="checkbox1">我同意服务条款和隐私政策</label>-->
     <!--    </label>-->
-    <button class="btn btn-lg btn-success1 btn-block" onclick="regAddUser()" type="submit">提交</button>
+    <div class="form-group">
+        <button class="btn btn-lg btn-success1 btn-block" type="submit">提交</button>
+    </div>
     <div class="registration">
-        已经注册了。
+        已经注册了？
         <a class="" href="/login">
-            登陆
+            去登陆
         </a>
     </div>
-</div>
+</form>
 
 <div th:replace="/common/fragment :: frontendLRFooter"></div>
 
 <script>
-    function regAddUser() {
-        var nickname = $("#nickname").val();
-        var ksh = $("#ksh").val();
-        //phone
-        var phone = $("#phone").val();
-        var username = $("#username").val();
-        var sex = $("#sex").val();
 
-        var password = $("#password").val();
-        var password1 = $("#password1").val();
+    $(function () {
+        $('#registerForm').formValidation({
+            message: '不能为空',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                nickname: {
+                    message: '姓名无效',
+                    validators: {
+                        notEmpty: {
+                            message: '姓名不能为空'
+                        },
+                    },
+                },
+                username: {
+                    message: '身份证号码无效',
+                    validators: {
+                        notEmpty: {
+                            message: '身份证号码不能为空'
+                        },
+                        stringLength: {
+                            min: 15,
+                            max: 18,
+                            message: '身份证号码长度不足'
+                        },
+                        threshold: 15,
+                        remote: {
+                            url: '/checkUN',
+                            message: '用户已存在',
+                            delay: 2000,
+                            type: 'POST'
+                        },
+                        regexp: {
+                            regexp: /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
+                            // regexp: /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/,
+                            message: '身份证号码格式错误'
+                        }
+                    }
+                },
+                phone: {
+                    message: '电话号码无效',
+                    validators: {
+                        notEmpty: {
+                            message: '手机号码不能为空'
+                        },
+                        stringLength: {
+                            min: 11,
+                            max: 11,
+                            message: '请输入11位手机号码'
+                        },
+                        regexp: {
+                            regexp: /^1[3|4|5｜8]{1}[0-9]{9}$/,
+                            message: '请输入正确的手机号码'
+                        }
+                    }
+                },
+                ksh: {
+                    message: '考生号无效',
+                    validators: {
+                        notEmpty: {
+                            message: '考生号不能为空'
+                        },
+                        stringLength: {
+                            min: 14,
+                            max: 14,
+                            message: '请输入14位考生号'
+                        }
+                    }
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: '密码不能为空'
+                        },
+                        different: {
+                            field: 'username',
+                            message: '密码不能和用户名一样'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: '密码为最少需要输入6位，至多可输入30位'
+                        },
+                    }
+                },
+                password1: {
+                    validators: {
+                        notEmpty: {
+                            message: '确认密码不能为空'
+                        },
+                        identical: {
+                            field: 'password',
+                            message: '密码和确认密码不一样'
+                        }
+                    }
+                },
+                sex: {
+                    validators: {
+                        notEmpty: {
+                            message: '性别是必须选择的'
+                        }
+                    }
+                }
+            }
+        }).on('success.form.fv', function (e) {
+            // Prevent form submission
+            e.preventDefault();
+            // Get the form instance
+            // var $form = $(e.target);
+            // Get the FormValidation instance
+            // var bv = $form.data('formValidation');
+            regAddUser()
+        });
+    });
+
+
+    regAddUser = () => {
+        const nickname = $("#nickname").val();
+        const ksh = $("#ksh").val();
+        //phone
+        const phone = $("#phone").val();
+        const username = $("#username").val();
+        const sex = $("input[name='sex']:checked").val();
+
+        console.log(sex)
+        const password = $("#password").val();
+        const password1 = $("#password1").val();
         if (password != password1) return 0;
         // var vcode = $("#vcode").val();
         // var rememberMe = $('#checkbox1').is(':checked');
@@ -99,6 +216,8 @@
             }
         });
     }
+
+
 </script>
 </body>
 </html>

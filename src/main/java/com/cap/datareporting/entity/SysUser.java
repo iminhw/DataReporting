@@ -1,8 +1,10 @@
 package com.cap.datareporting.entity;
 
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.util.Date;
-
+@ToString
 public class SysUser implements Serializable {
     private Long id;
 

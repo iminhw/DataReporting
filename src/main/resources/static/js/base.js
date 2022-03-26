@@ -1,6 +1,6 @@
 //https://sweetalert2.github.io/#declarative-templates
 
-function messge(title = "提示", icon = 'success') {
+messge = (title = "提示", icon = 'success') => {
     Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -31,21 +31,21 @@ function messge(title = "提示", icon = 'success') {
 //     );
 // }
 
-function login() {
-    var username = $("#username").val();
-    var password = $("#password").val();
+login = () => {
+    const username = $("#username").val();
+    const password = $("#password").val();
     // var vcode = $("#vcode").val();
-    var rememberMe = $('#rememberMe').is(':checked');
+    const rememberMe = $('#rememberMe').is(':checked');
     if (username == "" || password == "") return;
     $.ajax({
         url: "/ajaxLogin",
         data: {username, password, rememberMe},
         type: "post",
         dataType: "json",
-        success: function (data) {
+        success: (data) => {
             if (data.status == 200) {
                 messge("登陆成功");
-                setTimeout(function () {
+                setTimeout(() => {
                     location.href = data.other;
                 }, 500);
             } else {

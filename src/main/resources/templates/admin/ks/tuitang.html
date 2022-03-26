@@ -74,22 +74,23 @@
 </div>
 <!-- /#wrapper -->
 <script>
-    function submit(){
+    const submit = () => {
         messge("用户点击了提交")
     }
-    function countTime(time) {
+
+    countTimeTD = (time) => {
         //获取当前时间
-        var date = new Date();
-        var now = date.getTime();
+        const date = new Date();
+        const now = date.getTime();
         //设置截止时间
-        var str = "2022/3/25 10:14:00";
-        var endDate = new Date(str);
-        var end = endDate.getTime();
+        const str = "2022/3/25 10:14:00";
+        const endDate = new Date(str);
+        const end = endDate.getTime();
 
         //时间差
-        var leftTime = end - now;
+        const leftTime = end - now;
         //定义变量 d,h,m,s保存倒计时的时间
-        var d, h, m, s;
+        let d, h, m, s;
         if (leftTime > 0) {
             d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
             h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
@@ -104,13 +105,12 @@
             setTimeout(countTime, 1000);
         } else {
             document.getElementById("showtime").style.display = 'none';
-            document.getElementById("show").append("申请提交已截止，截止时间"+str);
-
+            document.getElementById("show").append("申请提交已截止，截止时间" + str);
             $("#submit").attr("disabled", true);
         }
 
     }
-    onload(this.countTime());
+    onload(countTimeTD());
 </script>
 </body>
 </html>

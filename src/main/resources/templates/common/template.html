@@ -24,38 +24,30 @@
     https://blog.csdn.net/zhuzhezhuzhe1/article/details/80584489
     https://blog.csdn.net/sjgllllll/article/details/113924639?utm_medium=distribute.pc_feed_404.none-task-blog-2~default~BlogCommendFromBaidu~Rate-4.pc_feed_404_default&depth_1-utm_source=distribute.pc_feed_404.none-task-blog-2~default~BlogCommendFromBaidu~Rate-4.pc_feed_404_defaul
  -->
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"-->
-    <!--          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">-->
-<!--    <link th:href="@{/js/bootstrap-3.4.1/css/bootstrap.min.css}" rel="stylesheet" crossorigin="anonymous">-->
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"-->
-    <!--          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">-->
-<!--    <link th:href="@{/js/bootstrap-3.4.1/css/bootstrap-theme.min.css}" rel="stylesheet" crossorigin="anonymous">-->
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"-->
-    <!--            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"-->
-    <!--            crossorigin="anonymous"></script>-->
-    <!--    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
-    <script type="application/x-javascript">
+
+    <!--  es6  -->
+    <!--    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>-->
+    <!--   version 7.17.8-->
+<!--    <script th:src="@{/js/exp/babel.min.js}"></script>-->
+    <script type="text/babel">
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
+        hideURLbar = () => window.scrollTo(0, 1);
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
     </script>
     <!-- Bootstrap Core CSS -->
     <link th:href="@{/css/exp/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/exp/formValidation.min.css}" rel="stylesheet">
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <!-- Graph CSS -->
-    <link th:href="@{/css/exp/lines.css}" rel='stylesheet' type='text/css' />
+    <link th:href="@{/css/exp/lines.css}" rel='stylesheet' type='text/css'/>
     <link th:href="@{/css/exp/font-awesome.css}" rel="stylesheet">
     <!----webfonts--->
     <link href="#css?family=Roboto:400,100,300,500,700,900" rel="stylesheet">
     <!-- Nav CSS -->
     <link th:href="@{/css/exp/custom.css}" rel="stylesheet">
+
 
     <script th:src="@{/js/exp/jquery.min.js}"></script>
 
@@ -68,11 +60,14 @@
 
     <script th:src="@{/js/exp/bootstrap.min.js}"></script>
     <script th:src="@{/js/exp/sweetalert2.all.min.js}"></script>
+    <!--  formValidation  -->
+    <script th:src="@{/js/exp/fv/formValidation.min.js}"></script>
+    <script th:src="@{/js/exp/fv/bootstrap.min.js}"></script>
+    <!--zh_CN-->
+    <script th:src="@{/js/exp/fv/zh_CN.js}"></script>
+    <!--  formValidation END -->
+    <script th:src="@{/js/base.js}" ></script>
 
-    <script th:src="@{/js/base.js}"></script>
-
-    <!--  es6  -->
-    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>  -->
     <th:block th:if="${link != null}">
         <th:block th:replace="${link}"></th:block>
     </th:block>
@@ -82,24 +77,8 @@
     </th:block>
 </head>
 <body>
-<!--<th:block th:fragment="script">-->
-<!--    <script th:src="@{/lib/layui-v2.3.0/layui.js}" charset="utf-8"></script>-->
-<!--    &lt;!&ndash;        <script th:src="@{/Eextend/nkeditor/libs/JDialog/JDialog.min.js}" charset="utf-8"></script>&ndash;&gt;-->
-<!--    <script th:src="@{/lib/nkeditor/NKeditor-all-min.js}" charset="utf-8"></script>-->
-<!--    <script>-->
-<!--        layui.config({base: '/lib/'})-->
-<!--            .extend({-->
-<!--                // treetable: 'treetable-lay/treetable'-->
-<!--                // ,-->
-<!--                formSelects: 'form-selects/form-selects.v4',-->
-<!--                cron: "cron/cron",-->
-<!--                fileManager: 'layui-filemanage/ext/fileManager',-->
-<!--                timeago: 'timeago'-->
-<!--            });-->
 
-<!--    </script>-->
-<!--    <script th:src="@{/js/main.js}" charset="utf-8"></script>-->
-<!--</th:block>-->
 
 </body>
+
 </html>

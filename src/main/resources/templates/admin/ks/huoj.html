@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:dr=""
+      xmlns:dr="http://www.minhw.com"
 >
 <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
@@ -159,30 +159,30 @@
             </div>
             <div class="modal-body">
                 <form id="heightPrizeFrom">
-                <div class="form-group">
-                    <label class="control-label">获奖项目名称
-                    </label>
-                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                           ng-model="model.url" name="HPname" id="HPname" required="required"/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label normal">获奖时间</label>
-                    <input type="date" class="form-control1 ng-invalid ng-invalid-required"
-                           ng-model="model.date" name="HPdata" id="HPdata" required=""/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">获奖证书发证单位
-                    </label>
-                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                           ng-model="model.url" name="HPDepartment" id="HPDepartment" required="required"/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">获奖项目等级
-                    </label>
-                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                           ng-model="model.url" name="HPgradeC" id="HPgradeC" required="required"/>
+                    <div class="form-group">
+                        <label class="control-label">获奖项目名称
+                        </label>
+                        <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                               ng-model="model.url" name="HPname" id="HPname" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label normal">获奖时间</label>
+                        <input type="date" class="form-control1 ng-invalid ng-invalid-required"
+                               ng-model="model.date" name="HPdata" id="HPdata" required=""/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">获奖证书发证单位
+                        </label>
+                        <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                               ng-model="model.url" name="HPDepartment" id="HPDepartment" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">获奖项目等级
+                        </label>
+                        <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                               ng-model="model.url" name="HPgradeC" id="HPgradeC" required="required"/>
 
-                </div>
+                    </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -195,9 +195,9 @@
 </div><!-- /.modal -->
 
 <script>
-    var sumPrize = 0;
+    let sumPrize = 0;
 
-    function smtHighestPrize() {
+    smtHighestPrize = () => {
         messge("用户点击了添加奖项");
         sumPrize += 1;
         var heightPrizeFrom = $("#heightPrizeFrom").val();
@@ -208,25 +208,25 @@
             "3-获乐山市青少年科技创新大赛优秀奖");
     }
 
-    function resetNum() {
+    resetNum = () => {
         sumPrize = 0;
     }
 
-    function countTime(time) {
+    countTimeHJ = (time) => {
         //获取当前时间
-        var date = new Date();
-        var now = date.getTime();
+        const date = new Date();
+        const now = date.getTime();
         //设置截止时间
-        var str = "2022/3/24 10:14:00";
-        var endDate = new Date(str);
-        var end = endDate.getTime();
+        const str = "2022/3/24 10:14:00";
+        const endDate = new Date(str);
+        const end = endDate.getTime();
 
         //时间差
-        var leftTime = end - now;
+        const leftTime = end - now;
         //定义变量 d,h,m,s保存倒计时的时间
-        var d, h, m, s;
-        console.log(leftTime)
-        console.log(leftTime > 0)
+        let d, h, m, s;
+        // console.log(leftTime)
+        // console.log(leftTime > 0)
         if (leftTime > 0) {
             d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
             h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
@@ -247,7 +247,7 @@
         }
     }
 
-    onload(this.countTime());
+    onload(countTimeHJ());
 </script>
 </body>
 </html>
