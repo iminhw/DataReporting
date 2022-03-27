@@ -3,7 +3,7 @@
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8"/>
-    <title>BLOG</title>
+    <title>[[${#params.value("website_logo_words")}]]</title>
 
     <link th:href="@{/css/base.css}" rel="stylesheet">
     <script th:src="@{/js/index.js}"></script>
@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-8">
             <div class="page-header">
-                <h1>轻博客 <small>学习和成长是一件令人快乐的事</small></h1>
+                <h1>[[${#params.value("website_logo_words")}]] <small>[${#params.value("website_logo_small_words")}]]</small></h1>
             </div>
             <div class="panel panel-default">
                 <shiro:guest>

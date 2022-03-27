@@ -38,12 +38,6 @@ public class ParamUtil {
                 paramCache.put(new Element(sysParam.getName(), sysParam.getValue()));
                 value = sysParam.getValue();
             }
-//            Optional.ofNullable(param).ifPresent(param1 -> {
-//                paramCache.put(new Element(param1.getName(), param1.getValue()));
-//                value = param.getValue();
-//
-//            });
-
         }
         return value;
     }
