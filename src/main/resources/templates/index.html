@@ -3,7 +3,7 @@
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8"/>
-    <title>[[${#params.value("website_logo_words")}]]</title>
+    <title>[[${#params.value("website_title")}]]</title>
 
     <link th:href="@{/css/base.css}" rel="stylesheet">
     <script th:src="@{/js/index.js}"></script>
@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-8">
             <div class="page-header">
-                <h1>[[${#params.value("website_logo_words")}]] <small>[${#params.value("website_logo_small_words")}]]</small></h1>
+                <h1>[[${#params.value("website_logo_words")}]] <small>[[${#params.value("website_logo_small_words")}]]</small></h1>
             </div>
             <div class="panel panel-default">
                 <shiro:guest>
@@ -37,15 +37,19 @@
                 <shiro:user>
                     欢迎
                     <shiro:principal property="username"/>
-                    登录, <a href="/logout">logout</a>
+                    登录, <a href="/logout">快速退出</a>
                 </shiro:user>
 
             </div>
-
+        </div>
     </div>
 </section>
 
 <div th:replace="/common/fragment :: frontendFooter"></div>
-
+<script type="text/babel">
+    const test1 = '[[${#params.value("website_logo_words")}]]';
+    console.log(test1);
+    console.log('[[${#params.value("website_title")}]]');
+</script>
 </body>
 </html>

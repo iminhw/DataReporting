@@ -13,7 +13,6 @@
       <arg column="update_by" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="data_type" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="pid" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.cap.datareporting.entity.SysParam">
@@ -28,7 +27,6 @@
       <arg column="update_by" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="data_type" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="pid" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="value" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
     </constructor>
   </resultMap>
@@ -92,7 +90,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, create_date, name, remark, status, update_date, create_by, update_by, data_type, 
-    pid, title
+    pid
   </sql>
   <sql id="Blob_Column_List">
     value
@@ -151,13 +149,11 @@
     insert into sys_param (id, create_date, name, 
       remark, status, update_date, 
       create_by, update_by, data_type, 
-      pid, title, value
-      )
+      pid, value)
     values (#{id,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{updateDate,jdbcType=TIMESTAMP}, 
       #{createBy,jdbcType=BIGINT}, #{updateBy,jdbcType=BIGINT}, #{dataType,jdbcType=VARCHAR}, 
-      #{pid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{value,jdbcType=LONGVARCHAR}
-      )
+      #{pid,jdbcType=VARCHAR}, #{value,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cap.datareporting.entity.SysParam">
     insert into sys_param
@@ -191,9 +187,6 @@
       </if>
       <if test="pid != null">
         pid,
-      </if>
-      <if test="title != null">
-        title,
       </if>
       <if test="value != null">
         value,
@@ -229,9 +222,6 @@
       </if>
       <if test="pid != null">
         #{pid,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
       </if>
       <if test="value != null">
         #{value,jdbcType=LONGVARCHAR},
@@ -277,9 +267,6 @@
       <if test="record.pid != null">
         pid = #{record.pid,jdbcType=VARCHAR},
       </if>
-      <if test="record.title != null">
-        title = #{record.title,jdbcType=VARCHAR},
-      </if>
       <if test="record.value != null">
         value = #{record.value,jdbcType=LONGVARCHAR},
       </if>
@@ -300,7 +287,6 @@
       update_by = #{record.updateBy,jdbcType=BIGINT},
       data_type = #{record.dataType,jdbcType=VARCHAR},
       pid = #{record.pid,jdbcType=VARCHAR},
-      title = #{record.title,jdbcType=VARCHAR},
       value = #{record.value,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -317,8 +303,7 @@
       create_by = #{record.createBy,jdbcType=BIGINT},
       update_by = #{record.updateBy,jdbcType=BIGINT},
       data_type = #{record.dataType,jdbcType=VARCHAR},
-      pid = #{record.pid,jdbcType=VARCHAR},
-      title = #{record.title,jdbcType=VARCHAR}
+      pid = #{record.pid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -353,9 +338,6 @@
       <if test="pid != null">
         pid = #{pid,jdbcType=VARCHAR},
       </if>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
       <if test="value != null">
         value = #{value,jdbcType=LONGVARCHAR},
       </if>
@@ -373,7 +355,6 @@
       update_by = #{updateBy,jdbcType=BIGINT},
       data_type = #{dataType,jdbcType=VARCHAR},
       pid = #{pid,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR},
       value = #{value,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -387,8 +368,7 @@
       create_by = #{createBy,jdbcType=BIGINT},
       update_by = #{updateBy,jdbcType=BIGINT},
       data_type = #{dataType,jdbcType=VARCHAR},
-      pid = #{pid,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR}
+      pid = #{pid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

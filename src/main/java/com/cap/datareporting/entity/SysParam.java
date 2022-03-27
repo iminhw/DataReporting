@@ -24,13 +24,11 @@ public class SysParam implements Serializable {
 
     private String pid;
 
-    private String title;
-
     private String value;
 
     private static final long serialVersionUID = 1L;
 
-    public SysParam(Long id, Date createDate, String name, String remark, Byte status, Date updateDate, Long createBy, Long updateBy, String dataType, String pid, String title, String value) {
+    public SysParam(Long id, Date createDate, String name, String remark, Byte status, Date updateDate, Long createBy, Long updateBy, String dataType, String pid, String value) {
         this.id = id;
         this.createDate = createDate;
         this.name = name;
@@ -41,7 +39,6 @@ public class SysParam implements Serializable {
         this.updateBy = updateBy;
         this.dataType = dataType;
         this.pid = pid;
-        this.title = title;
         this.value = value;
     }
 
@@ -127,14 +124,6 @@ public class SysParam implements Serializable {
 
     public void setPid(String pid) {
         this.pid = pid == null ? null : pid.trim();
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
     }
 
     public String getValue() {

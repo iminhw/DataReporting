@@ -2,10 +2,10 @@
 <html lang="en">
 <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
-    <title>拟录取退档申请 - [[${#params.value("website_logo_words")}]]</title>
+    <title>拟录取退档申请 - [[${#params.value("website_title")}]]</title>
 
 </head>
-<body>
+<body onload="countTime()">
 <div id="wrapper">
     <!-- Navigation -->
     <div th:replace="/common/fragment :: frontendAdminHeadher"></div>
@@ -15,7 +15,8 @@
                 <h3>拟录取退档申请</h3>
                 <div class="alert alert-info" id="show" role="alert">
                     <span id="showtime">
-                    距离提交申请结束还有
+                        <span id="show_start">距离提交申请开始还有</span>
+                        <span id="show_end">距离提交申请结束还有</span>
                         <span id="_d">00</span>
                         <span id="_h">00</span>
                         <span id="_m">00</span>
@@ -78,20 +79,27 @@
         messge("用户点击了提交")
     }
 
-    countTimeTD = (time) => {
-        //获取当前时间
-        const date = new Date();
-        const now = date.getTime();
-        //设置截止时间
-        const str = "2022/3/25 10:14:00";
-        const endDate = new Date(str);
-        const end = endDate.getTime();
+    const droup_out_start_time = new Date('[[${#params.value("droup_out_start")}]]').getTime();
 
+    const droup_out_end = '[[${#params.value("droup_out_end")}]]';
+    const droup_out_end_time = new Date(droup_out_end).getTime();
+    const countTime = () => {
+        //获取当前时间
+        const nowDate = new Date().getTime();
+        const timeDifference = droup_out_start_time - nowDate;
+        const endDate = timeDifference > 0 ? droup_out_start_time : droup_out_end_time;
+        if (timeDifference > 0) {
+            document.getElementById("show_end").style.display = 'none';
+            document.getElementById("show_start").style.display = 'inline-block';
+        } else {
+            document.getElementById("show_start").style.display = 'none';
+            document.getElementById("show_end").style.display = 'inline-block';
+        }
         //时间差
-        const leftTime = end - now;
+        const leftTime = endDate - nowDate;
         //定义变量 d,h,m,s保存倒计时的时间
-        let d, h, m, s;
-        if (leftTime > 0) {
+        var d, h, m, s;
+        if (leftTime >= 0) {
             d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
             h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
             m = Math.floor(leftTime / 1000 / 60 % 60);
@@ -105,12 +113,11 @@
             setTimeout(countTime, 1000);
         } else {
             document.getElementById("showtime").style.display = 'none';
-            document.getElementById("show").append("申请提交已截止，截止时间" + str);
+            document.getElementById("show").append("申请提交已截止，截止时间" + droup_out_end);
             $("#submit").attr("disabled", true);
         }
 
     }
-    onload(countTimeTD());
 </script>
 </body>
 </html>

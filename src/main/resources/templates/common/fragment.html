@@ -3,20 +3,27 @@
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
 >
 
+<!-- 分页模块 -->
+<th:block th:fragment="page">
+    <div th:if="${#pageUtil.pageInit(page,#request)}">
+
+    </div>
+</th:block>
+
 <!--<footer th:fragment="frontendFooter">-->
 <!--    <p><strong>2022 minhw.com | 网站备案号：<a href="http://www.beian.miit.gov.cn">浙ICP备2021007413号</a></strong></p>-->
 <!--    <p><a href="/">Copyright &copy; 2022. minhw All rights reserved.</a></p>-->
 <!--</footer>-->
 <!--<footer th:fragment="frontendFooter" class="container">-->
-<div th:fragment="frontendFooter" class="copy_layout">
-    <p><strong>2022 minhw.com | 网站备案号：<a href="http://www.beian.miit.gov.cn">浙ICP备2021007413号</a></strong></p>
-    <p>Copyright &copy; 2022. <a href="/">minhw</a> All rights reserved.</a></p>
+<div th:fragment="frontendFooter" class="copy_layout" th:utext='${#params.value("footer_words")}'>
+<!--    <p><strong>2022 minhw.com | 网站备案号：<a href="http://www.beian.miit.gov.cn">浙ICP备2021007413号</a></strong></p>-->
+<!--    <p>Copyright &copy; 2022. <a href="/">minhw</a> All rights reserved.</a></p>-->
 </div>
 <!--</footer>-->
 
-<div th:fragment="frontendLRFooter" class="copy_layout login register">
-    <p><strong>2022 minhw.com | 网站备案号：<a href="http://www.beian.miit.gov.cn">浙ICP备2021007413号</a></strong></p>
-    <p>Copyright &copy; 2022. <a href="/">minhw</a> All rights reserved.</a></p>
+<div th:fragment="frontendLRFooter" class="copy_layout login register" th:utext='${#params.value("footer_words")}'>
+<!--    <p><strong>2022 minhw.com | 网站备案号：<a href="http://www.beian.miit.gov.cn">浙ICP备2021007413号</a></strong></p>-->
+<!--    <p>Copyright &copy; 2022. <a href="/">minhw</a> All rights reserved.</a></p>-->
 </div>
 
 <!-- Navigation -->
@@ -29,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">招</a>
+        <a class="navbar-brand" href="/">[[${#params.value("website_logo_words")}]]</a>
     </div>
     <!-- /.navbar-header -->
     <ul class="nav navbar-nav navbar-right">
@@ -39,11 +46,11 @@
                 <li class="dropdown-menu-header text-center">
                     <strong><shiro:principal property="nickname"/>的个人设置</strong>
                 </li>
-                <li class="m_2"><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                <li class="m_2"><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
-                <li class="m_2"><a href="#"><i class="fa fa-usd"></i> Payments <span
+                <li class="m_2"><a href="#" onchange="messge('开发中...')"><i class="fa fa-user"></i> Profile</a></li>
+                <li class="m_2"><a href="#" onchange="messge('开发中...')"><i class="fa fa-wrench"></i> Settings</a></li>
+                <li class="m_2"><a href="#" onchange="messge('开发中...')"><i class="fa fa-usd"></i> Payments <span
                         class="label label-default">42</span></a></li>
-                <li class="m_2"><a href="#"><i class="fa fa-file"></i> Projects <span
+                <li class="m_2"><a href="#" onchange="messge('开发中...')"><i class="fa fa-file"></i> Projects <span
                         class="label label-primary">42</span></a></li>
                 <li class="divider"></li>
                 <li class="m_2"><a href="/logout"><i class="fa fa-lock"></i> Logout</a></li>
