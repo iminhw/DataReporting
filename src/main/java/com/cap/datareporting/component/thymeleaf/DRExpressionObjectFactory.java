@@ -2,6 +2,7 @@ package com.cap.datareporting.component.thymeleaf;
 
 import com.cap.datareporting.component.thymeleaf.utility.DictUtil;
 import com.cap.datareporting.component.thymeleaf.utility.PageUtil;
+import com.cap.datareporting.component.thymeleaf.utility.ParamUtil;
 import org.thymeleaf.context.IExpressionContext;
 import org.thymeleaf.expression.IExpressionObjectFactory;
 
@@ -22,15 +23,15 @@ public class DRExpressionObjectFactory implements IExpressionObjectFactory {
     public static final PageUtil PAGE_UTIL_OBJECT = new PageUtil();
     public static final String DICT_UTIL_NAME = "dicts";
     public static final DictUtil DICT_UTIL_OBJECT = new DictUtil();
-//    public static final String LOG_UTIL_NAME = "logs";
-//    public static final LogUtil LOG_UTIL_OBJECT = new LogUtil();
+    public static final String PARAM_UTIL_NAME = "params";
+    public static final ParamUtil PARAM_UTIL_OBJECT = new ParamUtil();
 
     @Override
     public Set<String> getAllExpressionObjectNames() {
         Set<String> names = Collections.unmodifiableSet(new LinkedHashSet<String>(Arrays.asList(
                 PAGE_UTIL_NAME,
-                DICT_UTIL_NAME
-//                LOG_UTIL_NAME
+                DICT_UTIL_NAME,
+                PARAM_UTIL_NAME
         )));
         return names;
     }
@@ -43,9 +44,9 @@ public class DRExpressionObjectFactory implements IExpressionObjectFactory {
         if (DICT_UTIL_NAME.equals(expressionObjectName)) {
             return DICT_UTIL_OBJECT;
         }
-//        if (LOG_UTIL_NAME.equals(expressionObjectName)) {
-//            return LOG_UTIL_OBJECT;
-//        }
+        if(PARAM_UTIL_NAME.equals(expressionObjectName)){
+            return PARAM_UTIL_OBJECT;
+        }
         return null;
     }
 

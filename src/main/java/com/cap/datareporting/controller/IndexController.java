@@ -54,34 +54,34 @@ public class IndexController {
         return "/admin/index";
     }
 
-    @RequestMapping({"/admin/ks/tuitang"})
-    @RequiresPermissions("admin/ks/tuitang")
+    @RequestMapping({"/admin/examinee/droupOut"})
+    @RequiresPermissions("admin/examinee/droupOut")
     public String tuiDang() {
-        return "/admin/ks/tuitang";
+        return "/admin/examinee/droupOut";
     }
 
-    @RequestMapping({"/admin/ks/wode"})
-    @RequiresPermissions("admin/ks/wode")
+    @RequestMapping({"/admin/examinee"})
+    @RequiresPermissions("admin/examinee")
     public String ksWodetj() {
-        return "/admin/ks/wode";
+        return "/admin/examinee/index";
     }
 
-    @RequestMapping({"/admin/ks/huoj"})
-    @RequiresPermissions("admin/ks/huoj")
+    @RequestMapping({"/admin/examinee/winner"})
+    @RequiresPermissions("admin/examinee/winner")
     public String kshouj() {
-        return "/admin/ks/huoj";
+        return "/admin/examinee/winner";
     }
 
-    @RequestMapping({"/admin/th/hj"})
-    @RequiresPermissions("admin/th/hj")
+    @RequestMapping({"/admin/teacher/winner"})
+    @RequiresPermissions("admin/teacher/winner")
     public String thhj() {
-        return "/admin/th/hj";
+        return "/admin/teacher/winner";
     }
 
-    @RequestMapping({"/admin/th/td"})
-    @RequiresPermissions("admin/th/td")
+    @RequestMapping({"/admin/teacher/droupOut"})
+    @RequiresPermissions("admin/teacher/droupOut")
     public String thtd() {
-        return "/admin/th/td";
+        return "/admin/teacher/droupOut";
     }
 
 }
