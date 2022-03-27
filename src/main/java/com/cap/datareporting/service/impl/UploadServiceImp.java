@@ -21,11 +21,11 @@ public class UploadServiceImp implements UploadService {
 
     @Override
     public Upload getBySha1(String sha1) {
-        return null;
+        return uploadMapper.selectBySha1(sha1);
     }
 
     @Override
-    public Upload save(Upload upload) {
-        return null;
+    public int save(Upload upload) {
+        return uploadMapper.insert(upload);
     }
 }

@@ -22,5 +22,5 @@ public interface UploadService {
      * @param upload 文件上传实体类
      * @return 文件信息
      */
-    Upload save(Upload upload);
+    int save(Upload upload);
 }
