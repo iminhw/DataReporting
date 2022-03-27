@@ -43,7 +43,7 @@ public class ShiroRealm extends AuthorizingRealm {
         String username = (String) token.getPrincipal();
         //通过username从数据库中查找 User对象
         SysUser user = userService.findByUsername(username);
-        System.err.println("----->>username=" + user.getUsername() + "---" + user.getPassword()+"---"+user.getSalt());
+//        System.err.println("----->>username=" + user.getUsername() + "---" + user.getPassword()+"---"+user.getSalt());
         if (user == null) {
             throw new UnknownAccountException();
         } else if (user.getStatus().equals(StatusEnum.FREEZED.getCode())) {
@@ -75,7 +75,7 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
+//        System.out.println("权限配置-->MyShiroRealm.doGetAuthorizationInfo()");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         SysUser sysUser = (SysUser) principals.getPrimaryPrincipal();
         Long uid = sysUser.getId();
@@ -84,15 +84,15 @@ public class ShiroRealm extends AuthorizingRealm {
             Long rolid = userrole.getRoleId();
             authorizationInfo.addRole(roleService.selectByPrimaryKey(rolid).getName());
             // 使用log更好
-            System.out.println("role 权 限 --> " + roleService.selectByPrimaryKey(rolid).getName());
+//            System.out.println("role 权 限 --> " + roleService.selectByPrimaryKey(rolid).getName());
 
             List<SysRolePermission> rolePermissionList = rolePermissionService.findRolePermissionByRid(rolid);
             for (SysRolePermission p : rolePermissionList) {
                 authorizationInfo.addStringPermission(permissionService.findPermissionByid(
                         p.getPermissionId()).getPermission());
 
-                System.out.println("permission 权 限 --> " +
-                        permissionService.findPermissionByid(p.getPermissionId()).getPermission());
+//                System.out.println("permission 权 限 --> " +
+//                        permissionService.findPermissionByid(p.getPermissionId()).getPermission());
             }
         }
         return authorizationInfo;

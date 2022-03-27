@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
     <title>登陆 - [[${#params.value("website_title")}]]</title>
     <link th:href="@{/css/base.css}" rel="stylesheet">
 </head>
@@ -44,7 +44,7 @@
     </form>
 </div>
 
-<div th:replace="/common/fragment :: frontendLRFooter"></div>
+<div th:replace="common/fragment :: frontendLRFooter"></div>
 <script>
     $(function () {
         $('#loginForm').formValidation({

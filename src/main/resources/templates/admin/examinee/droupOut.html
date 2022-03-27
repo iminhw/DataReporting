@@ -3,7 +3,7 @@
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
 >
 
-<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
     <title>拟录取退档申请 - [[${#params.value("website_title")}]]</title>
 
@@ -12,7 +12,7 @@
 <!--onload="countTime()"-->
 <div id="wrapper">
     <!-- Navigation -->
-    <div th:replace="/common/fragment :: frontendAdminHeadher"></div>
+    <div th:replace="common/fragment :: frontendAdminHeadher"></div>
     <div id="page-wrapper">
         <div class="col-md-12 graphs">
             <div class="xs">
@@ -57,7 +57,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">证明材料</label>
-                                <input type="file" name="imags" id="imags" multiple="multiple" accept="image/png,image/jpeg"
+                                <input type="file" name="files" id="files" multiple="multiple"
+                                       accept="image/png,image/jpeg"
                                        class="form-control1 ng-invalid ng-invalid-required ng-valid-pattern ng-touched"
                                        ng-model="model.file" required="required">
                                 <p class="help-block hint-block">选择并上传通知文件中要求的全部材料</p>
@@ -71,7 +72,7 @@
                 </div>
             </div>
 
-            <div th:replace="/common/fragment :: frontendFooter"></div>
+            <div th:replace="common/fragment :: frontendFooter"></div>
 
         </div>
     </div>
@@ -95,7 +96,24 @@
 
     const submit = () => {
         messge("用户点击了提交")
-
+        const form = document.forms.namedItem("droup_out_form");
+        const formData = new FormData(form);
+        console.log(formData)
+        $.ajax({
+            url: "/admin/droupOut",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+                console.log(data)
+            },
+            error: (data) => {
+                console.log(data);
+                messge("提交失败", "error");
+            }
+        });
+        location.reload();
     }
     const resetFormValidation = () => {
         // 销毁校验
@@ -204,7 +222,7 @@
                         }
                     }
                 },
-                imags:{
+                files: {
                     message: '文件无效',
                     validators: {
                         notEmpty: {
@@ -227,7 +245,6 @@
 
             ].join(',');
             console.log(fullName)
-            console.log(validator.getFieldElements('imags').files)
             submit()
         });
     }

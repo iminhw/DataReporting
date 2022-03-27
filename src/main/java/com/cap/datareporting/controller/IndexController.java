@@ -28,12 +28,12 @@ public class IndexController {
 //        model.addAttribute("syscateList", sysCategoryService.findSysCategory());
 //        model.addAttribute("top10List", articleService.findTop10());
 
-        return "/index";
+        return "index";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        return "/login";
+        return "login";
     }
 
 //    @RequestMapping(value = "/login1", method = RequestMethod.GET)
@@ -45,43 +45,25 @@ public class IndexController {
 
     @RequestMapping({"/register"})
     public String register() {
-        return "/register";
+        return "register";
     }
 
     @RequestMapping({"/admin"})
     @RequiresPermissions("admin/index")//权限管理;
-    public String admin() {
-        return "/admin/index";
-    }
-
-    @RequestMapping({"/admin/examinee/droupOut"})
-    @RequiresPermissions("admin/examinee/droupOut")
-    public String tuiDang() {
-        return "/admin/examinee/droupOut";
-    }
-
-    @RequestMapping({"/admin/examinee"})
-    @RequiresPermissions("admin/examinee")
-    public String ksWodetj() {
-        return "/admin/examinee/index";
-    }
-
-    @RequestMapping({"/admin/examinee/winner"})
-    @RequiresPermissions("admin/examinee/winner")
-    public String kshouj() {
-        return "/admin/examinee/winner";
+    public String adminIndx() {
+        return "admin/index";
     }
 
     @RequestMapping({"/admin/teacher/winner"})
     @RequiresPermissions("admin/teacher/winner")
-    public String thhj() {
-        return "/admin/teacher/winner";
+    public String teacherWinner() {
+        return "admin/teacher/winner";
     }
 
     @RequestMapping({"/admin/teacher/droupOut"})
     @RequiresPermissions("admin/teacher/droupOut")
-    public String thtd() {
-        return "/admin/teacher/droupOut";
+    public String teacherDroupOut() {
+        return "admin/teacher/droupOut";
     }
 
 }

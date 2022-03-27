@@ -124,7 +124,7 @@ public class UserController {
     @RequiresPermissions("admin:user:detail")
     public String toDetail(@PathVariable("id") SysUser user, Model model) {
         model.addAttribute("user", user);
-        return "/admin/user/detail";
+        return "admin/user/detail";
     }
 
     /**
@@ -134,7 +134,7 @@ public class UserController {
     @RequiresPermissions("admin:user:pwd")
     public String toEditPassword(Model model, @RequestParam(value = "ids", required = false) List<Long> ids) {
         model.addAttribute("idList", ids);
-        return "/admin/user/pwd";
+        return "admin/user/pwd";
     }
 
     /**

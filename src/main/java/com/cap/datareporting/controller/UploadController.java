@@ -6,6 +6,7 @@ import com.cap.datareporting.common.utils.ResultVoUtil;
 import com.cap.datareporting.common.utils.ToolUtil;
 import com.cap.datareporting.component.fileUpload.FileUpload;
 import com.cap.datareporting.component.fileUpload.util.WaterMarkUtil;
+import com.cap.datareporting.component.thymeleaf.utility.ParamUtil;
 import com.cap.datareporting.entity.Upload;
 import com.cap.datareporting.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ import java.util.Map;
  * @author: MinHw or mz
  * @create: 2022-03-28 00:41
  **/
-@Controller("/admin")
+@Controller
+@RequestMapping("/admin")
 public class UploadController {
 
     @Autowired
@@ -155,8 +157,10 @@ public class UploadController {
         if (uploadSha1 != null) {
             return ResultVoUtil.success(uploadSha1);
         }
+//        水印
         if (WaterMark) {
-            WaterMarkUtil.markImageMultipartFile(null, multipartFile, upload, null);
+            WaterMarkUtil.markImageMultipartFile(
+                    ParamUtil.value("water_mark_text"), multipartFile, upload, null);
         } else {
             FileUpload.transferTo(multipartFile, upload);
         }
@@ -171,11 +175,11 @@ public class UploadController {
     private ResultVo saveFile(MultipartFile multipartFile, Upload upload) throws IOException, NoSuchAlgorithmException {
         String path = upload.getPath().replace("\\", "/");
         upload.setPath(path);
-        // 判断图片是否存在
-        //Upload uploadSha1 = uploadService.getBySha1(FileUpload.getFileSha1(multipartFile),path);
-        //  if (uploadSha1 != null) {
-        //       return ResultVoUtil.success(uploadSha1);
-        //   }
+        // 判断是否存在
+//        Upload uploadSha1 = uploadService.getBySha1(FileUpload.getFileSha1(multipartFile),path);
+//          if (uploadSha1 != null) {
+//               return ResultVoUtil.success(uploadSha1);
+//           }
         FileUpload.transferTo(multipartFile, upload);
 
         // 将文件信息保存到数据库中

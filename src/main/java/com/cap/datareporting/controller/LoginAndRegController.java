@@ -181,7 +181,7 @@ public class LoginAndRegController {
     public String logout() {
         SecurityUtils.getSubject().logout();
         // "redirect:/login";
-        return "redirect:/login";
+        return "redirect:login";
     }
 
 }

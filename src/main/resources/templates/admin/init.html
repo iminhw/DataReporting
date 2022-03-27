@@ -2,18 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:dr="http://www.minhw.com"
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
-<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
     <title>[[${#params.value("website_title")}]]</title>
 </head>
 <body>
 <div id="wrapper">
     <!-- Navigation -->
-    <div th:replace="/common/fragment :: frontendAdminHeadher"></div>
+    <div th:replace="common/fragment :: frontendAdminHeadher"></div>
     <div>
         <div>
 
-            <div th:replace="/common/fragment :: frontendFooter"></div>
+            <div th:replace="common/fragment :: frontendFooter"></div>
         </div>
     </div>
     <!-- /#page-wrapper -->

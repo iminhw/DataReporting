@@ -3,14 +3,14 @@
       xmlns:dr="http://www.minhw.com"
 >
 
-<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
     <title>奖状上报 - [[${#params.value("website_title")}]]</title>
 </head>
 <body onload="countTime()">
 <div id="wrapper">
     <!-- Navigation -->
-    <div th:replace="/common/fragment :: frontendAdminHeadher"></div>
+    <div th:replace="common/fragment :: frontendAdminHeadher"></div>
     <div id="page-wrapper">
         <div class="col-md-12 graphs">
             <div class="xs">
@@ -128,7 +128,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">证明材料</label>
-                            <input type="file" name="imags" id="imags" multiple="multiple" accept="image/png,image/jpeg"
+                            <input type="file" name="files" id="files" multiple="multiple" accept="image/png,image/jpeg"
                                    class="form-control1 ng-invalid ng-invalid-required ng-valid-pattern ng-touched"
                                    ng-model="model.file" required="required">
                             <p class="help-block hint-block">选择并上传通知文件中要求的全部材料</p>
@@ -141,7 +141,7 @@
                     </form>
                 </div>
             </div>
-            <div th:replace="/common/fragment :: frontendFooter"></div>
+            <div th:replace="common/fragment :: frontendFooter"></div>
         </div>
     </div>
     <!-- /#page-wrapper -->
@@ -313,7 +313,7 @@
                         }
                     }
                 },
-                imags: {
+                files: {
                     message: '文件无效',
                     validators: {
                         notEmpty: {

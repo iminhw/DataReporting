@@ -141,7 +141,6 @@ public class FileUpload {
      * @param upload 上传实体类
      */
     public static File getDestFile(Upload upload) throws IOException {
-
         // 创建保存文件对象
         String path = upload.getPath().replace(getPathPattern(), "");
         String filePath = getUploadPath() + path;
@@ -185,7 +184,8 @@ public class FileUpload {
         byte[] buffer = new byte[4096];
         MessageDigest md5 = MessageDigest.getInstance("MD5");
         MessageDigest sha1 = MessageDigest.getInstance("SHA1");
-        try (OutputStream fos = Files.newOutputStream(getDestFile(upload).toPath()); InputStream fis = multipartFile.getInputStream()) {
+        try (OutputStream fos = Files.newOutputStream(getDestFile(upload).toPath());
+             InputStream fis = multipartFile.getInputStream()) {
             int len = 0;
             while ((len = fis.read(buffer)) != -1) {
                 fos.write(buffer, 0, len);

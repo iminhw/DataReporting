@@ -2,7 +2,7 @@
 <html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
       xmlns:th="http://www.thymeleaf.org"
 >
-<head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
+<head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8"/>
     <title>[[${#params.value("website_title")}]]</title>
 
@@ -10,7 +10,7 @@
     <script th:src="@{/js/index.js}"></script>
 </head>
 <body style="position: relative;">
-<!--<div th:replace="/common/fragment :: frontendHeadher"></div>-->
+<!--<div th:replace="common/fragment :: frontendHeadher"></div>-->
 
 <!--test-->
 
@@ -56,7 +56,7 @@
     </div>
 </section>
 
-<div th:replace="/common/fragment :: frontendFooter"></div>
+<div th:replace="common/fragment :: frontendFooter"></div>
 <script type="text/babel">
     const sss = document.getElementById("shiro_username").innerText.trim();
     console.log(sss)

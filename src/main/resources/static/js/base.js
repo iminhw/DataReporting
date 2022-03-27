@@ -52,7 +52,7 @@ login = () => {
                 messge(data.message, "error");
             }
         },
-        error: function () {
+        error: () => {
             messge("登录失败", "error");
         }
     });
