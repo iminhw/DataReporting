@@ -33,7 +33,6 @@ public class FileUpload {
      */
     public static Upload getFile(MultipartFile multipartFile, String modulePath) {
 
-
         return getFile(multipartFile, modulePath, "");
     }
 
@@ -127,6 +126,13 @@ public class FileUpload {
     public static String genDateMkdir(String format) {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return "/" + sdf.format(new Date()) + "/";
+    }
+
+    /**
+     * 生成指定格式的目录名称(name)
+     */
+    public static String genMkdir(String name) {
+        return "/" + name + "/";
     }
 
     /**

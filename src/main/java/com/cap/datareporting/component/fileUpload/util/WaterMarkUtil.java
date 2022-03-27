@@ -1,6 +1,7 @@
 package com.cap.datareporting.component.fileUpload.util;
 
 import com.cap.datareporting.common.utils.HttpServletUtil;
+import com.cap.datareporting.common.utils.ToolUtil;
 import com.cap.datareporting.component.fileUpload.FileUpload;
 import com.cap.datareporting.entity.Upload;
 import org.springframework.util.StringUtils;
@@ -32,20 +33,6 @@ public class WaterMarkUtil {
     // 水印文字颜色
     private static Color color = Color.gray;
 
-    /**
-     * 获取文件绝对路径
-     */
-    private static String getUrl(Upload upload) {
-        HttpServletRequest request = HttpServletUtil.getRequest();
-        String path = upload.getPath();
-        if (!StringUtils.isEmpty(path)) {
-            StringBuffer url = request.getRequestURL();
-            String baseUrl = url.delete(url.length() - request.getRequestURI().length(), url.length())
-                    .append(request.getContextPath()).toString();
-            return baseUrl + path;
-        }
-        return path;
-    }
 
     /**
      * 给图片添加水印文字
@@ -180,7 +167,7 @@ public class WaterMarkUtil {
             String path = upload.getPath();
             File file = FileUpload.getDestFile(upload);
             if (text == null) {
-                text = getUrl(upload);
+                text = ToolUtil.getUrl(upload);
             }
             // 0、图片类型
             String typeName = path.substring(path.indexOf(".") + 1);

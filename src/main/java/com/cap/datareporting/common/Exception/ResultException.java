@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 public class ResultException extends RuntimeException {
 
-    private Integer code;
+    private Integer status;
 
     /**
      * 统一异常处理
@@ -18,7 +18,7 @@ public class ResultException extends RuntimeException {
      */
     public ResultException(ResultEnum resultEnum) {
         super(resultEnum.getMessage());
-        this.code = resultEnum.getCode();
+        this.status = resultEnum.getStatus();
     }
 
     /**
@@ -27,17 +27,17 @@ public class ResultException extends RuntimeException {
      */
     public ResultException(ResultInterface resultEnum) {
         super(resultEnum.getMessage());
-        this.code = resultEnum.getCode();
+        this.status = resultEnum.getStatus();
     }
 
     /**
      * 统一异常处理
-     * @param code 状态码
+     * @param status 状态码
      * @param message 提示信息
      */
-    public ResultException(Integer code, String message) {
+    public ResultException(Integer status, String message) {
         super(message);
-        this.code = code;
+        this.status = status;
     }
 
 }

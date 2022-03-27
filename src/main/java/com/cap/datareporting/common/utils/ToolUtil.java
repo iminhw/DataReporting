@@ -4,6 +4,7 @@ package com.cap.datareporting.common.utils;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
+import com.cap.datareporting.entity.Upload;
 import nl.bitwalker.useragentutils.Browser;
 import nl.bitwalker.useragentutils.OperatingSystem;
 import nl.bitwalker.useragentutils.UserAgent;
@@ -72,6 +73,21 @@ public class ToolUtil {
 //        }
 //        return ret;
 //    }
+
+    /**
+     * 获取文件绝对路径
+     */
+    public static String getUrl(Upload upload) {
+        HttpServletRequest request = HttpServletUtil.getRequest();
+        String path = upload.getPath();
+        if (!StringUtils.isEmpty(path)) {
+            StringBuffer url = request.getRequestURL();
+            String baseUrl = url.delete(url.length() - request.getRequestURI().length(), url.length())
+                    .append(request.getContextPath()).toString();
+            return baseUrl + path;
+        }
+        return path;
+    }
 
     /**
      * 首字母转小写
@@ -143,6 +159,9 @@ public class ToolUtil {
 
     /**
      * 获取文件后缀名
+     *
+     * @param fileName 文件名称
+     * @return
      */
     public static String getFileSuffix(String fileName) {
         if (!fileName.isEmpty()) {
@@ -243,11 +262,11 @@ public class ToolUtil {
      * @return
      */
     public static String basePath(HttpServletRequest request) {
-//        String bathPath = request.getScheme() + "://" + request.getServerName() + request.getContextPath() + "/";
+        String bathPath = request.getScheme() + "://" + request.getServerName() + request.getContextPath() + "/";
 //        ":" + request.getServerPort()
-        //  log.info("当前域名：[{}]", bathPath);
-//        return bathPath;
-        return "https://www.minhw.com/";
+//          log.info("当前域名：[{}]", bathPath);
+        return bathPath;
+//        return "https://www.minhw.com/";
     }
 
     /**
@@ -458,6 +477,12 @@ public class ToolUtil {
     }
 
 
+    /**
+     * 判断用户系统
+     *
+     * @param sUserAgent request.getHeader("user-agent");
+     * @return
+     */
     public static String detectOS(String sUserAgent) {
         Boolean isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;
         if (isWin2K) {
@@ -487,9 +512,13 @@ public class ToolUtil {
         return "None";
     }
 
+    /**
+     * 获取浏览器版本
+     *
+     * @param sUserAgent request.getHeader("user-agent");
+     * @return
+     */
     public static Browser browser(String sUserAgent) {
-
-
         //转成UserAgent对象
         UserAgent userAgent = UserAgent.parseUserAgentString(sUserAgent);
         //获取浏览器信息
@@ -504,6 +533,13 @@ public class ToolUtil {
         return browser;//browserName+"("+a.getVersion()+")";
     }
 
+    /**
+     *  String url_="http://i.itpk.cn/api.php?api_key=0ec44cd72d23d85c3c95365e68883461&api_secret=y75kfe0oz7gg&question="+msg;
+     *
+     * @param urls
+     * @return
+     * @throws Exception
+     */
     public static String getHTTP(String urls) throws Exception {
         URL url = new URL(urls);
         URI uri = new URI(url.getProtocol(), url.getHost(), url.getPath(), url.getQuery(), null);
@@ -513,13 +549,12 @@ public class ToolUtil {
         HttpGet request = new HttpGet(uri);
         try {
             HttpResponse response = client.execute(request);
-
-            String result = EntityUtils.toString(response.getEntity());//可以很好的处理中文，保证中文没有乱码
-//System.out.println("得到CRM内容:"+result);
+            //可以很好的处理中文，保证中文没有乱码
+            String result = EntityUtils.toString(response.getEntity());
+            //System.out.println("得到CRM内容:"+result);
             return result;
 
         } catch (ClientProtocolException e) {
-// TODO Auto-generated catch block
             e.printStackTrace();
             return "";
         } catch (IOException e) {

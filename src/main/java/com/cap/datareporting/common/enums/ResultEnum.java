@@ -25,11 +25,15 @@ public enum ResultEnum implements ResultInterface {
     USER_NAME_PWD_NULL(405, "用户名和密码不能为空"),
     USER_CAPTCHA_ERROR(406, "验证码错误"),
 
+    USER_LOGIN_SUCCESS(200,"登陆成功"),
+    USER_LOGIN_UP_NULL(500,"该账号已被冻结或账号不存在"),
+    USER_LOGIN_ERROR(400,"账号或密码错误"),
+
     /**
      * 注册
      */
     USER_REGISTER_SUCESS(200, "注册成功"),
-    USER_REGISTER_ERROR(501, "注册异常，清联系管理员"),
+    USER_REGISTER_ERROR(501, "注册异常，请联系管理员"),
 
     /**
      * 角色问题
@@ -60,14 +64,20 @@ public enum ResultEnum implements ResultInterface {
     NO_ADMINROLE_AUTH(500, "不允许操作管理员角色"),
     NO_ADMINROLE_STATUS(501, "不能修改管理员角色状态"),
 
+    /**
+     * 文件问题
+     */
+    FILE_UPLOAD_ERROR(501,"上传失败"),
+
+
     ;
 
-    private Integer code;
+    private Integer status;
 
     private String message;
 
-    ResultEnum(Integer code, String message) {
-        this.code = code;
+    ResultEnum(Integer status, String message) {
+        this.status = status;
         this.message = message;
     }
 }

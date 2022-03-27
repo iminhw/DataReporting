@@ -16,12 +16,12 @@ public enum UploadResultEnum implements ResultInterface {
 
     ;
 
-    private Integer code;
+    private Integer status;
 
     private String message;
 
-    UploadResultEnum(Integer code, String message) {
-        this.code = code;
+    UploadResultEnum(Integer status, String message) {
+        this.status = status;
         this.message = message;
     }
 }

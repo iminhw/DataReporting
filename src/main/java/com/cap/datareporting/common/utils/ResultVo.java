@@ -7,7 +7,7 @@ import lombok.Data;
  * @author minhw
  */
 @Data
-public class ResultEntity<T> {
+public class ResultVo<T> {
 
     /** 状态码 */
     private Integer status;
