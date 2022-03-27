@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:dr="http://www.minhw.com"
->
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
 <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
     <title>奖状上报 - [[${#params.value("website_title")}]]</title>
@@ -233,7 +234,7 @@
         //时间差
         const leftTime = endDate - nowDate;
         //定义变量 d,h,m,s保存倒计时的时间
-        var d, h, m, s;
+        let d, h, m, s;
         if (leftTime >= 0) {
             d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
             h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
