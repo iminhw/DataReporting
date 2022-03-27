@@ -18,11 +18,11 @@ public class ShiroException implements HandlerExceptionResolver {
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         /**如果是shiro无权操作，因为shiro 在操作auno等一部分不进行转发至无权限url */
         if (ex instanceof UnauthorizedException) {
-            ModelAndView mv = new ModelAndView("/error/403");
+            ModelAndView mv = new ModelAndView("error/403");
             return mv;
         }
         /** 打印异常 ex.printStackTrace();*/
-        ModelAndView mv = new ModelAndView("/error/403");
+        ModelAndView mv = new ModelAndView("error/403");
         mv.addObject("exception", ex.toString().replaceAll("\n", "<br/>"));
         return mv;
     }
