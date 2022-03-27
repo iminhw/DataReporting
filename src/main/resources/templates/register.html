@@ -132,6 +132,10 @@
                             min: 14,
                             max: 14,
                             message: '请输入14位考生号'
+                        },
+                        regexp: {
+                            regexp: /(^\d{14}$)/,
+                            message: '考生号格式错误'
                         }
                     }
                 },
@@ -165,7 +169,7 @@
                 sex: {
                     validators: {
                         notEmpty: {
-                            message: '性别是必须选择的'
+                            message: '性别是必选项'
                         }
                     }
                 }

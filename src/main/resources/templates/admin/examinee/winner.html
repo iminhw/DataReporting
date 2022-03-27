@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:dr="http://www.minhw.com"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+>
 
 <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
@@ -26,120 +26,118 @@
                     </span>
                 </div>
                 <div class="well1 white">
-                    <form class="form-floating ng-pristine ng-invalid"
-                          novalidate="novalidate" method="post" action="#" ng-submit="submit()">
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="control-label">姓名</label>
-                                <input type="text" name="name" id="name"
-                                       class="form-control1 ng-invalid ng-invalid-required ng-touched"
-                                       ng-model="model.name" required="required">
+                    <form id="winner_form" class="form-floating ng-pristine ng-invalid"
+                          novalidate="novalidate" method="post" ng-submit="submit()">
+                        <div class="form-group">
+                            <label class="control-label">姓名</label>
+                            <input type="text" name="name" id="name"
+                                   class="form-control1 ng-invalid ng-invalid-required ng-touched"
+                                   ng-model="model.name" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">考生号</label>
+                            <input type="text" name="ksh" id="ksh"
+                                   class="form-control1  ng-invalid ng-valid-email ng-invalid-required ng-touched"
+                                   ng-model="model.text" required="required">
+                        </div>
+                        <div class="form-group filled">
+                            <label class="control-label">性别</label>
+                            <!--                                <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"-->
+                            <!--                                        required="">-->
+                            <!--                                    <option value="0">男</option>-->
+                            <!--                                    <option value="1">女</option>-->
+                            <!--                                </select>-->
+                            <div class="radios">
+                                <label for="radio-01" class="label_radio">
+                                    <input type="radio" name="sex" value="1" title="男" id="radio-01"> 男
+                                </label>
+                                <label for="radio-02" class="label_radio">
+                                    <input type="radio" name="sex" value="2" title="女" id="radio-02"> 女
+                                </label>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">考生号</label>
-                                <input type="text" name="ksh" id="ksh"
-                                       class="form-control1  ng-invalid ng-valid-email ng-invalid-required ng-touched"
-                                       ng-model="model.text" required="required">
-                            </div>
-                            <div class="form-group filled">
-                                <label class="control-label">性别</label>
-                                <!--                                <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"-->
-                                <!--                                        required="">-->
-                                <!--                                    <option value="0">男</option>-->
-                                <!--                                    <option value="1">女</option>-->
-                                <!--                                </select>-->
-                                <div class="radios">
-                                    <label for="radio-01" class="label_radio">
-                                        <input type="radio" name="sex" value="1" title="男" id="radio-01"> 男
-                                    </label>
-                                    <label for="radio-02" class="label_radio">
-                                        <input type="radio" name="sex" value="2" title="女" id="radio-02"> 女
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">身份证号</label>
-                                <input type="text" name="username" id="username"
-                                       class="form-control1 ng-invalid ng-invalid-required ng-touched"
-                                       value=""
-                                       ng-model="model.text" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">联系电话</label>
-                                <input type="text"
-                                       class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                                       ng-model="model.url" required="required">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">毕业学校</label>
-                                <input type="text"
-                                       class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                                       ng-model="model.url" required="required">
-                            </div>
-                            <div class="form-group filled">
-                                <label class="control-label">高考类别</label>
-                                <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
-                                        dr:dict="CEEC"
-                                        dr-selected="${param.status}"
-                                        required="">
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <h4>我的奖项 &nbsp;<small>温馨提示：每次只能添加一个奖项，多个奖项请多次添加</small></h4>
-                                <textarea style="height: 120px;" name="highestPrize" id="highestPrize"
-                                          class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                                        data-target="#myModal">
-                                    添加最高奖项
-                                </button>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">申请专业</label>
-                                <input type="text"
-                                       class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                                       ng-model="model.url" required="required">
-                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">身份证号</label>
+                            <input type="text" name="username" id="username"
+                                   class="form-control1 ng-invalid ng-invalid-required ng-touched"
+                                   value=""
+                                   ng-model="model.text" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">联系电话</label>
+                            <input type="text"
+                                   class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                                   ng-model="model.url" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">毕业学校</label>
+                            <input type="text"
+                                   class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                                   ng-model="model.url" required="required">
+                        </div>
+                        <div class="form-group filled">
+                            <label class="control-label">高考类别</label>
+                            <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
+                                    dr:dict="CEEC"
+                                    dr-selected="${param.status}"
+                                    required="">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <h4>我的奖项 &nbsp;<small>温馨提示：每次只能添加一个奖项，多个奖项请多次添加</small></h4>
+                            <textarea style="height: 120px;" name="highestPrize" id="highestPrize"
+                                      class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                                    data-target="#myModal">
+                                添加最高奖项
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">申请专业</label>
+                            <input type="text"
+                                   class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                                   ng-model="model.url" required="required">
+                        </div>
 
-                            <!--                            <div class="form-group">-->
-                            <!--                                <label class="control-label">Number</label>-->
-                            <!--                                <input type="text"-->
-                            <!--                                       class="form-control1 ng-invalid ng-invalid-required ng-valid-pattern ng-touched"-->
-                            <!--                                       ng-model="model.number" ng-pattern="/[0-9]/" required="">-->
-                            <!--                                <p class="help-block hint-block">Numeric values from 0-***</p>-->
-                            <!--                            </div>-->
+                        <!--                            <div class="form-group">-->
+                        <!--                                <label class="control-label">Number</label>-->
+                        <!--                                <input type="text"-->
+                        <!--                                       class="form-control1 ng-invalid ng-invalid-required ng-valid-pattern ng-touched"-->
+                        <!--                                       ng-model="model.number" ng-pattern="/[0-9]/" required="">-->
+                        <!--                                <p class="help-block hint-block">Numeric values from 0-***</p>-->
+                        <!--                            </div>-->
 
-                            <!--                            <div class="form-group">-->
-                            <!--                                <div class="checkbox1">-->
-                            <!--                                    <label>-->
-                            <!--                                        <input type="checkbox" ng-model="model.winner" required=""-->
-                            <!--                                               class="ng-invalid ng-invalid-required">-->
-                            <!--                                        我郑重的承诺我申请所用奖项符合学校要求，本人自愿承担不符合要求的后果-->
-                            <!--                                    </label>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
-                            <div class="form-group filled">
-                                <label class="control-label">申请类别</label>
-                                <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
-                                        dr:dict="CEEC_TYPE"
-                                        dr-selected="${param.status}"
-                                        required="">
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">证明材料</label>
-                                <input type="file" name="imegs" multiple="multiple" accept="image/png,image/jpeg"
-                                       class="form-control1 ng-invalid ng-invalid-required ng-valid-pattern ng-touched"
-                                       ng-model="model.file" required="required">
-                                <p class="help-block hint-block">选择并上传通知文件中要求的全部材料</p>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" id="submit" class="btn btn-primary">提交申请</button>
-                                &nbsp;
-                                <button type="reset" onclick="resetNum()" class="btn btn-default">重置表格</button>
-                            </div>
-                        </fieldset>
+                        <!--                            <div class="form-group">-->
+                        <!--                                <div class="checkbox1">-->
+                        <!--                                    <label>-->
+                        <!--                                        <input type="checkbox" ng-model="model.winner" required=""-->
+                        <!--                                               class="ng-invalid ng-invalid-required">-->
+                        <!--                                        我郑重的承诺我申请所用奖项符合学校要求，本人自愿承担不符合要求的后果-->
+                        <!--                                    </label>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <div class="form-group filled">
+                            <label class="control-label">申请类别</label>
+                            <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
+                                    dr:dict="CEEC_TYPE"
+                                    dr-selected="${param.status}"
+                                    required="">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">证明材料</label>
+                            <input type="file" name="imags" id="imags" multiple="multiple" accept="image/png,image/jpeg"
+                                   class="form-control1 ng-invalid ng-invalid-required ng-valid-pattern ng-touched"
+                                   ng-model="model.file" required="required">
+                            <p class="help-block hint-block">选择并上传通知文件中要求的全部材料</p>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="submit" class="btn btn-primary">提交申请</button>
+                            &nbsp;
+                            <button type="reset" onclick="resetNum()" class="btn btn-default">重置表格</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -198,6 +196,10 @@
 
 <script>
     let sumPrize = 0;
+    const winner_start_time = new Date('[[${#params.value("winner_start")}]]').getTime();
+
+    const winner_end = '[[${#params.value("winner_end")}]]';
+    const winner_end_time = new Date(winner_end).getTime();
 
     smtHighestPrize = () => {
         messge("用户点击了添加奖项");
@@ -209,15 +211,21 @@
             "2-获乐山市职业学校技能大赛零部件测绘与CAD成图技术项目二等奖；" +
             "3-获乐山市青少年科技创新大赛优秀奖");
     }
-
-    resetNum = () => {
+    const resetNum = () => {
         sumPrize = 0;
     }
 
-    const winner_start_time = new Date('[[${#params.value("winner_start")}]]').getTime();
+    const getText = (id) => {
+        return document.getElementById(id).innerText.trim()
+    }
 
-    const winner_end = '[[${#params.value("winner_end")}]]';
-    const winner_end_time = new Date(winner_end).getTime();
+    const resetFrom = () => {
+        document.getElementById("winner_form").reset();
+        document.getElementById("username").value = getText("shiro_username");
+        document.getElementById("nickname").value = getText("shiro_nickname");
+        document.getElementById("ksh").value = getText("shiro_ksh");
+        resetFormValidation();
+    }
 
     const countTime = () => {
         //获取当前时间
@@ -253,6 +261,83 @@
             $("#submit").attr("disabled", true);
         }
     }
+    const validate_form = () => {
+        $('#winner_form').formValidation({
+            message: '不能为空',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                nickname: {
+                    message: '姓名无效',
+                    validators: {
+                        notEmpty: {
+                            message: '姓名不能为空'
+                        },
+                    },
+                },
+                username: {
+                    message: '身份证号码无效',
+                    validators: {
+                        notEmpty: {
+                            message: '身份证号码不能为空'
+                        },
+                        stringLength: {
+                            min: 15,
+                            max: 18,
+                            message: '身份证号码长度不足'
+                        },
+                        regexp: {
+                            regexp: /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
+                            // regexp: /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/,
+                            message: '身份证号码格式错误'
+                        }
+                    }
+                },
+                ksh: {
+                    message: '考生号无效',
+                    validators: {
+                        notEmpty: {
+                            message: '考生号不能为空'
+                        },
+                        stringLength: {
+                            min: 14,
+                            max: 14,
+                            message: '请输入14位考生号'
+                        },
+                        regexp: {
+                            regexp: /(^\d{14}$)/,
+                            message: '考生号格式错误'
+                        }
+                    }
+                },
+                imags: {
+                    message: '文件无效',
+                    validators: {
+                        notEmpty: {
+                            message: '证明材料不能为空'
+                        },
+                    }
+                },
+            }
+        }).on('success.form.fv', function (e) {
+            // Prevent form submission
+            e.preventDefault();
+            // Get the form instance
+            const $form = $(e.target);
+            // Get the FormValidation instance
+            const validator = $form.data('formValidation');
+            console.log(validator)
+            submit()
+        });
+    }
+    $(() => {
+        resetFrom();
+        countTime();
+        validate_form();
+    });
 </script>
 </body>
 </html>

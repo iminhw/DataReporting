@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head th:replace="/common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8"/>
     <title>[[${#params.value("website_title")}]]</title>
@@ -28,7 +29,8 @@
     <div class="row">
         <div class="col-xs-12 col-md-8">
             <div class="page-header">
-                <h1>[[${#params.value("website_logo_words")}]] <small>[[${#params.value("website_logo_small_words")}]]</small></h1>
+                <h1>[[${#params.value("website_logo_words")}]]
+                    <small>[[${#params.value("website_logo_small_words")}]]</small></h1>
             </div>
             <div class="panel panel-default">
                 <shiro:guest>
@@ -37,8 +39,17 @@
                 <shiro:user>
                     欢迎
                     <shiro:principal property="username"/>
-                    登录, <a href="/logout">快速退出</a>
+                    登录, 【<a href="/logout">快速退出</a>】
+
+                    [
+                    <shiro:principal property="sex"/>
+                    ]
+                    <input type="text" id="test" value="">
+                    <shiro:principal property="phone"/>
                 </shiro:user>
+                <div id="shiro_username" hidden>
+                    <shiro:principal property='username'/>
+                </div>
 
             </div>
         </div>
@@ -47,6 +58,9 @@
 
 <div th:replace="/common/fragment :: frontendFooter"></div>
 <script type="text/babel">
+    const sss = document.getElementById("shiro_username").innerText.trim();
+    console.log(sss)
+    document.getElementById("test").value = sss;
     const test1 = '[[${#params.value("website_logo_words")}]]';
     console.log(test1);
     console.log('[[${#params.value("website_title")}]]');
