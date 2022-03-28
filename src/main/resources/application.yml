@@ -102,7 +102,6 @@ mybatis:
 #      mybatis:
 #        spring: DEBUG
 
-
   ## thymeleaf模板设置
 thymeleaf:
   prefix: classpath:/templates
@@ -117,3 +116,6 @@ thymeleaf:
     multipart:
       max-file-size: 200MB
       max-request-size: 1GB
+logging:
+  file:
+    path: logs

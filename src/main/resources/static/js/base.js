@@ -17,6 +17,42 @@ messge = (title = "提示", icon = 'success') => {
     });
 }
 
+const scallPu = () => {
+    // alert(11)
+    const el = document.documentElement;
+    const element = document.documentElement;
+    if (!$('body').hasClass("full-screen")) {
+        $('body').addClass("full-screen");
+        // glyphicon glyphicon-resize-full  出
+        // glyphicon glyphicon-resize-small 入
+        $('#alarm-fullscreen-toggler').removeClass("glyphicon glyphicon-resize-full");
+        $('#alarm-fullscreen-toggler').addClass("glyphicon glyphicon-resize-small");
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+        }
+
+    } else {
+        $('body').removeClass("full-screen");
+        $('#alarm-fullscreen-toggler').removeClass("glyphicon glyphicon-resize-small");
+        $('#alarm-fullscreen-toggler').addClass("glyphicon glyphicon-resize-full");
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+}
+
 // function loginUrl() {
 //     var url = location.href;
 //     $.ajax({
