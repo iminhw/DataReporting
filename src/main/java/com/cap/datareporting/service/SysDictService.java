@@ -24,7 +24,7 @@ public interface SysDictService {
      */
     SysDict getByNameOk(String name);
 
-   Map<String,String> gitDictValue(String lable);
+    Map<String, String> gitDictValue(String lable);
 
     /**
      * 获取分页列表数据

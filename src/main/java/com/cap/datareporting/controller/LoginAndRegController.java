@@ -14,12 +14,14 @@ import com.cap.datareporting.entity.SysUserRole;
 import com.cap.datareporting.service.SysRoleService;
 import com.cap.datareporting.service.SysUserRoleService;
 import com.cap.datareporting.service.SysUserService;
+import com.cap.datareporting.validator.SysUserValid;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -62,7 +64,8 @@ public class LoginAndRegController {
 
     @RequestMapping(value = "/regAdd", method = RequestMethod.POST)
     @ResponseBody
-    public ResultVo addURegister(SysUser sysUser, @RequestParam String password1) {
+    public ResultVo addURegister(@Validated SysUserValid sysUserValid,
+                                 SysUser sysUser, @RequestParam String password1) {
 
         // 判断密码是否为空
         if (sysUser.getPassword().isEmpty() || "".equals(sysUser.getPassword().trim())) {
