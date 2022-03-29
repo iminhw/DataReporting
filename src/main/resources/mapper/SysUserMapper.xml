@@ -11,6 +11,7 @@
       <arg column="picture" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="sex" javaType="java.lang.Byte" jdbcType="TINYINT" />
       <arg column="ksh" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="abbreviation" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="phone" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -78,8 +79,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, nickname, password, salt, picture, sex, ksh, email, phone, remark, 
-    create_date, update_date, status
+    id, username, nickname, password, salt, picture, sex, ksh, abbreviation, email, phone, 
+    remark, create_date, update_date, status
   </sql>
   <select id="selectByExample" parameterType="com.cap.datareporting.entity.SysUserExample" resultMap="BaseResultMap">
     select
@@ -115,14 +116,16 @@
   <insert id="insert" parameterType="com.cap.datareporting.entity.SysUser">
     insert into sys_user (id, username, nickname, 
       password, salt, picture, 
-      sex, ksh, email, phone, 
-      remark, create_date, update_date, 
-      status)
+      sex, ksh, abbreviation, 
+      email, phone, remark, 
+      create_date, update_date, status
+      )
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
       #{password,jdbcType=CHAR}, #{salt,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=TINYINT}, #{ksh,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=TINYINT})
+      #{sex,jdbcType=TINYINT}, #{ksh,jdbcType=VARCHAR}, #{abbreviation,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cap.datareporting.entity.SysUser">
     insert into sys_user
@@ -150,6 +153,9 @@
       </if>
       <if test="ksh != null">
         ksh,
+      </if>
+      <if test="abbreviation != null">
+        abbreviation,
       </if>
       <if test="email != null">
         email,
@@ -194,6 +200,9 @@
       </if>
       <if test="ksh != null">
         #{ksh,jdbcType=VARCHAR},
+      </if>
+      <if test="abbreviation != null">
+        #{abbreviation,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
@@ -248,6 +257,9 @@
       <if test="record.ksh != null">
         ksh = #{record.ksh,jdbcType=VARCHAR},
       </if>
+      <if test="record.abbreviation != null">
+        abbreviation = #{record.abbreviation,jdbcType=VARCHAR},
+      </if>
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
       </if>
@@ -281,6 +293,7 @@
       picture = #{record.picture,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=TINYINT},
       ksh = #{record.ksh,jdbcType=VARCHAR},
+      abbreviation = #{record.abbreviation,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
@@ -315,6 +328,9 @@
       <if test="ksh != null">
         ksh = #{ksh,jdbcType=VARCHAR},
       </if>
+      <if test="abbreviation != null">
+        abbreviation = #{abbreviation,jdbcType=VARCHAR},
+      </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
@@ -345,6 +361,7 @@
       picture = #{picture,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=TINYINT},
       ksh = #{ksh,jdbcType=VARCHAR},
+      abbreviation = #{abbreviation,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},

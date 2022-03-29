@@ -2,9 +2,10 @@ package com.cap.datareporting.dao;
 
 import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.SysUserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 public interface SysUserMapper {
     long countByExample(SysUserExample example);
@@ -23,6 +24,7 @@ public interface SysUserMapper {
 
     /**
      * 按用户名查询数据,考虑不让用户名重复，所以不管软状态
+     *
      * @param username
      * @return
      */

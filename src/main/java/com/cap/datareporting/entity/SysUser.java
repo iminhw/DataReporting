@@ -1,10 +1,8 @@
 package com.cap.datareporting.entity;
 
-import lombok.ToString;
-
 import java.io.Serializable;
 import java.util.Date;
-@ToString
+
 public class SysUser implements Serializable {
     private Long id;
 
@@ -22,6 +20,8 @@ public class SysUser implements Serializable {
 
     private String ksh;
 
+    private String abbreviation;
+
     private String email;
 
     private String phone;
@@ -36,7 +36,7 @@ public class SysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SysUser(Long id, String username, String nickname, String password, String salt, String picture, Byte sex, String ksh, String email, String phone, String remark, Date createDate, Date updateDate, Byte status) {
+    public SysUser(Long id, String username, String nickname, String password, String salt, String picture, Byte sex, String ksh, String abbreviation, String email, String phone, String remark, Date createDate, Date updateDate, Byte status) {
         this.id = id;
         this.username = username;
         this.nickname = nickname;
@@ -45,6 +45,7 @@ public class SysUser implements Serializable {
         this.picture = picture;
         this.sex = sex;
         this.ksh = ksh;
+        this.abbreviation = abbreviation;
         this.email = email;
         this.phone = phone;
         this.remark = remark;
@@ -119,6 +120,14 @@ public class SysUser implements Serializable {
 
     public void setKsh(String ksh) {
         this.ksh = ksh == null ? null : ksh.trim();
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation == null ? null : abbreviation.trim();
     }
 
     public String getEmail() {

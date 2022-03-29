@@ -37,6 +37,11 @@
     <div class="form-group">
         <input type="text" class="form-control1" name="ksh" id="ksh" placeholder="考生号" autofocus="" autocomplete="off">
     </div>
+    <!--    abbreviation-->
+    <div class="form-group">
+        <input type="text" class="form-control1" name="abbreviation" id="abbreviation" placeholder="毕业学校" autofocus=""
+               autocomplete="off">
+    </div>
     <p>在下面输入您的登陆密码</p>
     <div class="form-group">
         <input type="password" class="form-control1" name="password" id="password"
@@ -139,6 +144,14 @@
                         }
                     }
                 },
+                abbreviation: {
+                    message: '毕业学校无效',
+                    validators: {
+                        notEmpty: {
+                            message: '毕业学校不能为空'
+                        },
+                    }
+                },
                 password: {
                     validators: {
                         notEmpty: {
@@ -187,21 +200,21 @@
 
 
     regAddUser = () => {
-        const nickname = $("#nickname").val();
-        const ksh = $("#ksh").val();
-        //phone
-        const phone = $("#phone").val();
-        const username = $("#username").val();
-        const sex = $("input[name='sex']:checked").val();
-
         const password = $("#password").val();
         const password1 = $("#password1").val();
         if (password != password1) return 0;
+        const nickname = $("#nickname").val();
+        const ksh = $("#ksh").val();
+        const phone = $("#phone").val();
+        const username = $("#username").val();
+        const sex = $("input[name='sex']:checked").val();
+        const abbreviation = $("#abbreviation").val();
+        // 验证码处理
         // var vcode = $("#vcode").val();
         // var rememberMe = $('#checkbox1').is(':checked');
         $.ajax({
             url: "/regAdd",
-            data: {username, password, password1, nickname, phone, ksh, sex},
+            data: {username, password, password1, nickname, phone, ksh, sex, abbreviation},
             type: "post",
             dataType: "json",
             success: function (data) {

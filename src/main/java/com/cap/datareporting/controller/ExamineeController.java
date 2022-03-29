@@ -12,6 +12,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,19 +38,25 @@ public class ExamineeController {
 
     @RequestMapping({"/examinee"})
     @RequiresPermissions("admin/examinee")
-    public String examineeIndex() {
+    public String examineeIndex(Model model) {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
         return "admin/examinee/index";
     }
 
     @RequestMapping({"/examinee/droupOut"})
     @RequiresPermissions("admin/examinee/droupOut")
-    public String examineeDroupOut() {
+    public String examineeDroupOut(Model model) {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
         return "admin/examinee/droupOut";
     }
 
     @RequestMapping({"/examinee/winner"})
     @RequiresPermissions("admin/examinee/winner")
-    public String examineeWinner() {
+    public String examineeWinner(Model model) {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
         return "admin/examinee/winner";
     }
 
@@ -82,7 +89,7 @@ public class ExamineeController {
      */
     private ResultVo saveImage(MultipartFile multipartFile,
                                Upload upload, SysUser sysUser
-                               ) throws IOException, NoSuchAlgorithmException {
+    ) throws IOException, NoSuchAlgorithmException {
         // 判断是否为支持的图片格式
         String[] types = {
                 "image/gif",
@@ -94,11 +101,11 @@ public class ExamineeController {
             return ResultVoUtil.error("图片格式错误");
         }
         // 判断图片是否存在
-        Upload uploadSha1 = uploadService.getBySha1(FileUpload.getFileSha1(multipartFile));
-        if (uploadSha1 != null) {
-            return ResultVoUtil.success(uploadSha1);
-        }
-       boolean WaterMark = ParamUtil.value("water_mark_off") == "1";
+//        Upload uploadSha1 = uploadService.getBySha1(FileUpload.getFileSha1(multipartFile));
+//        if (uploadSha1 != null) {
+//            return ResultVoUtil.success(uploadSha1);
+//        }
+        boolean WaterMark = ParamUtil.value("water_mark_off") == "1";
         if (WaterMark) {
             WaterMarkUtil.markImageMultipartFile(
                     ParamUtil.value("water_mark_text"), multipartFile, upload, null);

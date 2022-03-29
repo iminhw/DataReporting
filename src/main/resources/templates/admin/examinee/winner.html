@@ -26,17 +26,17 @@
                     </span>
                 </div>
                 <div class="well1 white">
-                    <form id="winner_form" class="form-floating ng-pristine ng-invalid"
+                    <form id="winner_form" onreset="resetNum()" class="form-floating ng-pristine ng-invalid"
                           novalidate="novalidate" method="post" ng-submit="submit()">
                         <div class="form-group">
                             <label class="control-label">姓名</label>
-                            <input type="text" name="name" id="name"
-                                   class="form-control1 ng-invalid ng-invalid-required ng-touched"
+                            <input type="text" name="nickname" id="nickname" th:value="${user.nickname}"
+                                   class="form-control1 ng-invalid ng-invalid-required ng-touched" disabled=""
                                    ng-model="model.name" required="required">
                         </div>
                         <div class="form-group">
                             <label class="control-label">考生号</label>
-                            <input type="text" name="ksh" id="ksh"
+                            <input type="text" name="ksh" id="ksh" th:value="${user.ksh}" disabled=""
                                    class="form-control1  ng-invalid ng-valid-email ng-invalid-required ng-touched"
                                    ng-model="model.text" required="required">
                         </div>
@@ -49,10 +49,13 @@
                             <!--                                </select>-->
                             <div class="radios">
                                 <label for="radio-01" class="label_radio">
-                                    <input type="radio" name="sex" value="1" title="男" id="radio-01"> 男
+                                    <input type="radio" name="sex" value="1" title="男" disabled=""
+                                           th:checked="${user.sex} == '1' ? true:false " id="radio-01"> 男
                                 </label>
                                 <label for="radio-02" class="label_radio">
-                                    <input type="radio" name="sex" value="2" title="女" id="radio-02"> 女
+                                    <input type="radio" name="sex" value="2" disabled=""
+                                           th:checked="${user.sex} == '2' ? true:false " title="女"
+                                           id="radio-02"> 女
                                 </label>
                             </div>
                         </div>
@@ -60,18 +63,18 @@
                             <label class="control-label">身份证号</label>
                             <input type="text" name="username" id="username"
                                    class="form-control1 ng-invalid ng-invalid-required ng-touched"
-                                   value=""
+                                   th:value="${user.username}" disabled=""
                                    ng-model="model.text" required="required">
                         </div>
                         <div class="form-group">
                             <label class="control-label">联系电话</label>
-                            <input type="text"
+                            <input type="text" th:value="${user.phone}" disabled=""
                                    class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
                                    ng-model="model.url" required="required">
                         </div>
                         <div class="form-group">
                             <label class="control-label">毕业学校</label>
-                            <input type="text"
+                            <input type="text" th:value="${user.abbreviation}" disabled=""
                                    class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
                                    ng-model="model.url" required="required">
                         </div>
@@ -79,7 +82,6 @@
                             <label class="control-label">高考类别</label>
                             <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
                                     dr:dict="CEEC"
-                                    dr-selected="${param.status}"
                                     required="">
                             </select>
                         </div>
@@ -122,7 +124,6 @@
                             <label class="control-label">申请类别</label>
                             <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
                                     dr:dict="CEEC_TYPE"
-                                    dr-selected="${param.status}"
                                     required="">
                             </select>
                         </div>
@@ -136,7 +137,7 @@
                         <div class="form-group">
                             <button type="submit" id="submit" class="btn btn-primary">提交申请</button>
                             &nbsp;
-                            <button type="reset" onclick="resetNum()" class="btn btn-default">重置表格</button>
+                            <button type="reset" class="btn btn-default">重置表格</button>
                         </div>
                     </form>
                 </div>
@@ -157,187 +158,195 @@
                 <h4 class="modal-title" id="gridSystemModalLabel">添加奖项</h4>
                 <small>温馨提示：每次只能添加一个奖项，多个奖项请多次添加</small>
             </div>
-            < class="modal-body">
-            <form id="heightPrizeFrom">
-                <div class="form-group">
-                    <label class="control-label">获奖项目名称
-                    </label>
-                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                           ng-model="model.url" name="HPname" id="HPname" required="required"/>
+            <div class="modal-body">
+                <form id="heightPrizeFrom">
+                    <div class="form-group">
+                        <label class="control-label">获奖项目名称
+                        </label>
+                        <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                               ng-model="model.url" name="HPname" id="HPname" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label normal">获奖时间</label>
+                        <input type="date" class="form-control1 ng-invalid ng-invalid-required"
+                               ng-model="model.date" name="HPdata" id="HPdata" required=""/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">获奖证书发证单位
+                        </label>
+                        <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                               ng-model="model.url" name="HPDepartment" id="HPDepartment" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">获奖项目等级
+                        </label>
+                        <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                               ng-model="model.url" name="HPgradeC" id="HPgradeC" required="required"/>
+
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            onclick="smtHighestPrize()">添加
+                    </button>
                 </div>
-                <div class="form-group">
-                    <label class="control-label normal">获奖时间</label>
-                    <input type="date" class="form-control1 ng-invalid ng-invalid-required"
-                           ng-model="model.date" name="HPdata" id="HPdata" required=""/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">获奖证书发证单位
-                    </label>
-                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                           ng-model="model.url" name="HPDepartment" id="HPDepartment" required="required"/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">获奖项目等级
-                    </label>
-                    <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                           ng-model="model.url" name="HPgradeC" id="HPgradeC" required="required"/>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
-                </div>
-            </form>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal"
-                        onclick="smtHighestPrize()">添加
-                </button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    <script>
+        let sumPrize = 0;
+        const winner_start_time = new Date('[[${#params.value("winner_start")}]]').getTime();
 
-<script>
-    let sumPrize = 0;
-    const winner_start_time = new Date('[[${#params.value("winner_start")}]]').getTime();
+        const winner_end = '[[${#params.value("winner_end")}]]';
+        const winner_end_time = new Date(winner_end).getTime();
 
-    const winner_end = '[[${#params.value("winner_end")}]]';
-    const winner_end_time = new Date(winner_end).getTime();
-
-    smtHighestPrize = () => {
-        messge("用户点击了添加奖项");
-        sumPrize += 1;
-        const heightPrizeFrom = $("#heightPrizeFrom").val();
-        console.log(heightPrizeFrom)
-        document.getElementById("highestPrize").append(
-            "1-2021年四川省职业院校技能大赛零部件测绘与CAD成图赛项中获三等奖；" +
-            "2-获乐山市职业学校技能大赛零部件测绘与CAD成图技术项目二等奖；" +
-            "3-获乐山市青少年科技创新大赛优秀奖");
-    }
-    const resetNum = () => {
-        sumPrize = 0;
-    }
-
-    const getText = (id) => {
-        return document.getElementById(id).innerText.trim()
-    }
-
-    const resetFrom = () => {
-        document.getElementById("winner_form").reset();
-        document.getElementById("username").value = getText("shiro_username");
-        document.getElementById("nickname").value = getText("shiro_nickname");
-        document.getElementById("ksh").value = getText("shiro_ksh");
-        resetFormValidation();
-    }
-
-    const countTime = () => {
-        //获取当前时间
-        const nowDate = new Date().getTime();
-        const timeDifference = winner_start_time - nowDate;
-        const endDate = timeDifference > 0 ? winner_start_time : winner_end_time;
-        if (timeDifference > 0) {
-            document.getElementById("show_end").style.display = 'none';
-            document.getElementById("show_start").style.display = 'inline-block';
-        } else {
-            document.getElementById("show_start").style.display = 'none';
-            document.getElementById("show_end").style.display = 'inline-block';
+        smtHighestPrize = () => {
+            messge("用户点击了添加奖项");
+            sumPrize += 1;
+            const heightPrizeFrom = $("#heightPrizeFrom").val();
+            console.log(heightPrizeFrom)
+            document.getElementById("highestPrize").append(
+                "1-2021年四川省职业院校技能大赛零部件测绘与CAD成图赛项中获三等奖；" +
+                "2-获乐山市职业学校技能大赛零部件测绘与CAD成图技术项目二等奖；" +
+                "3-获乐山市青少年科技创新大赛优秀奖");
         }
-        //时间差
-        const leftTime = endDate - nowDate;
-        //定义变量 d,h,m,s保存倒计时的时间
-        let d, h, m, s;
-        if (leftTime >= 0) {
-            d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
-            h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
-            m = Math.floor(leftTime / 1000 / 60 % 60);
-            s = Math.floor(leftTime / 1000 % 60);
-            //将倒计时赋值到div中
-            document.getElementById("_d").innerHTML = d + "天";
-            document.getElementById("_h").innerHTML = h + "时";
-            document.getElementById("_m").innerHTML = m + "分";
-            document.getElementById("_s").innerHTML = s + "秒";
-            //递归每秒调用countTime方法，显示动态时间效果
-            setTimeout(countTime, 1000);
-        } else {
-            document.getElementById("showtime").style.display = 'none';
-            document.getElementById("show").append("申请提交已截止，截止时间" + winner_end);
-            $("#submit").attr("disabled", true);
+        const resetNum = () => {
+            sumPrize = 0;
+            resetWinFrom();
         }
-    }
-    const validate_form = () => {
-        $('#winner_form').formValidation({
-            message: '不能为空',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                nickname: {
-                    message: '姓名无效',
-                    validators: {
-                        notEmpty: {
-                            message: '姓名不能为空'
+
+        const submitWin = () => {
+            messge("用户点击了提交")
+            const form = document.forms.namedItem("winner_form");
+            const formData = new FormData(form);
+            console.log(formData)
+        }
+
+        const getText = (id) => {
+            return document.getElementById(id).innerText.trim()
+        }
+
+        const resetWinFrom = () => {
+            resetWinnerFormValidation();
+        }
+
+        const resetWinnerFormValidation = () => {
+            $("#droup_out_form").data('formValidation', null);
+            validate_form();
+        }
+
+        const countTime = () => {
+            //获取当前时间
+            const nowDate = new Date().getTime();
+            const timeDifference = winner_start_time - nowDate;
+            const endDate = timeDifference > 0 ? winner_start_time : winner_end_time;
+            if (timeDifference > 0) {
+                document.getElementById("show_end").style.display = 'none';
+                document.getElementById("show_start").style.display = 'inline-block';
+            } else {
+                document.getElementById("show_start").style.display = 'none';
+                document.getElementById("show_end").style.display = 'inline-block';
+            }
+            //时间差
+            const leftTime = endDate - nowDate;
+            //定义变量 d,h,m,s保存倒计时的时间
+            let d, h, m, s;
+            if (leftTime >= 0) {
+                d = Math.floor(leftTime / 1000 / 60 / 60 / 24);
+                h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
+                m = Math.floor(leftTime / 1000 / 60 % 60);
+                s = Math.floor(leftTime / 1000 % 60);
+                //将倒计时赋值到div中
+                document.getElementById("_d").innerHTML = d + "天";
+                document.getElementById("_h").innerHTML = h + "时";
+                document.getElementById("_m").innerHTML = m + "分";
+                document.getElementById("_s").innerHTML = s + "秒";
+                //递归每秒调用countTime方法，显示动态时间效果
+                setTimeout(countTime, 1000);
+            } else {
+                document.getElementById("showtime").style.display = 'none';
+                document.getElementById("show").append("申请提交已截止，截止时间" + winner_end);
+                $("#submit").attr("disabled", true);
+            }
+        }
+        const validate_form = () => {
+            $('#winner_form').formValidation({
+                message: '不能为空',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    nickname: {
+                        message: '姓名无效',
+                        validators: {
+                            notEmpty: {
+                                message: '姓名不能为空'
+                            },
                         },
                     },
-                },
-                username: {
-                    message: '身份证号码无效',
-                    validators: {
-                        notEmpty: {
-                            message: '身份证号码不能为空'
-                        },
-                        stringLength: {
-                            min: 15,
-                            max: 18,
-                            message: '身份证号码长度不足'
-                        },
-                        regexp: {
-                            regexp: /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
-                            // regexp: /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/,
-                            message: '身份证号码格式错误'
+                    username: {
+                        message: '身份证号码无效',
+                        validators: {
+                            notEmpty: {
+                                message: '身份证号码不能为空'
+                            },
+                            stringLength: {
+                                min: 15,
+                                max: 18,
+                                message: '身份证号码长度不足'
+                            },
+                            regexp: {
+                                regexp: /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/,
+                                // regexp: /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)/,
+                                message: '身份证号码格式错误'
+                            }
                         }
-                    }
-                },
-                ksh: {
-                    message: '考生号无效',
-                    validators: {
-                        notEmpty: {
-                            message: '考生号不能为空'
-                        },
-                        stringLength: {
-                            min: 14,
-                            max: 14,
-                            message: '请输入14位考生号'
-                        },
-                        regexp: {
-                            regexp: /(^\d{14}$)/,
-                            message: '考生号格式错误'
+                    },
+                    ksh: {
+                        message: '考生号无效',
+                        validators: {
+                            notEmpty: {
+                                message: '考生号不能为空'
+                            },
+                            stringLength: {
+                                min: 14,
+                                max: 14,
+                                message: '请输入14位考生号'
+                            },
+                            regexp: {
+                                regexp: /(^\d{14}$)/,
+                                message: '考生号格式错误'
+                            }
                         }
-                    }
-                },
-                files: {
-                    message: '文件无效',
-                    validators: {
-                        notEmpty: {
-                            message: '证明材料不能为空'
-                        },
-                    }
-                },
-            }
-        }).on('success.form.fv', function (e) {
-            // Prevent form submission
-            e.preventDefault();
-            // Get the form instance
-            const $form = $(e.target);
-            // Get the FormValidation instance
-            const validator = $form.data('formValidation');
-            console.log(validator)
-            submit()
+                    },
+                    files: {
+                        message: '文件无效',
+                        validators: {
+                            notEmpty: {
+                                message: '证明材料不能为空'
+                            },
+                        }
+                    },
+                }
+            }).on('success.form.fv', function (e) {
+                // Prevent form submission
+                e.preventDefault();
+                // Get the form instance
+                const $form = $(e.target);
+                // Get the FormValidation instance
+                const validator = $form.data('formValidation');
+                console.log(validator)
+                submitWin()
+            });
+        }
+        $(() => {
+            countTime();
+            validate_form();
         });
-    }
-    $(() => {
-        resetFrom();
-        countTime();
-        validate_form();
-    });
-</script>
+    </script>
 </body>
 </html>

@@ -28,7 +28,7 @@ project:
     remember-me-timeout: 7                    #cookie记住登录信息时间，默认7天（天）
     global-session-timeout: 1800              #Session会话超时时间，默认30分钟（秒）
   upload:
-#    file-path: C:/upload/                    #文件上传路径，默认在项目根目录upload下
+    file-path: /upload/                    #文件上传路径，默认在项目根目录upload下
     static-path: /upload/**                   #上传文件静态访问路径
 
 ### spring配置
@@ -40,9 +40,9 @@ spring:
     username: root
     #    username: minhw
     password: minhwpwd
-#    下面的配置并没有解决我的问题，所以注掉
+  #    下面的配置并没有解决我的问题，所以注掉
   cache:
-#    cache-names: dictionary                                       # 多个用逗号分开
+    #    cache-names: dictionary                                       # 多个用逗号分开
     ehcache:
       type: ehcache
       config: classpath:ehcache.xml
@@ -90,17 +90,20 @@ spring:
   ## mybatis配置
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
+
+logging:
+  file:
+    path: logs
   ###mybatis show sql#
-#logging:
-#  level:
-#    java:
-#      sql:
-#        PreparedStatement: DEBUG
-#        Connection: DEBUG
-#        ResultSet: DEBUG
-#    org:
-#      mybatis:
-#        spring: DEBUG
+  #  level:
+  #    java:
+  #      sql:
+  #        PreparedStatement: DEBUG
+  #        Connection: DEBUG
+  #        ResultSet: DEBUG
+  #    org:
+  #      mybatis:
+  #        spring: DEBUG
 
   ## thymeleaf模板设置
 thymeleaf:
@@ -116,6 +119,4 @@ thymeleaf:
     multipart:
       max-file-size: 200MB
       max-request-size: 1GB
-logging:
-  file:
-    path: logs
+

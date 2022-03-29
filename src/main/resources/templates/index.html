@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:dr="http://www.minhw.com"
 >
 <head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8"/>
@@ -40,7 +41,7 @@
                     欢迎
                     <shiro:principal property="username"/>
                     登录, 【<a href="/logout">快速退出</a>】
-
+<!--                    [[${user.id}]]-->
                     [
                     <shiro:principal property="sex"/>
                     ]

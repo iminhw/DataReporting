@@ -645,6 +645,76 @@ public class SysUserExample {
             return (Criteria) this;
         }
 
+        public Criteria andAbbreviationIsNull() {
+            addCriterion("abbreviation is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationIsNotNull() {
+            addCriterion("abbreviation is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationEqualTo(String value) {
+            addCriterion("abbreviation =", value, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationNotEqualTo(String value) {
+            addCriterion("abbreviation <>", value, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationGreaterThan(String value) {
+            addCriterion("abbreviation >", value, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationGreaterThanOrEqualTo(String value) {
+            addCriterion("abbreviation >=", value, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationLessThan(String value) {
+            addCriterion("abbreviation <", value, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationLessThanOrEqualTo(String value) {
+            addCriterion("abbreviation <=", value, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationLike(String value) {
+            addCriterion("abbreviation like", value, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationNotLike(String value) {
+            addCriterion("abbreviation not like", value, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationIn(List<String> values) {
+            addCriterion("abbreviation in", values, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationNotIn(List<String> values) {
+            addCriterion("abbreviation not in", values, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationBetween(String value1, String value2) {
+            addCriterion("abbreviation between", value1, value2, "abbreviation");
+            return (Criteria) this;
+        }
+
+        public Criteria andAbbreviationNotBetween(String value1, String value2) {
+            addCriterion("abbreviation not between", value1, value2, "abbreviation");
+            return (Criteria) this;
+        }
+
         public Criteria andEmailIsNull() {
             addCriterion("email is null");
             return (Criteria) this;
