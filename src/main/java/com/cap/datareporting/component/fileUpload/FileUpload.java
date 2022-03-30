@@ -1,7 +1,8 @@
 package com.cap.datareporting.component.fileUpload;
 
-import com.cap.datareporting.common.Exception.ResultException;
-import com.cap.datareporting.common.enums.UploadResultEnum;
+//import com.cap.datareporting.common.Exception.ResultException;
+
+import com.cap.datareporting.common.enums.ResultEnum;
 import com.cap.datareporting.common.utils.SpringContextUtil;
 import com.cap.datareporting.common.utils.ToolUtil;
 import com.cap.datareporting.component.fileUpload.config.properties.UploadProjectProperties;
@@ -24,6 +25,7 @@ import java.util.UUID;
  * 文件上传处理工具
  */
 public class FileUpload {
+
 
     /**
      * 创建一个Upload实体对象
@@ -65,7 +67,12 @@ public class FileUpload {
      */
     public static Upload getFile(MultipartFile multipartFile, String modulePath, String path) {
         if (multipartFile.getSize() == 0) {
-            throw new ResultException(UploadResultEnum.NO_FILE_NULL);
+//            throw new ResultException(UploadResultEnum.NO_FILE_NULL);
+            System.err.println(ResultEnum.NO_FILE_NULL.getStatus() + " : "
+                    + ResultEnum.NO_FILE_NULL.getMessage());
+//            return ResultVoUtil.error(UploadResultEnum.NO_FILE_NULL.getStatus(),
+//                    UploadResultEnum.NO_FILE_NULL.getMessage());
+            throw new RuntimeException();
         }
         Upload upload = new Upload();
         upload.setMime(multipartFile.getContentType());
@@ -285,7 +292,12 @@ public class FileUpload {
      */
     public static String getFileSha1(MultipartFile multipartFile) {
         if (multipartFile.getSize() == 0) {
-            throw new ResultException(UploadResultEnum.NO_FILE_NULL);
+//            throw new ResultException(UploadResultEnum.NO_FILE_NULL);
+            System.err.println(ResultEnum.NO_FILE_NULL.getStatus() + " : "
+                    + ResultEnum.NO_FILE_NULL.getMessage());
+//            return ResultVoUtil.error(UploadResultEnum.NO_FILE_NULL.getStatus(),
+//                    UploadResultEnum.NO_FILE_NULL.getMessage());
+            throw new RuntimeException();
         }
         byte[] buffer = new byte[4096];
         try (InputStream fis = multipartFile.getInputStream()) {
@@ -315,41 +327,5 @@ public class FileUpload {
         } catch (IOException | NoSuchAlgorithmException e) {
             return null;
         }
-    }
-
-    /**
-     * @param is
-     * @param name
-     * @param modulePath
-     * @param uploadService
-     * @return
-     */
-    public static Upload saveFile(InputStream is, String name, String modulePath, UploadService uploadService) {
-        //保存在内存中  多次使用
-        ByteArrayOutputStream byteArrayOutputStream = null;
-        Upload upload = null;
-        try {
-            byteArrayOutputStream = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int len;
-            //先将流读取出来 然后再写入到ByteArrayOutputStream中
-            while ((len = is.read(buffer)) > -1) {
-                byteArrayOutputStream.write(buffer, 0, len);
-            }
-            // 判断图片是否存在
-            upload = uploadService.getBySha1(FileUpload.getFileSha1(new ByteArrayInputStream(byteArrayOutputStream.toByteArray())));
-            if (upload == null) {
-                upload = FileUpload.getFile(name, modulePath);
-                FileUpload.transferTo(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()), upload);
-                upload.setName(name);
-                // 将文件信息保存到数据库中
-                uploadService.save(upload);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return upload;
     }
 }

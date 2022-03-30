@@ -1,7 +1,7 @@
 package com.cap.datareporting.controller;
 
 import cn.hutool.core.date.DateTime;
-import com.cap.datareporting.common.Exception.ResultException;
+//import com.cap.datareporting.common.Exception.ResultException;
 import com.cap.datareporting.common.enums.ResultEnum;
 import com.cap.datareporting.common.enums.StatusEnum;
 import com.cap.datareporting.common.utils.ResultVo;
@@ -138,9 +138,9 @@ public class LoginAndRegController {
 
         // 判断账号密码是否为空
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
-//            return ResultVoUtil.error(ResultEnum.USER_NAME_PWD_NULL.getStatus(),
-//                    ResultEnum.USER_NAME_PWD_NULL.getMessage());
-            throw new ResultException(ResultEnum.USER_NAME_PWD_NULL);
+            return ResultVoUtil.error(ResultEnum.USER_NAME_PWD_NULL.getStatus(),
+                    ResultEnum.USER_NAME_PWD_NULL.getMessage());
+//            throw new ResultException(ResultEnum.USER_NAME_PWD_NULL);
         }
         String repURL = "";
         try {
@@ -156,12 +156,18 @@ public class LoginAndRegController {
             // 判断是否拥有后台角色
             repURL = getRepUrl();
         } catch (UnknownAccountException e) {
-            throw new ResultException(ResultEnum.USER_LOGIN_UP_NULL);
+//            throw new ResultException(ResultEnum.USER_LOGIN_UP_NULL);
+            return ResultVoUtil.success(ResultEnum.USER_LOGIN_UP_NULL.getStatus(),
+                    ResultEnum.USER_LOGIN_UP_NULL.getMessage());
         } catch (IncorrectCredentialsException e1) {
-            throw new ResultException(ResultEnum.USER_LOGIN_ERROR);
+//            throw new ResultException(ResultEnum.USER_LOGIN_ERROR);
+            return ResultVoUtil.success(ResultEnum.USER_LOGIN_ERROR.getStatus(),
+                    ResultEnum.USER_LOGIN_ERROR.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
-            throw new ResultException(ResultEnum.USER_LOGIN_UP_NULL);
+//            throw new ResultException(ResultEnum.USER_LOGIN_UP_NULL);
+            return ResultVoUtil.success(ResultEnum.USER_LOGIN_UP_NULL.getStatus(),
+                    ResultEnum.USER_LOGIN_UP_NULL.getMessage());
 //            resultMap.setStatus(500);
 //            resultMap.setMessage("账号不存在!");
         }

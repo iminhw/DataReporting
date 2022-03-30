@@ -18,7 +18,7 @@ public enum ResultEnum implements ResultInterface {
     /**
      * 账户问题
      */
-    USER_EXIST(401, "该用户名已经存在"),
+    USER_EXIST(401, "用户名已经存在"),
     USER_PWD_NULL(402, "密码不能为空"),
     USER_INEQUALITY(403, "两次密码不一致"),
     USER_OLD_PWD_ERROR(404, "原密码不正确"),
@@ -26,7 +26,7 @@ public enum ResultEnum implements ResultInterface {
     USER_CAPTCHA_ERROR(406, "验证码错误"),
 
     USER_LOGIN_SUCCESS(200,"登陆成功"),
-    USER_LOGIN_UP_NULL(500,"该账号已被冻结或账号不存在"),
+    USER_LOGIN_UP_NULL(500,"账户已被冻结或不存在"),
     USER_LOGIN_ERROR(400,"账号或密码错误"),
 
     /**
@@ -38,7 +38,7 @@ public enum ResultEnum implements ResultInterface {
     /**
      * 角色问题
      */
-    ROLE_EXIST(401, "该角色标识已经存在，不允许重复！"),
+    ROLE_EXIST(401, "角色标识已经存在，不允许重复！"),
 
     /**
      * 部门问题
@@ -68,6 +68,8 @@ public enum ResultEnum implements ResultInterface {
      * 文件问题
      */
     FILE_UPLOAD_ERROR(501,"上传失败"),
+    NO_FILE_NULL(401, "文件不能为空"),
+    NO_FILE_TYPE(402, "不支持该文件类型"),
 
 
     ;

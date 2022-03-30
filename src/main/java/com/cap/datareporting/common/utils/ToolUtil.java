@@ -4,6 +4,7 @@ package com.cap.datareporting.common.utils;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
+import com.cap.datareporting.component.thymeleaf.utility.ParamUtil;
 import com.cap.datareporting.entity.Upload;
 import nl.bitwalker.useragentutils.Browser;
 import nl.bitwalker.useragentutils.OperatingSystem;
@@ -30,10 +31,9 @@ import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Random;
-import java.util.TreeMap;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import static java.util.regex.Pattern.*;
@@ -534,7 +534,7 @@ public class ToolUtil {
     }
 
     /**
-     *  String url_="http://i.itpk.cn/api.php?api_key=0ec44cd72d23d85c3c95365e68883461&api_secret=y75kfe0oz7gg&question="+msg;
+     * String url_="http://i.itpk.cn/api.php?api_key=0ec44cd72d23d85c3c95365e68883461&api_secret=y75kfe0oz7gg&question="+msg;
      *
      * @param urls
      * @return
@@ -563,6 +563,31 @@ public class ToolUtil {
         }
     }
 
+    /**
+     * 判断当前（服务器时间）是否在时间内
+     *
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    public static Boolean specifiedTime(String startTime, String endTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        boolean flag1 = false;
+        boolean flag2 = false;
+        Date today = new Date();
+        try {
+            Date startTimeDate = sdf.parse(startTime);
+            Date endTimeDate = sdf.parse(endTime);
+
+            flag1 = startTimeDate.getTime() <= today.getTime();
+            flag2 = endTimeDate.getTime() >= today.getTime();
+        } catch (ParseException e1) {
+            e1.printStackTrace();
+        }
+        return !(flag1 && flag2);
+    }
+
+
 //    /**
 //     * 截取<>中间的字符串，用于获取邮件收件人
 //     *
@@ -582,4 +607,6 @@ public class ToolUtil {
 //        }
 //        return str;
 //    }
+
+
 }

@@ -1,6 +1,6 @@
 //https://sweetalert2.github.io/#declarative-templates
 
-messge = (title = "提示", icon = 'success') => {
+const messge = (title = "提示", icon = 'success') => {
     Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -36,7 +36,6 @@ const scallPu = () => {
         } else if (element.msRequestFullscreen) {
             element.msRequestFullscreen();
         }
-
     } else {
         $('body').removeClass("full-screen");
         $('#alarm-fullscreen-toggler').removeClass("glyphicon glyphicon-resize-small");
@@ -67,7 +66,8 @@ const scallPu = () => {
 //     );
 // }
 
-login = () => {
+
+const login = () => {
     const username = $("#username").val();
     const password = $("#password").val();
     // var vcode = $("#vcode").val();
@@ -88,8 +88,9 @@ login = () => {
                 messge(data.message, "error");
             }
         },
-        error: () => {
-            messge("登录失败", "error");
+        error: (data) => {
+            console.log(data)
+            messge("登陆失败，请检查输入", "error");
         }
     });
 }

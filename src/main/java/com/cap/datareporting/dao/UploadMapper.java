@@ -2,10 +2,9 @@ package com.cap.datareporting.dao;
 
 import com.cap.datareporting.entity.Upload;
 import com.cap.datareporting.entity.UploadExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
 
 public interface UploadMapper {
     long countByExample(UploadExample example);
@@ -23,7 +22,7 @@ public interface UploadMapper {
     Upload selectByPrimaryKey(Long id);
 
     @Select("select * from user_file where sha1 = #{sha1}")
-    Upload selectBySha1(String sha1);
+    Upload selectBySha1(String sha1, Long cid);
 
     int updateByExampleSelective(@Param("record") Upload record, @Param("example") UploadExample example);
 

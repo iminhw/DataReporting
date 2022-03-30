@@ -2,6 +2,7 @@ package com.cap.datareporting.service.impl;
 
 import com.cap.datareporting.dao.UploadMapper;
 import com.cap.datareporting.entity.Upload;
+import com.cap.datareporting.entity.UploadExample;
 import com.cap.datareporting.service.UploadService;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +21,26 @@ public class UploadServiceImp implements UploadService {
     private UploadMapper uploadMapper;
 
     @Override
-    public Upload getBySha1(String sha1) {
-        return uploadMapper.selectBySha1(sha1);
+    public Upload getBySha1(String sha1, Long cid) {
+        return uploadMapper.selectBySha1(sha1, cid);
     }
 
     @Override
     public int save(Upload upload) {
         return uploadMapper.insert(upload);
     }
+
+    @Override
+    public int updateByPath(String urlPath, String tableName, Long useId) {
+        Upload upload = new Upload();
+        upload.setUseTablename(tableName);
+        upload.setUseId(useId);
+        UploadExample example = new UploadExample();
+        UploadExample.Criteria c = example.createCriteria();
+        c.andPathEqualTo(urlPath);
+        return uploadMapper.updateByExampleSelective(upload, example);
+//        return 0;
+    }
+
+
 }

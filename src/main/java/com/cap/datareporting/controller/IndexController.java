@@ -1,5 +1,9 @@
 package com.cap.datareporting.controller;
 
+import com.cap.datareporting.common.utils.ToolUtil;
+import com.cap.datareporting.component.thymeleaf.utility.ParamUtil;
+import com.cap.datareporting.entity.SysUser;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,19 +54,25 @@ public class IndexController {
 
     @RequestMapping({"/admin"})
     @RequiresPermissions("admin/index")//权限管理;
-    public String adminIndx() {
+    public String adminIndx(Model model) {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
         return "admin/index";
     }
 
     @RequestMapping({"/admin/teacher/winner"})
     @RequiresPermissions("admin/teacher/winner")
-    public String teacherWinner() {
+    public String teacherWinner(Model model) {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
         return "admin/teacher/winner";
     }
 
     @RequestMapping({"/admin/teacher/droupOut"})
     @RequiresPermissions("admin/teacher/droupOut")
-    public String teacherDroupOut() {
+    public String teacherDroupOut(Model model) {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
         return "admin/teacher/droupOut";
     }
 

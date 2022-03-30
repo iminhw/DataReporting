@@ -575,6 +575,136 @@ public class UploadExample {
             return (Criteria) this;
         }
 
+        public Criteria andUseTablenameIsNull() {
+            addCriterion("use_tablename is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameIsNotNull() {
+            addCriterion("use_tablename is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameEqualTo(String value) {
+            addCriterion("use_tablename =", value, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameNotEqualTo(String value) {
+            addCriterion("use_tablename <>", value, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameGreaterThan(String value) {
+            addCriterion("use_tablename >", value, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameGreaterThanOrEqualTo(String value) {
+            addCriterion("use_tablename >=", value, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameLessThan(String value) {
+            addCriterion("use_tablename <", value, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameLessThanOrEqualTo(String value) {
+            addCriterion("use_tablename <=", value, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameLike(String value) {
+            addCriterion("use_tablename like", value, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameNotLike(String value) {
+            addCriterion("use_tablename not like", value, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameIn(List<String> values) {
+            addCriterion("use_tablename in", values, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameNotIn(List<String> values) {
+            addCriterion("use_tablename not in", values, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameBetween(String value1, String value2) {
+            addCriterion("use_tablename between", value1, value2, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseTablenameNotBetween(String value1, String value2) {
+            addCriterion("use_tablename not between", value1, value2, "useTablename");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdIsNull() {
+            addCriterion("use_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdIsNotNull() {
+            addCriterion("use_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdEqualTo(Long value) {
+            addCriterion("use_id =", value, "useId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdNotEqualTo(Long value) {
+            addCriterion("use_id <>", value, "useId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdGreaterThan(Long value) {
+            addCriterion("use_id >", value, "useId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("use_id >=", value, "useId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdLessThan(Long value) {
+            addCriterion("use_id <", value, "useId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdLessThanOrEqualTo(Long value) {
+            addCriterion("use_id <=", value, "useId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdIn(List<Long> values) {
+            addCriterion("use_id in", values, "useId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdNotIn(List<Long> values) {
+            addCriterion("use_id not in", values, "useId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdBetween(Long value1, Long value2) {
+            addCriterion("use_id between", value1, value2, "useId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseIdNotBetween(Long value1, Long value2) {
+            addCriterion("use_id not between", value1, value2, "useId");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateByIsNull() {
             addCriterion("create_by is null");
             return (Criteria) this;

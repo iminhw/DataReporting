@@ -15,7 +15,7 @@ public interface UploadService {
      * @param sha1 文件sha1值
      * @return 文件信息
      */
-    Upload getBySha1(String sha1);
+    Upload getBySha1(String sha1, Long cid);
 
     /**
      * 保存文件上传
@@ -23,4 +23,11 @@ public interface UploadService {
      * @return 文件信息
      */
     int save(Upload upload);
+
+    /**
+     * 更新，按urlPath进行更新 tabelname and useid
+     * @param urlPath
+     * @return
+     */
+    int updateByPath(String urlPath, String tableName, Long useId);
 }
