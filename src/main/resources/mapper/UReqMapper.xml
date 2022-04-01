@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cap.datareporting.dao.UReqMapper">
+    <resultMap id="BaseResultMap" type="com.cap.datareporting.entity.UReq">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="uid" javaType="java.lang.Long" jdbcType="BIGINT"/>
+            <arg column="type" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+            <arg column="req_status" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+            <arg column="zy" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="gklb" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="req_remark" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="imegs_url_arr" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="status" javaType="java.lang.Byte" jdbcType="TINYINT"/>
+            <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="update_date" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        </constructor>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id
+        , uid, type, req_status, zy, gklb, remark, req_remark, imegs_url_arr, status, create_date,
+    update_date
+    </sql>
+    <select id="selectByExample" parameterType="com.cap.datareporting.entity.UReqExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'true' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from user_req
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_req
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from user_req
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.cap.datareporting.entity.UReqExample">
+        delete from user_req
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.cap.datareporting.entity.UReq">
+        insert into user_req (id, uid, type,
+                              req_status, zy, gklb,
+                              remark, req_remark, imegs_url_arr,
+                              status, create_date, update_date)
+        values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{type,jdbcType=TINYINT},
+                #{reqStatus,jdbcType=TINYINT}, #{zy,jdbcType=VARCHAR}, #{gklb,jdbcType=VARCHAR},
+                #{remark,jdbcType=VARCHAR}, #{reqRemark,jdbcType=VARCHAR}, #{imegsUrlArr,jdbcType=VARCHAR},
+                #{status,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.cap.datareporting.entity.UReq">
+        insert into user_req
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="reqStatus != null">
+                req_status,
+            </if>
+            <if test="zy != null">
+                zy,
+            </if>
+            <if test="gklb != null">
+                gklb,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="reqRemark != null">
+                req_remark,
+            </if>
+            <if test="imegsUrlArr != null">
+                imegs_url_arr,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createDate != null">
+                create_date,
+            </if>
+            <if test="updateDate != null">
+                update_date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="uid != null">
+                #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="reqStatus != null">
+                #{reqStatus,jdbcType=TINYINT},
+            </if>
+            <if test="zy != null">
+                #{zy,jdbcType=VARCHAR},
+            </if>
+            <if test="gklb != null">
+                #{gklb,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="reqRemark != null">
+                #{reqRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="imegsUrlArr != null">
+                #{imegsUrlArr,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.cap.datareporting.entity.UReqExample" resultType="java.lang.Long">
+        select count(*) from user_req
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update user_req
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.uid != null">
+                uid = #{record.uid,jdbcType=BIGINT},
+            </if>
+            <if test="record.type != null">
+                type = #{record.type,jdbcType=TINYINT},
+            </if>
+            <if test="record.reqStatus != null">
+                req_status = #{record.reqStatus,jdbcType=TINYINT},
+            </if>
+            <if test="record.zy != null">
+                zy = #{record.zy,jdbcType=VARCHAR},
+            </if>
+            <if test="record.gklb != null">
+                gklb = #{record.gklb,jdbcType=VARCHAR},
+            </if>
+            <if test="record.remark != null">
+                remark = #{record.remark,jdbcType=VARCHAR},
+            </if>
+            <if test="record.reqRemark != null">
+                req_remark = #{record.reqRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="record.imegsUrlArr != null">
+                imegs_url_arr = #{record.imegsUrlArr,jdbcType=VARCHAR},
+            </if>
+            <if test="record.status != null">
+                status = #{record.status,jdbcType=TINYINT},
+            </if>
+            <if test="record.createDate != null">
+                create_date = #{record.createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateDate != null">
+                update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update user_req
+        set id = #{record.id,jdbcType=BIGINT},
+        uid = #{record.uid,jdbcType=BIGINT},
+        type = #{record.type,jdbcType=TINYINT},
+        req_status = #{record.reqStatus,jdbcType=TINYINT},
+        zy = #{record.zy,jdbcType=VARCHAR},
+        gklb = #{record.gklb,jdbcType=VARCHAR},
+        remark = #{record.remark,jdbcType=VARCHAR},
+        req_remark = #{record.reqRemark,jdbcType=VARCHAR},
+        imegs_url_arr = #{record.imegsUrlArr,jdbcType=VARCHAR},
+        status = #{record.status,jdbcType=TINYINT},
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.cap.datareporting.entity.UReq">
+        update user_req
+        <set>
+            <if test="uid != null">
+                uid = #{uid,jdbcType=BIGINT},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="reqStatus != null">
+                req_status = #{reqStatus,jdbcType=TINYINT},
+            </if>
+            <if test="zy != null">
+                zy = #{zy,jdbcType=VARCHAR},
+            </if>
+            <if test="gklb != null">
+                gklb = #{gklb,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="reqRemark != null">
+                req_remark = #{reqRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="imegsUrlArr != null">
+                imegs_url_arr = #{imegsUrlArr,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateDate != null">
+                update_date = #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cap.datareporting.entity.UReq">
+        update user_req
+        set uid           = #{uid,jdbcType=BIGINT},
+            type          = #{type,jdbcType=TINYINT},
+            req_status    = #{reqStatus,jdbcType=TINYINT},
+            zy            = #{zy,jdbcType=VARCHAR},
+            gklb          = #{gklb,jdbcType=VARCHAR},
+            remark        = #{remark,jdbcType=VARCHAR},
+            req_remark    = #{reqRemark,jdbcType=VARCHAR},
+            imegs_url_arr = #{imegsUrlArr,jdbcType=VARCHAR},
+            status        = #{status,jdbcType=TINYINT},
+            create_date   = #{createDate,jdbcType=TIMESTAMP},
+            update_date   = #{updateDate,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

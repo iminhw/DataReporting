@@ -66,6 +66,12 @@ const scallPu = () => {
 //     );
 // }
 
+const getUrl = (arr = []) => {
+    if (arr == null) return "";
+   const arrJson = JSON.stringify(arr);
+   console.log(arrJson);
+}
+
 
 const login = () => {
     const username = $("#username").val();

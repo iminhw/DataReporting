@@ -10,8 +10,6 @@
       <arg column="size" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="md5" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="sha1" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="use_tablename" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="use_id" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="create_by" javaType="java.lang.Long" jdbcType="BIGINT" />
       <arg column="create_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
@@ -75,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, path, mime, size, md5, sha1, use_tablename, use_id, create_by, create_date
+    id, name, path, mime, size, md5, sha1, create_by, create_date
   </sql>
   <select id="selectByExample" parameterType="com.cap.datareporting.entity.UploadExample" resultMap="BaseResultMap">
     select
@@ -111,12 +109,10 @@
   <insert id="insert" parameterType="com.cap.datareporting.entity.Upload">
     insert into user_file (id, name, path, 
       mime, size, md5, sha1, 
-      use_tablename, use_id, create_by, 
-      create_date)
+      create_by, create_date)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
       #{mime,jdbcType=VARCHAR}, #{size,jdbcType=BIGINT}, #{md5,jdbcType=VARCHAR}, #{sha1,jdbcType=VARCHAR}, 
-      #{useTablename,jdbcType=VARCHAR}, #{useId,jdbcType=BIGINT}, #{createBy,jdbcType=BIGINT}, 
-      #{createDate,jdbcType=TIMESTAMP})
+      #{createBy,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cap.datareporting.entity.Upload">
     insert into user_file
@@ -141,12 +137,6 @@
       </if>
       <if test="sha1 != null">
         sha1,
-      </if>
-      <if test="useTablename != null">
-        use_tablename,
-      </if>
-      <if test="useId != null">
-        use_id,
       </if>
       <if test="createBy != null">
         create_by,
@@ -176,12 +166,6 @@
       </if>
       <if test="sha1 != null">
         #{sha1,jdbcType=VARCHAR},
-      </if>
-      <if test="useTablename != null">
-        #{useTablename,jdbcType=VARCHAR},
-      </if>
-      <if test="useId != null">
-        #{useId,jdbcType=BIGINT},
       </if>
       <if test="createBy != null">
         #{createBy,jdbcType=BIGINT},
@@ -221,12 +205,6 @@
       <if test="record.sha1 != null">
         sha1 = #{record.sha1,jdbcType=VARCHAR},
       </if>
-      <if test="record.useTablename != null">
-        use_tablename = #{record.useTablename,jdbcType=VARCHAR},
-      </if>
-      <if test="record.useId != null">
-        use_id = #{record.useId,jdbcType=BIGINT},
-      </if>
       <if test="record.createBy != null">
         create_by = #{record.createBy,jdbcType=BIGINT},
       </if>
@@ -247,8 +225,6 @@
       size = #{record.size,jdbcType=BIGINT},
       md5 = #{record.md5,jdbcType=VARCHAR},
       sha1 = #{record.sha1,jdbcType=VARCHAR},
-      use_tablename = #{record.useTablename,jdbcType=VARCHAR},
-      use_id = #{record.useId,jdbcType=BIGINT},
       create_by = #{record.createBy,jdbcType=BIGINT},
       create_date = #{record.createDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -276,12 +252,6 @@
       <if test="sha1 != null">
         sha1 = #{sha1,jdbcType=VARCHAR},
       </if>
-      <if test="useTablename != null">
-        use_tablename = #{useTablename,jdbcType=VARCHAR},
-      </if>
-      <if test="useId != null">
-        use_id = #{useId,jdbcType=BIGINT},
-      </if>
       <if test="createBy != null">
         create_by = #{createBy,jdbcType=BIGINT},
       </if>
@@ -299,8 +269,6 @@
       size = #{size,jdbcType=BIGINT},
       md5 = #{md5,jdbcType=VARCHAR},
       sha1 = #{sha1,jdbcType=VARCHAR},
-      use_tablename = #{useTablename,jdbcType=VARCHAR},
-      use_id = #{useId,jdbcType=BIGINT},
       create_by = #{createBy,jdbcType=BIGINT},
       create_date = #{createDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

@@ -17,6 +17,7 @@
             <div class="xs">
                 <h3>拟录取退档申请</h3>
                 <div class="alert alert-info" id="show" role="alert">
+                    <strong>温馨提醒：</strong>
                     <span id="showtime">
                         <span id="show_start">距离提交申请开始还有</span>
                         <span id="show_end">距离提交申请结束还有</span>
@@ -25,7 +26,11 @@
                         <span id="_m">00</span>
                         <span id="_s">00</span>
                     </span>
+                    <span th:text="${error}" style="color: red"></span>
                 </div>
+                <!--                <div class="alert alert-danger" role="alert" hidden=false>-->
+                <!--                    <strong>错误!</strong> Change a few things up and try submitting again.-->
+                <!--                </div>-->
                 <div class="well1 white">
                     <form class="form-floating ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-url ng-valid-pattern"
                           novalidate="novalidate" id="droup_out_form" method="post" onreset="resetFrom()"
@@ -73,7 +78,9 @@
                                 <p class="help-block hint-block">选择并上传通知文件中要求的全部材料（只支持 "jpg, png, jpeg" 的文件扩展名）</p>
                             </div>
                             <div class="form-group">
-                                <button type="submit" th:disabled="${disabled}" id="submit" class="btn btn-primary">提交申请</button>
+                                <button type="submit" th:disabled="${disabled}" id="submit" class="btn btn-primary">
+                                    提交申请
+                                </button>
                                 <button type="reset" th:disabled="${disabled}" class="btn btn-default">重置表格</button>
                             </div>
                         </fieldset>
@@ -88,7 +95,7 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
-<script>
+<script >
     const droup_out_start_time = new Date('[[${#params.value("droup_out_start")}]]').getTime();
 
     const droup_out_end = '[[${#params.value("droup_out_end")}]]';
@@ -100,10 +107,10 @@
             messge("证明文件未上传", "error");
             return;
         }
-        data.fileArr = JSON.stringify(fileArrDrop);
+        data.imegsUrlArr = JSON.stringify(fileArrDrop);
 
         $.ajax({
-            url: "/admin/droupOut",
+            url: "/admin/examinee/droupout",
             data: data,
             type: "post",
             dataType: "json",
@@ -111,16 +118,22 @@
                 Swal.fire({
                     title: data.message,
                     confirmButtonText: '确定',
-                    icon:'success',
+                    icon: 'success',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href = data.other != null ? data.other : 'admin/examinee';
+                        location.href = data.other != null ? data.other : '/admin/examinee';
                     }
                 })
 
             },
             error: (data) => {
                 console.log(data);
+                Swal.fire({
+                    icon: 'error',
+                    title: '出错了...',
+                    text: data.message,
+                    footer: '<a href="/logout">请尝试退出系统，重新登陆在填写</a>'
+                })
             }
         });
 
@@ -257,9 +270,9 @@
             //     validator.getFieldElements('ksh').val(),
             // ].join(',');
             // var nickname = validator.getFieldElements('nickname').val();
-            const lqzy = validator.getFieldElements('lqzy').val();
+            const zy = validator.getFieldElements('lqzy').val();
             // console.log(fullName)
-            submitDO({lqzy})
+            submitDO({zy})
         });
     }
     $(() => {
@@ -283,10 +296,10 @@
         previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
         allowedPreviewTypes: ['image'],
         slugCallback: function (filename) {
-            // return filename.replace('(', '_').replace(']', '_');
-            var newtext = (!filename || filename == '') ? '' : String(filename).replace(/[\-\[\]\/\{}:;#%=\(\)\*\+\?\\\^\$\|<>&"']/g, '_');
+            return filename.replace('(', '_').replace(']', '_');
+            // const newtext = (!filename || filename == '') ? '' : String(filename).replace(/[\-\[\]\/\{}:;#%=\(\)\*\+\?\\\^\$\&"']/g, '_');
             //去除空格
-            return newtext.replace(/(^\s+)|(\s+$)/g, "").replace(/\s/g, "");
+            // return newtext.replace(/(^\s+)|(\s+$)/g, "").replace(/\s/g, "");
         },
         actionDelete: function (data) {
 

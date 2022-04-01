@@ -18,17 +18,13 @@ public class Upload implements Serializable {
 
     private String sha1;
 
-    private String useTablename;
-
-    private Long useId;
-
     private Long createBy;
 
     private Date createDate;
 
     private static final long serialVersionUID = 1L;
 
-    public Upload(Long id, String name, String path, String mime, Long size, String md5, String sha1, String useTablename, Long useId, Long createBy, Date createDate) {
+    public Upload(Long id, String name, String path, String mime, Long size, String md5, String sha1, Long createBy, Date createDate) {
         this.id = id;
         this.name = name;
         this.path = path;
@@ -36,8 +32,6 @@ public class Upload implements Serializable {
         this.size = size;
         this.md5 = md5;
         this.sha1 = sha1;
-        this.useTablename = useTablename;
-        this.useId = useId;
         this.createBy = createBy;
         this.createDate = createDate;
     }
@@ -100,22 +94,6 @@ public class Upload implements Serializable {
 
     public void setSha1(String sha1) {
         this.sha1 = sha1 == null ? null : sha1.trim();
-    }
-
-    public String getUseTablename() {
-        return useTablename;
-    }
-
-    public void setUseTablename(String useTablename) {
-        this.useTablename = useTablename == null ? null : useTablename.trim();
-    }
-
-    public Long getUseId() {
-        return useId;
-    }
-
-    public void setUseId(Long useId) {
-        this.useId = useId;
     }
 
     public Long getCreateBy() {

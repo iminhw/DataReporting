@@ -6,6 +6,7 @@ import com.cap.datareporting.entity.SysParam;
 import com.cap.datareporting.service.SysParamService;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
+import org.thymeleaf.util.ArrayUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -67,7 +68,15 @@ public class ParamUtil {
         } catch (Exception e) {
             return "-";
         }
-
-
     }
+
+    public static String getArrZero(String arrString) {
+        String strarr = arrString.replace("[", "").replace("]", "");
+        int first = strarr.indexOf(",");
+        if (first > 0) {
+            return strarr.substring(0,first).replace("\"","");
+        }
+        return strarr.replace("\"","");
+    }
+
 }

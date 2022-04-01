@@ -250,13 +250,4 @@ public class UploadController {
             return MapUtil.of("success", 0);
         }
     }
-
-    @ResponseBody
-    @RequestMapping("/usetable")
-    public ResultVo updataUSEtabel(String tablename,
-                                    String path, String useid) {
-        uploadService.updateByPath(path, tablename, Long.valueOf(useid));
-
-        return ResultVoUtil.SAVE_SUCCESS;
-    }
 }

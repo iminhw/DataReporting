@@ -24,10 +24,5 @@ public interface UploadService {
      */
     int save(Upload upload);
 
-    /**
-     * 更新，按urlPath进行更新 tabelname and useid
-     * @param urlPath
-     * @return
-     */
-    int updateByPath(String urlPath, String tableName, Long useId);
+
 }

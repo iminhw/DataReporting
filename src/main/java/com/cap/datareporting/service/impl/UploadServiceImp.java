@@ -30,17 +30,6 @@ public class UploadServiceImp implements UploadService {
         return uploadMapper.insert(upload);
     }
 
-    @Override
-    public int updateByPath(String urlPath, String tableName, Long useId) {
-        Upload upload = new Upload();
-        upload.setUseTablename(tableName);
-        upload.setUseId(useId);
-        UploadExample example = new UploadExample();
-        UploadExample.Criteria c = example.createCriteria();
-        c.andPathEqualTo(urlPath);
-        return uploadMapper.updateByExampleSelective(upload, example);
-//        return 0;
-    }
 
 
 }

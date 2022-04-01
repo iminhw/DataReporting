@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
+    <meta charset="UTF-8">
+    <title>[[${#dicts.keyValue('REQ_TYPE', reqdet.type)}]] - [[${#params.value("website_title")}]]</title>
+</head>
+<body>
+<div id="wrapper">
+    <!-- Navigation -->
+    <div th:replace="common/fragment :: frontendAdminHeadher"></div>
+    <div id="page-wrapper">
+        <div class="graphs">
+            <div class="widget_head">[[${#dicts.keyValue('REQ_TYPE', reqdet.type)}]]</div>
+            <div class="bs-example5" data-example-id="default-media">
+                测试
+                [[${reqdet.reqStatus}]]
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">状态：[[${#dicts.keyValue('REQ_STATUS', item.reqStatus)}]]</h4>
+                        [[${reqdet.remark}]]
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div th:replace="common/fragment :: frontendFooter"></div>
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+</body>
+</html>

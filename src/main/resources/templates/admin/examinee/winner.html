@@ -17,6 +17,7 @@
             <div class="xs">
                 <h3>获奖资料上报申请</h3>
                 <div class="alert alert-info" id="show" role="alert">
+                    <strong>温馨提醒：</strong>
                     <span id="showtime">
                         <span id="show_start">距离提交申请开始还有</span>
                         <span id="show_end">距离提交申请结束还有</span>
@@ -25,7 +26,11 @@
                         <span id="_m">00</span>
                         <span id="_s">00</span>
                     </span>
+                    <span th:text="${error}" style="color: red"></span>
                 </div>
+                <!--                <div class="alert alert-danger" role="alert" hidden="false">-->
+                <!--                    <strong>Oh snap!</strong> Change a few things up and try submitting again.-->
+                <!--                </div>-->
                 <div class="well1 white">
                     <form id="winner_form" onreset="resetNum()" class="form-floating ng-pristine ng-invalid"
                           novalidate="novalidate" method="post" ng-submit="submit()">
@@ -84,6 +89,7 @@
                             <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
                                     dr:dict="CEEC"
                                     th:disabled="${disabled}"
+                                    name="gklb"
                                     required="">
                             </select>
                         </div>
@@ -91,24 +97,16 @@
                             <h4>我的奖项 &nbsp;<small>温馨提示：点击"添加最高奖项"按钮可快速添加奖项</small></h4>
                             <textarea th:disabled="${disabled}" style="height: 120px;" name="highestPrize"
                                       id="highestPrize"
-                                      placeholder="多个奖项请用序号标出，格式如：1.奖项一...... ;2.奖项二......;"
+                                      placeholder="多个奖项请用序号标出，格式如：1.奖项一...... ;2.奖项二......; 请准确描述出时间+赛项（举办单位）+等级"
                                       class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"></textarea>
                         </div>
                         <div class="form-group">
                             <button type="button" th:disabled="${disabled}" class="btn btn-primary btn-lg"
                                     data-toggle="modal"
                                     data-target="#myModal">
-                                添加最高奖项
+                                快速添加最高奖项
                             </button>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">申请专业</label>
-                            <input type="text"
-                                   th:disabled="${disabled}"
-                                   class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
-                                   ng-model="model.url" required="required">
-                        </div>
-
                         <!--                            <div class="form-group">-->
                         <!--                                <label class="control-label">Number</label>-->
                         <!--                                <input type="text"-->
@@ -130,10 +128,20 @@
                             <label class="control-label">申请类别</label>
                             <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
                                     dr:dict="CEEC_TYPE"
+                                    name="type"
                                     th:disabled="${disabled}"
                                     required="">
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label">申请专业</label>
+                            <input type="text"
+                                   th:disabled="${disabled}"
+                                   name="zy" id="zy"
+                                   class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
+                                   ng-model="model.url" required="required">
+                        </div>
+
                         <div class="form-group">
                             <label class="control-label">证明材料</label>
                             <!--                            <input type="file" name="files" id="files" multiple="multiple" accept="image/png,image/jpeg"-->
@@ -163,16 +171,18 @@
 <!-- /#wrapper -->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="gridSystemModalLabel">添加奖项</h4>
-                <small>温馨提示：每次只能添加一个奖项，多个奖项请多次添加</small>
-            </div>
-            <div class="modal-body">
-                <form id="heightPrizeFrom">
+    <form id="heightPrizeFrom">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="gridSystemModalLabel">添加奖项</h4>
+                    <small>温馨提示：每次只能添加一个奖项，多个奖项请多次添加</small>
+                </div>
+                <div class="modal-body">
+
                     <div class="form-group">
                         <label class="control-label">获奖项目名称
                         </label>
@@ -195,20 +205,20 @@
                         </label>
                         <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
                                ng-model="model.url" name="HPgradeC" id="HPgradeC" required="required"/>
-
                     </div>
-                </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"
-                            onclick="smtHighestPrize()">添加
-                    </button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" onclick="smtHighestPrize()" data-dismiss="modal"
+                        >添加
+                        </button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </form>
 </div>
-<script>
+<script >
     let sumPrize = 0;
     const winner_start_time = new Date('[[${#params.value("winner_start")}]]').getTime();
 
@@ -217,26 +227,34 @@
     let fileArrWin = [];
 
     smtHighestPrize = () => {
-        messge("用户点击了添加奖项");
         sumPrize += 1;
-        const heightPrizeFrom = $("#heightPrizeFrom").val();
-        console.log(heightPrizeFrom)
-        document.getElementById("highestPrize").append(
-            "1-2021年四川省职业院校技能大赛零部件测绘与CAD成图赛项中获三等奖；" +
-            "2-获乐山市职业学校技能大赛零部件测绘与CAD成图技术项目二等奖；" +
-            "3-获乐山市青少年科技创新大赛优秀奖");
+        // const heightPrizeFrom = $("#heightPrizeFrom").val();
+        // console.log(heightPrizeFrom)
+        // document.getElementById("highestPrize").append(sumPrize + "." +
+        //     $("#HPdata").val() + "," + $("#HPname").val() +
+        //     "（发证单位：" + $("#HPDepartment").val() +
+        //     "）" + $("#HPgradeC").val() +
+        //     "。");
+        let highestPrizeTemp = $("#highestPrize").val();
+        highestPrizeTemp += sumPrize + "." +
+            $("#HPdata").val() + "，" + $("#HPname").val() +
+            "（发证单位：" + $("#HPDepartment").val() +
+            "）" + $("#HPgradeC").val() +
+            "。"
+        $("#highestPrize").val(highestPrizeTemp);
+        messge("添加奖项成功");
     }
 
-    const submitWin = () => {
+    const submitWin = (data = {}) => {
         if (fileArrWin < 1) {
             messge("证明文件未上传", "error");
             return;
         }
-        data.fileArr = JSON.stringify(fileArrWin);
+        data.imegsUrlArr = JSON.stringify(fileArrWin);
 
         console.log(data)
         $.ajax({
-            url: "/admin/winner",
+            url: "/admin/examinee/winner",
             data: data,
             type: "post",
             dataType: "json",
@@ -248,7 +266,7 @@
                     icon: 'success',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href = data.other != null ? data.other : 'admin/examinee';
+                        location.href = data.other != null ? data.other : '/admin/examinee';
                     }
                 })
 
@@ -258,7 +276,7 @@
                     icon: 'error',
                     title: '出错了...',
                     text: data.message,
-                    footer: '<a href="/logout">请尝试退出重新登陆在填写</a>'
+                    footer: '<a href="/logout">请尝试退出系统，重新登陆在填写</a>'
                 })
             }
         });
@@ -373,6 +391,38 @@
                         }
                     }
                 },
+                highestPrize: {
+                    message: '奖项无效',
+                    validators: {
+                        notEmpty: {
+                            message: '奖项不能为空'
+                        }
+                    },
+                },
+                type: {
+                    message: '申请类别无效',
+                    validators: {
+                        notEmpty: {
+                            message: '申请类别不能为空'
+                        }
+                    },
+                },
+                gklb: {
+                    message: '高考类别无效',
+                    validators: {
+                        notEmpty: {
+                            message: '高考类别不能为空'
+                        }
+                    },
+                },
+                zy: {
+                    message: '申请专业无效',
+                    validators: {
+                        notEmpty: {
+                            message: '申请专业不能为空'
+                        }
+                    },
+                },
                 file: {
                     message: '文件无效',
                     validators: {
@@ -389,8 +439,12 @@
             const $form = $(e.target);
             // Get the FormValidation instance
             const validator = $form.data('formValidation');
-            console.log(validator)
-            submitWin()
+
+            const zy = validator.getFieldElements('zy').val();
+            const highestPrize = validator.getFieldElements('highestPrize').val();
+            const gklb = validator.getFieldElements('gklb').val();
+            const type = validator.getFieldElements('type').val();
+            submitWin({zy, reqRemark: highestPrize, gklb, type})
         });
     }
     $("#file-1").fileinput({
@@ -410,11 +464,11 @@
         previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
         allowedPreviewTypes: ['image'],
         slugCallback: function (filename) {
-            // return filename.replace('(', '_').replace(']', '_');
-            const newtext = (!filename || filename == '') ? '' :
-                String(filename).replace(/[\-\[\]\/\{}:;#%=\(\)\*\+\?\\\^\$\|<>&"']/g, '_');
+            return filename.replace('(', '_').replace(']', '_');
+            // const newtext = (!filename || filename == '') ? '' :
+            //     String(filename).replace(/[\-\[\]\/\{}:;#%=\(\)\*\+\?\\\^\$\|&"']/g, '_');
             //去除空格
-            return newtext.replace(/(^\s+)|(\s+$)/g, "").replace(/\s/g, "");
+            // return newtext.replace(/(^\s+)|(\s+$)/g, "").replace(/\s/g, "");
         }
     }).on("fileuploaded", function (event, data, previewId, index) {
         // var url = data.response.Result;
