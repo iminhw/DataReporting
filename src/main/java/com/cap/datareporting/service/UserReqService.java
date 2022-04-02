@@ -1,5 +1,6 @@
 package com.cap.datareporting.service;
 
+import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.UReq;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
@@ -31,4 +32,6 @@ public interface UserReqService {
     List<UReq> selectByExample(Long uid);
 
     UReq findByid(Long id, Long uid);
+
+    List<UReq> selectReQAndUser(SysUser user, UReq uReq);
 }

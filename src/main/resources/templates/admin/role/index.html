@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:dr="http://www.minhw.com"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
+  <meta charset="UTF-8">
+  <title>角色管理 - [[${#params.value("website_title")}]]</title>
+</head>
+<body>
+<div id="wrapper">
+  <!-- Navigation -->
+  <div th:replace="common/fragment :: frontendAdminHeadher"></div>
+  <div id="page-wrapper">
+    <div class="graphs">
+      <div> 开发中...</div>
+      <div th:replace="common/fragment :: frontendFooter"></div>
+    </div>
+  </div>
+  <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+</body>
+</html>

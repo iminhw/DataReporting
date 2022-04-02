@@ -25,12 +25,11 @@ public class UserController {
 
     @Autowired
     private SysRoleService roleService;
-
     /**
      * 列表页面
      */
-    @GetMapping("/index")
-    @RequiresPermissions("admin:user:index")
+    @GetMapping("")
+    @RequiresPermissions("admin/user/index")
     public String index(Model model, SysUser user) {
 
         // 获取用户列表

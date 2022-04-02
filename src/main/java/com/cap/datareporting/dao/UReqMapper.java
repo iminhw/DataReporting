@@ -1,5 +1,6 @@
 package com.cap.datareporting.dao;
 
+import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.UReq;
 import com.cap.datareporting.entity.UReqExample;
 import org.apache.ibatis.annotations.Param;
@@ -19,6 +20,8 @@ public interface UReqMapper {
     int insertSelective(UReq record);
 
     List<UReq> selectByExample(UReqExample example);
+
+    List<UReq> selectReQAndUser(@Param("user")SysUser user, @Param("uReq") UReq uReq);
 
     UReq selectByPrimaryKey(Long id);
 

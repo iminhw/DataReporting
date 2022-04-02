@@ -69,12 +69,12 @@
                                 <!--                                       ng-model="model.file" required="required">-->
 
                                 <!--                                <form enctype="multipart/form-data">-->
-                                <input id="file" name="file" type="file" multiple accept="image/png,image/jpeg"
+                                <input id="file" name="file" type="file" accept="image/png,image/jpeg"
                                        class="file form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
                                        th:disabled="${disabled}"
                                        style="display: block"
                                        data-browse-on-zone-click="true" required>
-                                <!--                                </form>-->
+                                <!--     multiple                           </form>-->
                                 <p class="help-block hint-block">选择并上传通知文件中要求的全部材料（只支持 "jpg, png, jpeg" 的文件扩展名）</p>
                             </div>
                             <div class="form-group">
@@ -287,7 +287,7 @@
         overwriteInitial: false,
         showPreview: true,
         maxFileSize: 20000,
-        maxFilesNum: 5,
+        maxFilesNum: 1,
         showCaption: false,
         dropZoneEnabled: false,
         showRemove: false,

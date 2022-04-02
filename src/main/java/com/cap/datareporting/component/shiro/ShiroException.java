@@ -21,6 +21,7 @@ public class ShiroException implements HandlerExceptionResolver {
             ModelAndView mv = new ModelAndView("error/403");
             return mv;
         }
+        ex.printStackTrace();
         /** 打印异常 ex.printStackTrace();*/
         ModelAndView mv = new ModelAndView("error/403");
         mv.addObject("exception", ex.toString().replaceAll("\n", "<br/>"));

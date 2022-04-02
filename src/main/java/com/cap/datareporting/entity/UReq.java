@@ -31,6 +31,7 @@ public class UReq implements Serializable {
 
     private Date updateDate;
 
+    private SysUser sysUser;
 
     private static final long serialVersionUID = 1L;
 
@@ -47,6 +48,14 @@ public class UReq implements Serializable {
         this.status = status;
         this.createDate = createDate;
         this.updateDate = updateDate;
+    }
+
+    public SysUser getSysUser() {
+        return sysUser;
+    }
+
+    public void setSysUser(SysUser sysUser) {
+        this.sysUser = sysUser;
     }
 
     public UReq() {
