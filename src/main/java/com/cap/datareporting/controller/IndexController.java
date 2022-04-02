@@ -60,20 +60,5 @@ public class IndexController {
         return "admin/index";
     }
 
-    @RequestMapping({"/admin/teacher/winner"})
-    @RequiresPermissions("admin/teacher/winner")
-    public String teacherWinner(Model model) {
-        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
-        model.addAttribute("user", user);
-        return "admin/teacher/winner";
-    }
-
-    @RequestMapping({"/admin/teacher/droupOut"})
-    @RequiresPermissions("admin/teacher/droupOut")
-    public String teacherDroupOut(Model model) {
-        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
-        model.addAttribute("user", user);
-        return "admin/teacher/droupOut";
-    }
 
 }

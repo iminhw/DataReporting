@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+>
 <head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
     <title>拟录取退档申请处理 - [[${#params.value("website_title")}]]</title>
@@ -12,73 +13,62 @@
         <div class="col-md-12 graphs">
             <div class="xs">
                 <h3>拟录取退档申请处理</h3>
+                <div>
+                    <form>
+                        <input type="text">
+                        <input type="submit">
+                    </form>
+                </div>
                 <div class="bs-example4" data-example-id="contextual-table">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Column heading</th>
-                            <th>Column heading</th>
-                            <th>Column heading</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="active">
-                            <th scope="row">1</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="success">
-                            <th scope="row">3</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="info">
-                            <th scope="row">5</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="warning">
-                            <th scope="row">7</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="danger">
-                            <th scope="row">9</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>姓名</th>
+                                <th>拟录专业</th>
+                                <th>状态</th>
+                                <th>身份证号码</th>
+                                <th>考生号</th>
+                                <th>联系手机</th>
+                                <!--                                <th>上传资料</th>-->
+                                <th>申请时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody th:each="item:${list}">
+                            <tr>
+                                <th scope="row" th:text="${item.id}"></th>
+                                <td th:text="${item.sysUser.nickname}"></td>
+                                <td th:text="${item.zy}"></td>
+                                <td th:text="${#dicts.keyValue('REQ_STATUS', item.reqStatus)}"></td>
+                                <td th:text="${item.sysUser.username}"></td>
+                                <td th:text="${item.sysUser.ksh}"></td>
+                                <td th:text="${item.sysUser.phone}"></td>
+                                <!--                                <td th:text="${item.imegsUrlArr}"></td>-->
+                                <td th:text="${item.createDate}"></td>
+                                <td>
+                                    <button type="button" class="btn btn-xs btn-warning warning_44">审核</button>
+                                    &nbsp;
+                                    <button type="button" class="btn btn-xs btn-danger">删除</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+                    <div class="page">
+                        <ul class="pagination">
+                            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a>
+                            </li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
             <div th:replace="common/fragment :: frontendFooter"></div>

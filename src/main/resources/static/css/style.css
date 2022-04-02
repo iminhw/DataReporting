@@ -3296,3 +3296,8 @@ ul.new li.new_right {
         font-size: 64%;
     }
 }
+
+.page {
+    float: right;
+    /*margin-bottom: 24px*/
+}
