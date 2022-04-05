@@ -15,18 +15,20 @@
             <div class="xs">
                 <h3>获奖专业申请处理</h3>
                 <div class="grid_3 grid_5">
-                    <form class="form-horizontal" action="#" >
+                    <form class="form-horizontal">
                         <label for="nickname" class="col-sm-1 control-label maginbtm">姓名</label>
                         <div class="col-sm-3 maginbtm">
-                            <input type="text" name="nickname" id="nickname" value="" class="form-control1 col-sm-2" />
+                            <input type="text" name="nickname" id="nickname" value="" class="form-control1 col-sm-2"/>
                         </div>
                         <label for="username" class="maginbtm col-sm-1 control-label">身份证号</label>
                         <div class="col-sm-3 maginbtm">
-                            <input type="text" name="username" id="username" dr:dict="REQ_STATUS" class="form-control1 col-sm-2">
+                            <input type="text" name="username" id="username" dr:dict="REQ_STATUS"
+                                   class="form-control1 col-sm-2">
                         </div>
                         <label for="phone" class="col-sm-1 control-label maginbtm">手机号</label>
                         <div class="col-sm-3 maginbtm">
-                            <input type="text" name="phone" id="phone" dr:dict="REQ_STATUS" class="form-control1 col-sm-2">
+                            <input type="text" name="phone" id="phone" dr:dict="REQ_STATUS"
+                                   class="form-control1 col-sm-2">
                         </div>
                         <label for="zy" class="col-sm-1 control-label maginbtm">专业</label>
                         <div class="col-sm-3 maginbtm">
@@ -35,12 +37,13 @@
                         </div>
                         <label for="reqStatus" class="col-sm-1 control-label maginbtm">审核状态</label>
                         <div class="col-sm-3 maginbtm">
-                            <select name="reqStatus" id="reqStatus" dr:dict="REQ_STATUS" class="form-control1 maginbtm col-sm-2">
+                            <select name="reqStatus" id="reqStatus" dr:dict="REQ_STATUS"
+                                    class="form-control1 maginbtm col-sm-2">
                                 <option value="">全部</option>
                             </select>
                         </div>
                         <div class="col-sm-3 maginbtm">
-                            <input class="btn-default btn" value="查询" type="submit">
+                            <input class="btn-default btn" value="查询" id="sbt" type="button">
                             &nbsp;
                             <input class="btn-default btn" value="重置" type="reset">
                         </div>
@@ -64,37 +67,17 @@
                                 <th>操作</th>
                             </tr>
                             </thead>
-                            <tbody th:each="item:${list}">
-                            <tr>
-                                <th scope="row" th:text="${item.id}"></th>
-                                <td th:text="${item.sysUser.nickname}"></td>
-                                <td th:text="${item.zy}"></td>
-                                <!--/*@thymesVar id="#dicts" type="dicts"*/-->
-                                <td th:text="${#dicts.keyValue('REQ_STATUS', item.reqStatus)}"></td>
-                                <td th:text="${item.sysUser.username}"></td>
-                                <td th:text="${item.sysUser.ksh}"></td>
-                                <td th:text="${item.sysUser.phone}"></td>
-                                <!--                                <td th:text="${item.imegsUrlArr}"></td>-->
-                                <td th:text="${item.createDate}"></td>
-                                <td>
-                                    <button type="button" class="btn btn-xs btn-warning warning_44">审核</button>
-                                    &nbsp;
-                                    <button type="button" class="btn btn-xs btn-danger">删除</button>
-                                </td>
-                            </tr>
+                            <tbody>
                             </tbody>
                         </table>
                     </div><!-- /.table-responsive -->
                     <div class="page">
-                        <ul class="pagination">
-                            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a>
+                        <ul class="pager">
+                            <li><span id="text"></span></li>
+                            <li id="pre"><a href="#" aria-label="Previous"><span
+                                    aria-hidden="true">上一页</span></a>
                             </li>
-                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                            <li id="next"><a href="#" aria-label="Next"><span aria-hidden="true">下一页</span></a></li>
                         </ul>
                     </div>
                     <div class="clearfix"></div>
@@ -106,5 +89,111 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
+<script type="text/babel">
+    const reqStat = "[[${#dicts.value('REQ_STATUS')}]]";
+    const strArr = reqStat.split("=");
+    let pageNo = 1;
+    let pageSize = 10;
+    let totalRecords = 0;
+    let totalPages = 0;
+    let search = {};
+    const initdata = (list) => {
+        let html = "";
+        for (let i = 0; i < list.length; i++) {
+            const keyVal = strArr[list[i].reqStatus];
+            const indexEnd = keyVal.indexOf(",") != -1 ? keyVal.indexOf(",") : keyVal.indexOf("}");
+            // const reqstat = getDict(reqStat, list[i].reqStatus);
+            html += "<tr>";
+            html += "<td>" + list[i].id + "</td>";
+            html += "<td>" + list[i].sysUser.nickname + "</td>";
+            html += "<td>" + list[i].zy + "</td>";
+            html += "<td>" + keyVal.substr(0, indexEnd) + "</td>";
+            html += "<td>" + list[i].sysUser.username + "</td>";
+            html += "<td>" + list[i].sysUser.ksh + "</td>";
+            html += "<td>" + list[i].sysUser.phone + "</td>";
+            html += "<td>" + list[i].createDate + "</td>";
+            html += "<td>" +
+                "<button type=\"button\" class=\"btn btn-xs btn-warning warning_44\" onclick='messge(\"开发中...\")'>审核</button> &nbsp;" +
+                " <button type=\"button\" class=\"btn btn-xs btn-danger\" onclick='messge(\"开发中...\")'>删除</button>" +
+                "</td>"
+            html += "</tr>";
+        }
+        $("tbody").append(html);
+    }
+
+    const change = () => {
+        $("#text").text("");
+        const str = '当前第' + pageNo + '页，' + '共' + totalRecords + '条数据，' + '共' + totalPages + '页';
+        $("#text").text(str);
+    }
+
+    const check = () => {
+        $.post("/admin/teacher/winner", Object.assign({
+            pageNo,
+            pageSize,
+            count: (pageNo - 1) * pageSize
+        }, search), (page) => {
+            $("tbody").html("");
+            totalPages = page.totalPages;
+            totalRecords = page.totalRecords;
+
+            initdata(page.list);
+            change();
+            if (pageNo <= 1) {
+                $("#pre").addClass("disabled");
+            }
+            if (pageNo >= totalPages) {
+                $("#next").addClass("disabled");
+            }
+        }, "json");
+    }
+
+    $("#pre a").click(() => {
+        if (pageNo > 1) {
+            pageNo = pageNo - 1;
+            check();
+            change();
+            $("#next").removeClass()
+        }
+    });
+
+    $("#next a").click(() => {
+        if (pageNo < totalPages) {
+            pageNo = pageNo + 1;
+            check();
+            change();
+            $("#pre").removeClass();
+        }
+    });
+    //search
+    $("#sbt").click(() => {
+        // search = $("#searchForm").serializeObject();
+        $("#next").removeClass()
+        $("#pre").removeClass();
+        search.nickname = $("#nickname").val();
+        search.username = $("#username").val();
+        search.phone = $("#phone").val();
+        search.zy = $("#zy").val();
+        search.reqStatus = $("#reqStatus").val();
+        // console.log(search)
+        check();
+        change();
+    });
+
+    $(() => {
+        $.post("/admin/teacher/winner", {pageNo, pageSize, count: (pageNo - 1) * pageSize}, (page) => {
+            totalPages = page.totalPages;
+            // console.log(page)
+            initdata(page.list);
+            totalRecords = page.totalRecords;
+            if (page.totalPages <= 1) {
+                $("#next").addClass("disabled");
+            }
+            change();
+        }, "json");
+        $("#pre").addClass("disabled");
+    })
+
+</script>
 </body>
 </html>

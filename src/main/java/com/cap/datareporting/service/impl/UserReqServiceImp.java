@@ -1,7 +1,7 @@
 package com.cap.datareporting.service.impl;
 
 import com.cap.datareporting.common.enums.StatusConst;
-import com.cap.datareporting.component.thymeleaf.utility.ParamUtil;
+import com.cap.datareporting.common.utils.PageBeen;
 import com.cap.datareporting.dao.UReqMapper;
 import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.UReq;
@@ -46,12 +46,17 @@ public class UserReqServiceImp implements UserReqService {
 
     @Override
     public UReq findByid(Long id, Long uid) {
-        return uReqMapper.selectByIdAndUid(id,uid, StatusConst.OK);
+        return uReqMapper.selectByIdAndUid(id, uid, StatusConst.OK);
     }
 
     @Override
-    public List<UReq> selectReQAndUser(SysUser user, UReq uReq) {
+    public List<UReq> selectReQAndUser(SysUser user, UReq uReq, PageBeen page) {
         uReq.setStatus(StatusConst.OK);
-        return uReqMapper.selectReQAndUser(user, uReq);
+        return uReqMapper.selectReQAndUser(user, uReq, page);
+    }
+
+    @Override
+    public int selectReQAndCount(SysUser user, UReq uReq) {
+        return uReqMapper.selectReQAndCount(user, uReq);
     }
 }

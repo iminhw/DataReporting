@@ -1,5 +1,6 @@
 package com.cap.datareporting.dao;
 
+import com.cap.datareporting.common.utils.PageBeen;
 import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.UReq;
 import com.cap.datareporting.entity.UReqExample;
@@ -21,7 +22,9 @@ public interface UReqMapper {
 
     List<UReq> selectByExample(UReqExample example);
 
-    List<UReq> selectReQAndUser(@Param("user")SysUser user, @Param("uReq") UReq uReq);
+    List<UReq> selectReQAndUser(@Param("user")SysUser user, @Param("uReq") UReq uReq, @Param("page") PageBeen page);
+
+    Integer selectReQAndCount(@Param("user")SysUser user, @Param("uReq") UReq uReq);
 
     UReq selectByPrimaryKey(Long id);
 

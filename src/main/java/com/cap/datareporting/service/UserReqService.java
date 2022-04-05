@@ -1,8 +1,8 @@
 package com.cap.datareporting.service;
 
+import com.cap.datareporting.common.utils.PageBeen;
 import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.entity.UReq;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.List;
 
@@ -22,10 +22,11 @@ public interface UserReqService {
      */
     Boolean findReqStatusByUid(Long uid, String req_status);
 
-    int insertSelective(UReq  uReq);
+    int insertSelective(UReq uReq);
 
     /**
-     *  按照用户id查询所有申请
+     * 按照用户id查询所有申请
+     *
      * @param uid
      * @return
      */
@@ -33,5 +34,7 @@ public interface UserReqService {
 
     UReq findByid(Long id, Long uid);
 
-    List<UReq> selectReQAndUser(SysUser user, UReq uReq);
+    List<UReq> selectReQAndUser(SysUser user, UReq uReq, PageBeen page);
+
+    int selectReQAndCount(SysUser user, UReq uReq);
 }

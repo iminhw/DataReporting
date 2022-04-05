@@ -16,6 +16,22 @@ const messge = (title = "提示", icon = 'success') => {
         title: title
     });
 }
+//
+// $.fn.serializeObject = () => {
+//     const o = {};
+//     const a = this.serializeArray();
+//     $.each(a, function () {
+//         if (o[this.name] !== undefined) {
+//             if (!o[this.name].push) {
+//                 o[this.name] = [o[this.name]];
+//             }
+//             o[this.name].push(this.value || '');
+//         } else {
+//             o[this.name] = this.value || '';
+//         }
+//     });
+//     return o;
+// };
 
 const scallPu = () => {
     // alert(11)
@@ -52,6 +68,20 @@ const scallPu = () => {
     }
 }
 
+/**
+ * 字典翻译
+ * @param dictStr
+ * @param key
+ * @returns {string}
+ */
+const getDict = (dictStr, key) => {
+    const strArr = dictStr.split("=");
+    const keyVal = strArr[key];
+    const indexEnd = keyVal.indexOf(",") != -1 ? keyVal.indexOf(",") :
+        keyVal.indexOf("}");
+    return keyVal.substr(0, indexEnd)
+}
+
 // function loginUrl() {
 //     var url = location.href;
 //     $.ajax({
@@ -68,8 +98,8 @@ const scallPu = () => {
 
 const getUrl = (arr = []) => {
     if (arr == null) return "";
-   const arrJson = JSON.stringify(arr);
-   console.log(arrJson);
+    const arrJson = JSON.stringify(arr);
+    console.log(arrJson);
 }
 
 
