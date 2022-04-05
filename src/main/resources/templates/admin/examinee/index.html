@@ -15,8 +15,10 @@
             <h3>我的申请</h3>
             <div class="graph_box">
                 <div class="col-md-4 grid_2" th:each="item:${reqlist}">
-                    <a th:href="'/admin/examinee/details/'+${item.id}" style="text-decoration: none" target="_blank"
+                    <a th:href="'/admin/examinee/details/'+${item.id}" style="text-decoration: none"
+                       data-toggle="tooltip" data-placement="top"
                        title="详情">
+<!--                        target="_blank"-->
                         <div class="grid_1" style="margin-bottom: 24px">
                             <h3>[[${#dicts.keyValue('REQ_TYPE', item.type)}]]</h3>
                             <div>审核状态：[[${#dicts.keyValue('REQ_STATUS', item.reqStatus)}]]</div>

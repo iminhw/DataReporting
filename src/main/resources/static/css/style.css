@@ -3301,3 +3301,7 @@ ul.new li.new_right {
     float: right;
     /*margin-bottom: 24px*/
 }
+
+.maginbtm {
+    margin-bottom: 12px;
+}

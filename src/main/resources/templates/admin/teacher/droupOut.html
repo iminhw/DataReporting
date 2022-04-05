@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:dr="http://www.minhw.com"
 >
 <head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
     <meta charset="UTF-8">
@@ -13,11 +14,48 @@
         <div class="col-md-12 graphs">
             <div class="xs">
                 <h3>拟录取退档申请处理</h3>
-                <div>
-                    <form>
-                        <input type="text">
-                        <input type="submit">
+                <div class="grid_3 grid_5">
+                    <form class="form-horizontal" action="#" >
+                        <!--                        <div class="form-group">-->
+                        <label for="nickname" class="col-sm-1 control-label maginbtm">姓名</label>
+                        <div class="col-sm-3 maginbtm">
+                            <input type="text" name="nickname" id="nickname" value="" class="form-control1 col-sm-2" />
+                        </div>
+                        <!--                        </div>-->
+                        <!--                        <div class="form-group">-->
+                        <label for="username" class="maginbtm col-sm-1 control-label">身份证号</label>
+                        <div class="col-sm-3 maginbtm">
+                            <input type="text" name="username" id="username" dr:dict="REQ_STATUS" class="form-control1 col-sm-2">
+                        </div>
+                        <!--                        </div>-->
+                        <!--                        <div class="form-group">-->
+                        <label for="phone" class="col-sm-1 control-label maginbtm">手机号</label>
+                        <div class="col-sm-3 maginbtm">
+                            <input type="text" name="phone" id="phone" dr:dict="REQ_STATUS" class="form-control1 col-sm-2">
+                        </div>
+                        <!--                        </div>-->
+                        <!--                        <div class="form-group">-->
+                        <label for="zy" class="col-sm-1 control-label maginbtm">专业</label>
+                        <div class="col-sm-3 maginbtm">
+                            <input type="text" name="zy" id="zy" dr:dict="REQ_STATUS" class="form-control1 col-sm-2">
+
+                        </div>
+                        <!--                        </div>-->
+                        <!--                        <div class="form-group">-->
+                        <label for="reqStatus" class="col-sm-1 control-label maginbtm">审核状态</label>
+                        <div class="col-sm-3 maginbtm">
+                            <select name="reqStatus" id="reqStatus" dr:dict="REQ_STATUS" class="form-control1 maginbtm col-sm-2">
+                                <option value="">全部</option>
+                            </select>
+                        </div>
+                        <!--                        </div>-->
+                        <div class="col-sm-3 maginbtm">
+                            <input class="btn-default btn" value="查询" type="submit">
+                            &nbsp;
+                            <input class="btn-default btn" value="重置" type="reset">
+                        </div>
                     </form>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="bs-example4" data-example-id="contextual-table">
                     <div class="table-responsive">

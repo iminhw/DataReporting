@@ -28,7 +28,7 @@ public class UserController {
     /**
      * 列表页面
      */
-    @GetMapping("")
+    @RequestMapping("")
     @RequiresPermissions("admin/user/index")
     public String index(Model model, SysUser user) {
 

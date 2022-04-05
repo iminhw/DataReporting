@@ -51,6 +51,7 @@ public class UserReqServiceImp implements UserReqService {
 
     @Override
     public List<UReq> selectReQAndUser(SysUser user, UReq uReq) {
+        uReq.setStatus(StatusConst.OK);
         return uReqMapper.selectReQAndUser(user, uReq);
     }
 }
