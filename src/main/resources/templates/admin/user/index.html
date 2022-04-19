@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:dr="http://www.minhw.com"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+>
 <head th:replace="common/template :: header(~{::title},~{::link},~{::style})">
   <meta charset="UTF-8">
   <title>用户管理 - [[${#params.value("website_title")}]]</title>
@@ -11,13 +11,199 @@
   <!-- Navigation -->
   <div th:replace="common/fragment :: frontendAdminHeadher"></div>
   <div id="page-wrapper">
-    <div class="graphs">
-      <div> 开发中...</div>
+    <div class="col-md-12 graphs">
+      <div class="xs">
+        <h3>用户管理</h3>
+        <div class="grid_3 grid_5">
+          <form id="searchForm" class="form-horizontal">
+            <!--                        <div class="form-group">-->
+            <label for="nickname" class="col-sm-1 control-label maginbtm">姓名</label>
+            <div class="col-sm-3 maginbtm">
+              <input type="text" name="nickname" id="nickname" value="" class="form-control1 col-sm-2"/>
+            </div>
+            <!--                        </div>-->
+            <!--                        <div class="form-group">-->
+            <label for="username" class="maginbtm col-sm-1 control-label">身份证号</label>
+            <div class="col-sm-3 maginbtm">
+              <input type="text" name="username" id="username" dr:dict="REQ_STATUS"
+                     class="form-control1 col-sm-2">
+            </div>
+            <!--                        </div>-->
+            <!--                        <div class="form-group">-->
+            <label for="phone" class="col-sm-1 control-label maginbtm">手机号</label>
+            <div class="col-sm-3 maginbtm">
+              <input type="text" name="phone" id="phone" dr:dict="REQ_STATUS"
+                     class="form-control1 col-sm-2">
+            </div>
+            <!--                        </div>-->
+            <!--                        <div class="form-group">-->
+            <label for="zy" class="col-sm-1 control-label maginbtm">专业</label>
+            <div class="col-sm-3 maginbtm">
+              <input type="text" name="zy" id="zy" dr:dict="REQ_STATUS" class="form-control1 col-sm-2">
+
+            </div>
+            <!--                        </div>-->
+            <!--                        <div class="form-group">-->
+            <label for="reqStatus" class="col-sm-1 control-label maginbtm">审核状态</label>
+            <div class="col-sm-3 maginbtm">
+              <select name="reqStatus" id="reqStatus" dr:dict="REQ_STATUS"
+                      class="form-control1 maginbtm col-sm-2">
+                <option value="">全部</option>
+              </select>
+            </div>
+            <!--                        </div>-->
+            <div class="col-sm-3 maginbtm">
+              <input class="btn-default btn" value="查询" id="sbt" type="button">
+              &nbsp;
+              <input class="btn-default btn" value="重置" type="reset">
+            </div>
+          </form>
+          <div class="clearfix"></div>
+        </div>
+        <div class="bs-example4" data-example-id="contextual-table">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>拟录专业</th>
+                <th>状态</th>
+                <th>身份证号码</th>
+                <th>考生号</th>
+                <th>联系手机</th>
+                <!--                                <th>上传资料</th>-->
+                <th>申请时间</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div><!-- /.table-responsive -->
+          <div class="page">
+            <ul class="pager">
+              <li><span id="text"></span></li>
+              <li id="pre"><a href="#" aria-label="Previous"><span
+                      aria-hidden="true">上一页</span></a>
+              </li>
+              <li id="next"><a href="#" aria-label="Next"><span aria-hidden="true">下一页</span></a></li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
       <div th:replace="common/fragment :: frontendFooter"></div>
     </div>
   </div>
   <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
+<script type="text/babel">
+  const reqStat = "[[${#dicts.value('REQ_STATUS')}]]";
+  const strArr = reqStat.split("=");
+  let pageNo = 1;
+  let pageSize = 10;
+  let totalRecords = 0;
+  let totalPages = 0;
+  let search = {};
+  const initdata = (list) => {
+    let html = "";
+    for (let i = 0; i < list.length; i++) {
+      const keyVal = strArr[list[i].reqStatus];
+      const indexEnd = keyVal.indexOf(",") != -1 ? keyVal.indexOf(",") : keyVal.indexOf("}");
+      // const reqstat = getDict(reqStat, list[i].reqStatus);
+      html += "<tr>";
+      html += "<td>" + list[i].id + "</td>";
+      html += "<td>" + list[i].sysUser.nickname + "</td>";
+      html += "<td>" + list[i].zy + "</td>";
+      html += "<td>" + keyVal.substr(0, indexEnd) + "</td>";
+      html += "<td>" + list[i].sysUser.username + "</td>";
+      html += "<td>" + list[i].sysUser.ksh + "</td>";
+      html += "<td>" + list[i].sysUser.phone + "</td>";
+      html += "<td>" + list[i].createDate + "</td>";
+      html += "<td>" +
+              "<button type=\"button\" class=\"btn btn-xs btn-warning warning_44\" onclick='messge(\"开发中...\")'>审核</button> &nbsp;" +
+              " <button type=\"button\" class=\"btn btn-xs btn-danger\" onclick='messge(\"开发中...\")'>删除</button>" +
+              "</td>"
+      html += "</tr>";
+    }
+    $("tbody").append(html);
+  }
+
+  const change = () => {
+    $("#text").text("");
+    const str = '当前第' + pageNo + '页，' + '共' + totalRecords + '条数据，' + '共' + totalPages + '页';
+    $("#text").text(str);
+  }
+
+  const check = () => {
+    $.post("/admin/teacher/droupOut", Object.assign({
+      pageNo,
+      pageSize,
+      count: (pageNo - 1) * pageSize
+    }, search), (page) => {
+      $("tbody").html("");
+      totalPages = page.totalPages;
+      totalRecords = page.totalRecords;
+
+      initdata(page.list);
+      change();
+      if (pageNo <= 1) {
+        $("#pre").addClass("disabled");
+      }
+      if (pageNo >= totalPages) {
+        $("#next").addClass("disabled");
+      }
+    }, "json");
+  }
+
+  $("#pre a").click(() => {
+    if (pageNo > 1) {
+      pageNo = pageNo - 1;
+      check();
+      change();
+      $("#next").removeClass()
+    }
+  });
+
+  $("#next a").click(() => {
+    if (pageNo < totalPages) {
+      pageNo = pageNo + 1;
+      check();
+      change();
+      $("#pre").removeClass();
+    }
+  });
+  //search
+  $("#sbt").click(() => {
+    // search = $("#searchForm").serializeObject();
+    $("#next").removeClass()
+    $("#pre").removeClass();
+    search.nickname = $("#nickname").val();
+    search.username = $("#username").val();
+    search.phone = $("#phone").val();
+    search.zy = $("#zy").val();
+    search.reqStatus = $("#reqStatus").val();
+    // console.log(search)
+    check();
+    change();
+  });
+
+  $(() => {
+    $.post("/admin/teacher/droupOut", {pageNo, pageSize, count: (pageNo - 1) * pageSize}, (page) => {
+      totalPages = page.totalPages;
+      // console.log(page)
+      initdata(page.list);
+      totalRecords = page.totalRecords;
+      if (page.totalPages <= 1) {
+        $("#next").addClass("disabled");
+      }
+      change();
+    }, "json");
+    $("#pre").addClass("disabled");
+  })
+
+</script>
 </body>
 </html>

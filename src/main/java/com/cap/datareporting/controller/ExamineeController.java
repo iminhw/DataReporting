@@ -52,7 +52,7 @@ public class ExamineeController {
     public String details(@PathVariable("id") Long id, Model model) {
         SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
         model.addAttribute("user", user);
-        System.out.println(userReqService.findByid(id, user.getId()).toString());
+//        System.out.println(userReqService.findByid(id, user.getId()).toString());
         model.addAttribute("reqdet", userReqService.findByid(id, user.getId()));
         return "admin/examinee/details";
     }

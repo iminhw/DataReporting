@@ -1,13 +1,18 @@
 package com.cap.datareporting.entity;
 
+import com.cap.datareporting.component.excel.annotation.Excel;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Excel("测试")
 public class SysUser implements Serializable {
     private Long id;
 
+    @Excel("身份证号")
     private String username;
-
+    @Excel("姓名")
     private String nickname;
 
     private String password;
@@ -15,7 +20,7 @@ public class SysUser implements Serializable {
     private String salt;
 
     private String picture;
-
+    @Excel("性别")
     private Byte sex;
 
     private String ksh;
@@ -23,13 +28,13 @@ public class SysUser implements Serializable {
     private String abbreviation;
 
     private String email;
-
+    @Excel("手机号")
     private String phone;
 
     private String remark;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createDate;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateDate;
 
     private Byte status;

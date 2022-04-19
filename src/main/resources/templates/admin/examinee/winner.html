@@ -85,7 +85,7 @@
                                    ng-model="model.url" required="required">
                         </div>
                         <div class="form-group filled">
-                            <label class="control-label">高考类别</label>
+                            <label class="control-label">类别</label>
                             <select class="form-control1 ng-invalid ng-invalid-required" ng-model="model.select"
                                     dr:dict="CEEC"
                                     th:disabled="${disabled}"
@@ -184,24 +184,24 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label class="control-label">获奖项目名称
+                        <label class="control-label" for="HPname">获奖项目名称
                         </label>
                         <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
                                ng-model="model.url" name="HPname" id="HPname" required="required"/>
                     </div>
                     <div class="form-group">
-                        <label class="control-label normal">获奖时间</label>
+                        <label class="control-label normal" for="HPdata">获奖时间</label>
                         <input type="date" class="form-control1 ng-invalid ng-invalid-required"
                                ng-model="model.date" name="HPdata" id="HPdata" required=""/>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">获奖证书发证单位
+                        <label class="control-label" for="HPDepartment">获奖证书发证单位
                         </label>
                         <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
                                ng-model="model.url" name="HPDepartment" id="HPDepartment" required="required"/>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">获奖项目等级
+                        <label class="control-label" for="HPgradeC">获奖项目等级
                         </label>
                         <input class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"
                                ng-model="model.url" name="HPgradeC" id="HPgradeC" required="required"/>

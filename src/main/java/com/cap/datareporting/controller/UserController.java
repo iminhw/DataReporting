@@ -1,9 +1,11 @@
 package com.cap.datareporting.controller;
 
+import com.cap.datareporting.common.utils.PageBeen;
 import com.cap.datareporting.entity.SysUser;
 import com.cap.datareporting.service.SysRoleService;
 import com.cap.datareporting.service.SysUserService;
 import com.cap.datareporting.common.utils.ShiroUtil;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,23 +32,26 @@ public class UserController {
      */
     @RequestMapping("")
     @RequiresPermissions("admin/user/index")
-    public String index(Model model, SysUser user) {
+    public String index(Model model) {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
+        return "admin/user/index";
+    }
 
-        // 获取用户列表
-//        Page<SysUser> list = userService.getPageList(user);
-//
-//        // 封装数据
-//        model.addAttribute("list", list.getContent());
-//        model.addAttribute("page", list);
-//        model.addAttribute("dept", user.getDept());
-        return "/admin/user/index";
+    @PostMapping("/index")
+    @RequiresPermissions("admin/user/index")
+    @ResponseBody
+    public PageBeen index(Model model, PageBeen pageBeen) {
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        model.addAttribute("user", user);
+        return pageBeen;
     }
 
     /**
      * 跳转到添加页面
      */
     @GetMapping("/add")
-    @RequiresPermissions("admin:user:add")
+    @RequiresPermissions("admin/user/add")
     public String toAdd() {
         return "/admin/user/add";
     }
@@ -55,8 +60,7 @@ public class UserController {
      * 跳转到编辑页面
      */
     @GetMapping("/edit/{id}")
-    @RequiresPermissions("admin:user:edit")
-
+    @RequiresPermissions("admin/user/edit")
     public String toEdit(@PathVariable("id") SysUser user, Model model) {
         model.addAttribute("user", user);
         return "/admin/user/add";
@@ -69,7 +73,7 @@ public class UserController {
      * @param user  实体对象
      */
 //    @PostMapping("/save")
-//    @RequiresPermissions({"admin:user:add", "admin:user:edit"})
+//    @RequiresPermissions({"admin/user/add", "admin/user/edit"})
 //    @ResponseBody
 //    public ResultEntity save(SysUser user) {
 //
@@ -120,7 +124,7 @@ public class UserController {
      * 跳转到详细页面
      */
     @GetMapping("/detail/{id}")
-    @RequiresPermissions("admin:user:detail")
+    @RequiresPermissions("admin/user/detail")
     public String toDetail(@PathVariable("id") SysUser user, Model model) {
         model.addAttribute("user", user);
         return "admin/user/detail";
@@ -130,7 +134,7 @@ public class UserController {
      * 跳转到修改密码页面
      */
     @GetMapping("/pwd")
-    @RequiresPermissions("admin:user:pwd")
+    @RequiresPermissions("admin/user/pwd")
     public String toEditPassword(Model model, @RequestParam(value = "ids", required = false) List<Long> ids) {
         model.addAttribute("idList", ids);
         return "admin/user/pwd";
@@ -140,7 +144,7 @@ public class UserController {
      * 修改密码
      */
 //    @PostMapping("/pwd")
-//    @RequiresPermissions("admin:user:pwd")
+//    @RequiresPermissions("admin/user/pwd")
 //    @ResponseBody
 //    public ResultVo editPassword(String password, String confirm,
 //                                 @RequestParam(value = "ids", required = false) List<Long> ids,
@@ -180,7 +184,7 @@ public class UserController {
      * 跳转到角色分配页面
      */
 //    @GetMapping("/role")
-//    @RequiresPermissions("admin:user:role")
+//    @RequiresPermissions("admin/user/role")
 //    public String toRole(@RequestParam(value = "ids") User user, Model model) {
 //        // 获取指定用户角色列表
 //        Set<Role> authRoles = user.getRoles();
@@ -198,7 +202,7 @@ public class UserController {
      * 保存角色分配信息
      */
 //    @PostMapping("/role")
-//    @RequiresPermissions("admin:user:role")
+//    @RequiresPermissions("admin/user/role")
 //    @ResponseBody
 //    public ResultVo auth(
 //            @RequestParam(value = "id", required = true) SysUser user,

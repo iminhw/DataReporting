@@ -48,6 +48,9 @@ public class ExcelUtil {
 
     /**
      * 获取通用样式
+     *
+     * @param workbook
+     * @return
      */
     private static XSSFCellStyle getCellStyle(XSSFWorkbook workbook) {
         XSSFCellStyle cellStyle = workbook.createCellStyle();
@@ -64,6 +67,9 @@ public class ExcelUtil {
 
     /**
      * 功能模板（标题及表头）
+     * @param sheetTitle
+     * @param fields
+     * @return
      */
     private static XSSFWorkbook getCommon(String sheetTitle, List<Field> fields) {
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -123,7 +129,10 @@ public class ExcelUtil {
     }
 
     /**
-     * 获取实体类带有@Excel的属性
+     * 、获取实体类带有@Excel的属性
+     * @param entity
+     * @param type
+     * @return
      */
     private static List<Field> getExcelList(Class<?> entity, ExcelType type) {
         List<Field> list = new ArrayList<>();
@@ -141,6 +150,8 @@ public class ExcelUtil {
 
     /**
      * 获取实体类带有@Excel字段名
+     * @param fields
+     * @return
      */
     private static List<String> getFieldName(List<Field> fields) {
         List<String> list = new ArrayList<>();
@@ -152,6 +163,8 @@ public class ExcelUtil {
 
     /**
      * 下载操作
+     * @param workbook
+     * @param fileName
      */
     private static void download(XSSFWorkbook workbook, String fileName) {
         try {

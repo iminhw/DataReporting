@@ -1,7 +1,13 @@
 package com.cap.datareporting.controller;
 
 import com.cap.datareporting.common.utils.PageBeen;
+import com.cap.datareporting.common.utils.ResultVo;
+import com.cap.datareporting.common.utils.ResultVoUtil;
+import com.cap.datareporting.common.utils.SpringContextUtil;
+import com.cap.datareporting.component.excel.ExcelUtil;
+import com.cap.datareporting.dao.SysUserMapper;
 import com.cap.datareporting.entity.SysUser;
+import com.cap.datareporting.entity.SysUserExample;
 import com.cap.datareporting.entity.UReq;
 import com.cap.datareporting.service.UserReqService;
 import org.apache.shiro.SecurityUtils;
@@ -9,6 +15,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,5 +78,23 @@ public class TeacherController {
 //        reqResultVo.setData((UReq) uReqList);
 
         return pageBeen;
+    }
+
+    @RequestMapping(value = {"/teacher/audit"}, method = RequestMethod.POST)
+    @RequiresPermissions("admin/teacher/audit")
+    @ResponseBody
+    public ResultVo teacherAudit(Model model, UReq uReq, SysUser user) {
+
+        return ResultVoUtil.SAVE_SUCCESS;
+    }
+
+    @GetMapping("/teacher/export")
+    @RequiresPermissions("admin/teacher/winner")
+    @ResponseBody
+    public void exportExcel(UReq uReq, SysUser user, PageBeen page) {
+//        uReq.setType(Byte.valueOf("2"));
+//        count 为0，使用pageSize设置导出的数据数量
+        ExcelUtil.exportExcel(UReq.class, userReqService.selectReQAndUser(user, uReq, page));
+
     }
 }

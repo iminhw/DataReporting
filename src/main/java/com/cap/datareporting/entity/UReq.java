@@ -1,5 +1,6 @@
 package com.cap.datareporting.entity;
 
+import com.cap.datareporting.component.excel.annotation.Excel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.ToString;
 
@@ -7,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @ToString
+@Excel("考生申请数据")
 public class UReq implements Serializable {
     private Long id;
 
@@ -16,23 +18,26 @@ public class UReq implements Serializable {
 
     private Byte reqStatus;
 
+    @Excel("专业")
     private String zy;
 
     private String gklb;
 
     private String remark;
-
+    @Excel("获奖情况")
     private String reqRemark;
 
     private String imegsUrlArr;
 
     private Byte status;
 
+    @Excel("提交日期")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createDate;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateDate;
 
+    @Excel("user")
     private SysUser sysUser;
 
     private static final long serialVersionUID = 1L;

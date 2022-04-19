@@ -8,7 +8,7 @@
 <div class="login-logo">
     <a href="index.html"><img src="images/logo.png" alt=""/></a>
 </div>
-<h2 class="form-heading">注册用户 备注：表单正则验证没写</h2>
+<h2 class="form-heading">注册用户</h2>
 <form id="registerForm" method="post" class="form-horizontal form-signin app-cam">
     <p>在下面输入您的个人详细信息</p>
     <div class="form-group">
@@ -171,11 +171,11 @@
                 password1: {
                     validators: {
                         notEmpty: {
-                            message: '确认密码不能为空'
+                            message: '再次输入密码不能为空'
                         },
                         identical: {
                             field: 'password',
-                            message: '密码和确认密码不一样'
+                            message: '两次密码不一样'
                         }
                     }
                 },

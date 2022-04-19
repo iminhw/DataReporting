@@ -30,7 +30,7 @@
                             <input type="text" name="phone" id="phone" dr:dict="REQ_STATUS"
                                    class="form-control1 col-sm-2">
                         </div>
-                        <label for="zy" class="col-sm-1 control-label maginbtm">专业</label>
+                        <label for="zy" class="col-sm-1 control-label maginbtm">申请专业</label>
                         <div class="col-sm-3 maginbtm">
                             <input type="text" name="zy" id="zy" dr:dict="REQ_STATUS" class="form-control1 col-sm-2">
 
@@ -89,7 +89,48 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
-<script type="text/babel">
+<!--winnerModal-->
+<div class="modal fade" id="winnerModal" tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h2 class="modal-title">详情</h2>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <label for="nickname1" class="col-sm-1 control-label maginbtm">姓名</label>
+                    <div class="col-sm-3 maginbtm">
+                        <input type="text" name="nickname" id="nickname1" value="" class="form-control1 col-sm-2"/>
+                    </div>
+                    <label for="reqStatus1" class="col-sm-1 control-label maginbtm">审核状态</label>
+                    <div class="col-sm-3 maginbtm">
+                        <select name="reqStatus" id="reqStatus1" dr:dict="REQ_STATUS"
+                                class="form-control1 maginbtm col-sm-2">
+                        </select>
+                    </div>
+                    <label for="reqStatus1" class="col-sm-1 control-label maginbtm">原因</label>
+                    <div class="col-sm-3 maginbtm">
+                        <textarea id="" name=""
+                                  class="form-control1 ng-invalid ng-valid-url ng-invalid-required ng-touched"></textarea>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<script >
     const reqStat = "[[${#dicts.value('REQ_STATUS')}]]";
     const strArr = reqStat.split("=");
     let pageNo = 1;
@@ -100,25 +141,33 @@
     const initdata = (list) => {
         let html = "";
         for (let i = 0; i < list.length; i++) {
-            const keyVal = strArr[list[i].reqStatus];
+            const tem = list[i];
+            const keyVal = strArr[tem.reqStatus];
             const indexEnd = keyVal.indexOf(",") != -1 ? keyVal.indexOf(",") : keyVal.indexOf("}");
             // const reqstat = getDict(reqStat, list[i].reqStatus);
             html += "<tr>";
-            html += "<td>" + list[i].id + "</td>";
-            html += "<td>" + list[i].sysUser.nickname + "</td>";
-            html += "<td>" + list[i].zy + "</td>";
+            html += "<td>" + tem.id + "</td>";
+            html += "<td>" + tem.sysUser.nickname + "</td>";
+            html += "<td>" + tem.zy + "</td>";
             html += "<td>" + keyVal.substr(0, indexEnd) + "</td>";
-            html += "<td>" + list[i].sysUser.username + "</td>";
-            html += "<td>" + list[i].sysUser.ksh + "</td>";
-            html += "<td>" + list[i].sysUser.phone + "</td>";
-            html += "<td>" + list[i].createDate + "</td>";
+            html += "<td>" + tem.sysUser.username + "</td>";
+            html += "<td>" + tem.sysUser.ksh + "</td>";
+            html += "<td>" + tem.sysUser.phone + "</td>";
+            html += "<td>" + tem.createDate + "</td>";
             html += "<td>" +
-                "<button type=\"button\" class=\"btn btn-xs btn-warning warning_44\" onclick='messge(\"开发中...\")'>审核</button> &nbsp;" +
+                "<button onclick='this.initModal(tem)' type=\"button\" class=\"btn btn-xs btn-warning warning_44\" data-toggle=\"modal\" data-target=\"#winnerModal\">审核</button> &nbsp;" +
                 " <button type=\"button\" class=\"btn btn-xs btn-danger\" onclick='messge(\"开发中...\")'>删除</button>" +
                 "</td>"
             html += "</tr>";
         }
         $("tbody").append(html);
+    }
+    
+    const initModal = (data = {}) => {
+        console.log(data);
+        $("#nickname1").val(data.nickname)
+        const imgs = eval(data.imegsUrlArr)
+        console.log(imgs)
     }
 
     const change = () => {
