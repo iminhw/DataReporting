@@ -15,9 +15,6 @@ public class SysRoleExample {
         oredCriteria = new ArrayList<Criteria>();
     }
 
-    public void setOrderByClause(String orderByClause) {
-        this.orderByClause = orderByClause;
-    }
 
     public String getOrderByClause() {
         return orderByClause;
